@@ -1,0 +1,42 @@
+@each $color in $color-slugs {
+    .has-#{$color}-color {
+        color: var(--#{$color});
+    }
+    .has-#{$color}-background {
+        background-color: var(--#{$color});
+    }
+}
+
+
+h1.ctx-font-script {
+    font-size: $base-h1-font-size-m;
+}
+
+h2.ctx-font-script {
+    font-size: $base-h2-font-size * 1.2;
+}
+
+h3.ctx-font-script {
+    font-size: $base-h3-font-size * 1.2;
+}
+
+h4.ctx-font-script {
+    font-size: $base-h4-font-size * 1.2;
+}
+
+h5.ctx-font-script {
+    font-size: $base-h5-font-size * 1.2;
+}
+
+h6.ctx-font-script {
+    font-size: $base-h6-font-size * 1.2;
+}
+
+h1:not(.ctx-font-script), 
+h2:not(.ctx-font-script), 
+h3:not(.ctx-font-script), 
+h4:not(.ctx-font-script), 
+h5:not(.ctx-font-script), 
+h6:not(.ctx-font-script) {
+    font-weight: 600;
+}

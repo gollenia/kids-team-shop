@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="{{conf.lang}}" dir="{{lang.direction}}" class="no-js">
+
+<head>
+    <meta charset="utf-8" />
+    <title>{{tpl_pagetitle()}} | {{conf.title}}</title>
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+    <link rel="stylesheet" href="{{tpl_basedir}}/assets/dist/main.css">
+    {% include "partials/colors.twig" with {'colors': colors} %}
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    {{ tpl_favicon|raw }}
+</head>
+
+<body class="{{ tpl_classes }} {{ metadata.subject|join(" ") }}">
+    
+    <div class="logo-image"><a href="/"><img data-src="{{ tpl_basedir }}assets/dist/img/logo.svg" class="ctx-logo-image" uk-svg width="70" height="70px"></a></div>
+    
+    <div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+        <nav class="uk-navbar-container" uk-navbar>
+            <div class="uk-navbar-left">
+                <a href="/" class="uk-navbar-item uk-logo">
+                    
+                    <span class="uk-visible@m">...damit Kinder ihr Vertrauen auf Gott setzen</span>
+                </a>
+            </div>
+           
+        </nav>
+    </div>
+
+    <div class="uk-section">
+        <div class="uk-container">
+            <div class="centeralign">
+                <form id="dw__login" action="/start" method="post" accept-charset="utf-8"><div class="no">
+                    <input type="hidden" name="sectok" value="">
+                    <input type="hidden" name="id" value="{{id}}">
+                    <input type="hidden" name="do" value="login">
+                    
+                    <fieldset>
+                        <label class="block" for="focus__this"><span>Benutzername</span> <input type="text" id="focus__this" name="u" class="edit"></label><br>
+                        <label class="block"><span>Passwort</span> <input type="password" name="p" class="edit"></label><br>
+                        <label class="simple" for="remember__me"><input type="checkbox" id="remember__me" name="r" value="1"> <span>Angemeldet bleiben</span></label>
+                        <button type="submit">Anmelden</button>
+                    </fieldset>
+
+                    <p>Passwort vergessen? Fordern Sie ein neues an: <a href="/start?do=resendpwd" title="Setze neues Passwort" rel="nofollow" class="resendpwd">Setze neues Passwort</a></p></div></form>
+            </div>
+        </div>
+    </div>
+
+    <script>DOKU_TPL = "{{tpl_basedir}}";</script>
+    <script src="{{tpl_basedir}}/assets/dist/main.js" type="text/javascript"></script>
+    {{ tpl_indexerWebBug() }}
+</body>
+</html>

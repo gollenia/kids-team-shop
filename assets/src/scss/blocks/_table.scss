@@ -1,0 +1,9 @@
+.wp-block-table td, .wp-block-table th {
+    padding: .5em;
+    border: 0px solid;
+    word-break: normal;
+}
+
+.wp-block-table tr:not(:last-child) {
+    border-bottom: 2px dotted;
+}

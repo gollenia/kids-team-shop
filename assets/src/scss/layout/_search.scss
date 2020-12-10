@@ -1,0 +1,59 @@
+.ctx-search {
+    .ctx-search-bar {
+        position: absolute;
+        top: 0;
+        left:0;
+        right: 0;
+        height:60px;
+        z-index: 997;
+        background-color: #ffffff;
+    }
+    .ctx-search-backdrop {
+        position: absolute;
+        top: 60px;
+        left: 0px;
+        right: 0px;
+        bottom: 0px;
+        background-color: var(--primary-light-transparent);
+        backdrop-filter: blur(5px);
+        z-index: 1;
+
+        .ctx-search-results {
+            margin-top: 70px;
+            background: #fff;
+            margin-left: 36px;
+            margin-right: 36px;
+            padding: 50px;
+            border-top-left-radius: 50px;
+            border-bottom-right-radius: 50px;
+
+            .ctx-search-result-item:not(:last-child) {
+                border-bottom: 4px dotted #555;
+                margin-bottom: 50px;;
+            }
+        }
+
+    }
+    .search-input-wrapper {
+        margin-left: 185px;
+    }
+    .ctx-search-input {
+        margin-top: 9px;
+        height: 41px !important;
+        padding-left: 50px;
+        margin-left: -50px;
+        width: 100%;
+        border: none;
+        background: #eee;
+        outline: none !important;
+        border-top-left-radius: 15px;
+        border-bottom-right-radius: 15px;
+        background-image: url("/wp-content/themes/kids-team/assets/dist/img/icons/search.svg");
+        background-size: 24px;
+        background-repeat: no-repeat;
+        background-position: 13px;
+        font-family: "Exo 2";
+        font-size: 1rem;
+    }
+
+}

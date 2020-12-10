@@ -1,0 +1,17 @@
+{
+    "name": "contexis/dokuwiki-kids-team",
+    "description": "Dokuwiki Theme for kids-team",
+    "require": {
+        "twig/twig": "^3.0"
+    },
+
+    "autoload": {
+        "psr-4": {
+              "Contexis\\Core\\": "lib/Core",
+              "Contexis\\Dokuwiki\\": "lib/Dokuwiki",
+              "Contexis\\Twig\\": "lib/Twig",
+              "Contexis\\Twig\\Functions": "lib/Twig/Functions",
+              "Contexis\\Twig\\Filters": "lib/Twig/Filters"
+        }
+    }
+}

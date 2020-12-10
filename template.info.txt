@@ -1,0 +1,7 @@
+base     kids-team
+author   Thomas Gollenia
+email    thomas@gollenia.at
+date     2020-08-31
+name     DokuWiki kids-team Template
+desc     DokuWiki template for kids-team Download Portal
+url      kttp://shop.kids-team.at

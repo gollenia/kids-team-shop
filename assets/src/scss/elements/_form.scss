@@ -1,0 +1,28 @@
+input[type="email"]:valid, input[type="number"]:valid {
+    @extend .uk-form-success;
+}
+
+
+input.edit {
+    @extend .uk-input;
+}
+
+select.edit {
+    @extend .uk-select;
+}
+
+input.checkbox {
+    @extend .uk-checkbox;
+}
+
+textarea.edit {
+    @extend .uk-textarea;
+}
+
+button {
+    @extend .uk-button;
+}
+
+button[type="submit"] {
+    @extend .uk-button-primary;
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="{{conf.lang}}" dir="{{lang.direction}}" class="no-js">
+
+<head>
+    <meta charset="utf-8" />
+    <title>{{tpl_pagetitle()}} | {{conf.title}}</title>
+    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+    <link rel="stylesheet" href="{{tpl_basedir}}/assets/dist/main.css">
+    {{ tpl_metaheaders() }}
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    {{ tpl_favicon|raw }}
+</head>
+
+<body class="{{ tpl_classes }}">
+    EDITIIIING
+    <div class="logo-image"><a href="/"><img data-src="{{ tpl_basedir }}assets/dist/img/logo.svg" class="ctx-logo-image" uk-svg width="70" height="70px"></a></div>
+    {% include "partials/menu.twig" with {'menu': menu} %}
+    {% include "partials/menu-mobile.twig" with {'menu': menu.get_items} %}
+    {% include "partials/breadcrumbs.twig" with {'breadcrumbs': breadcrumbs} %}
+    <div class="uk-section">
+        <div class="uk-container">
+            {{ tpl_content(false) }}
+        </div>
+    </div>
+    {{ tpl_include_page("sidebar", false) }}
+
+    {% if acl.admin %}
+        <a class="ctx-floating-button" href="edit">EDIT</a>
+    {% endif %}
+    
+    <script src="{{tpl_basedir}}/assets/dist/main.js" type="text/javascript"></script>
+    {{ tpl_indexerWebBug() }}
+</body>

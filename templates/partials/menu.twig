@@ -1,0 +1,20 @@
+<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
+	<nav class="uk-navbar-container" uk-navbar>
+		<div class="uk-navbar-left">
+			<a href="/" class="uk-navbar-item uk-logo">
+				
+				<span class="uk-visible@m">...damit Kinder ihr Vertrauen auf Gott setzen</span>
+			</a>
+		</div>
+		<div class="uk-navbar-right">
+			{% include "partials/menu-desktop.twig" with {'menu': menu} %}
+			<ul class="uk-navbar-nav uk-hidden@m">
+				<li class="hamburger-menu">
+					<a class="hamburger hamburger--collapse" id="hamburger" type="button" uk-toggle="target: #mobile-menu; animation: uk-animation-slide-left">
+						<img data-src="{{ tpl_basedir }}/assets/dist/img/icons/menu.svg" class="hamburger-icon" uk-svg width="30" height="30px">
+					</a>
+				</li>
+			</ul>
+		</div>
+	</nav>
+</div>
