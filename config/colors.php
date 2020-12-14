@@ -2,27 +2,21 @@
 
 return [
     [
-        "color" => "#F4F3EE",
-        "name" => "Standard",
-        "slug" => "default",
-        "dark" => false
-    ],
-    [
         "color" => "#dddddd",
         "name" => "Hellgrau",
-        "slug" => "lightgrey",
+        "slug" => "lightgray",
         "dark" => false
     ],
     [
         "color" => "#999999",
         "name" => "Mittelgrau",
-        "slug" => "mediumgrey",
+        "slug" => "mediumgray",
         "dark" => false
     ],
     [
-        "color" => "#555555",
+        "color" => "#333333",
         "name" => "Dunkelgrau",
-        "slug" => "darkgrey",
+        "slug" => "darkgray",
         "dark" => true
     ],
     [
@@ -74,52 +68,9 @@ return [
         "dark" => false
     ],
     [
-        "color" => "#7E2e84", //"#aa5dc5",
-        "name" => "Lila",
-        "slug" => "purple",
-        "dark" => true
-    ],
-    [
-        "color" => "#50258e",
-        "name" => "Dunkel-Lila",
-        "slug" => "darkpurple",
-        "dark" => true
-    ],
-    [
-        "color" => "#D8BEEE",
-        "name" => "Lila",
-        "slug" => "lightpurple",
-        "dark" => false
-    ],
-    [
-        "color" => "#e3000b",
-        "name" => "Rot",
-        "slug" => "red",
-        "dark" => true
-    ],
-    [
-        "color" => "#ffcccf",
-        "name" => "Hell-Rot",
-        "slug" => "lightred",
-        "dark" => false
-    ],
-    [
         "color" => "#0b6127",
         "name" => "Dunkelgrün",
         "slug" => "darkgreen",
         "dark" => true
-    ],
-    [
-        "color" => "#222222",
-        "name" => "Schwarz",
-        "slug" => "black",
-        "dark" => true
-    ],
-    [
-        "color" => "#ffffff",
-        "name" => "Weiß",
-        "slug" => "white",
-        "dark" => false
     ]
-
-    ];
+];
