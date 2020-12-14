@@ -39,10 +39,12 @@ namespace Contexis\Core;
          $this->twig_array['tpl_classes'] = tpl_classes();
          $this->twig_array['tpl_favicon'] = tpl_favicon();
          $this->twig_array['tpl_basedir'] = tpl_basedir();
+         $this->twig_array['tpl_inc'] = DOKU_TPLINC;
          $this->twig_array['menu'] = \Contexis\Core\Menu::get("system:menu");
          $this->twig_array['breadcrumbs'] = \Contexis\Core\Breadcrumbs::get();
          $this->twig_array['colors'] = \Contexis\Core\Config::load('colors');
          $this->twig_array['metadata'] = p_get_metadata($ID);
+         $this->twig_array['tld'] = \Contexis\Core\Utilities\Domain::get_tld();
          
      }
 
