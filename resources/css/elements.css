@@ -1,0 +1,16 @@
+
+
+footer h4 {
+    @apply text-lg;
+    @apply lg:text-2xl;
+    @apply font-bold;
+    @apply py-4;
+}
+
+.medialeft {
+    float: left;
+}
+
+.mediaright {
+    float: right;
+}

@@ -1,0 +1,41 @@
+body.at {
+    --primary: var(--blue);
+    --primary-transparent: var(--blue-transparent);
+    --primary-light: var(--lightblue);
+    --primary-contrast: var(--blue-contrast);
+    --primary-soft-contrast: var(--blue-soft-contrast);
+    --primary-light-transparent: var(--lightblue-transparent);
+    --primary-dark: var(--darkblue);
+}
+
+
+body.de {
+    --primary: var(--green);
+    --primary-transparent: var(--green-transparent);
+    --primary-light-transparent: var(--lightgreen-transparent);
+    --primary-soft-contrast: var(--green-soft-contrast);
+    --primary-contrast: var(--orange-contrast);
+    --primary-light: var(--lightgreen);
+    --primary-dark: var(--darkgreen);
+}
+
+body.ch {
+    --primary: var(--orange);
+    --primary-transparent: var(--orange-transparent);
+    --primary-light: var(--lightorange);
+    --primary-light-transparent: var(--lightorange-transparent);
+    --primary-contrast: var(--green-contrast);
+    --primary-dark: var(--darkorange);
+}
+
+.fill-primary {
+    fill: var(--primary);
+}
+
+.stroke-primary {
+    stroke: var(--primary);
+}
+
+.stroke-primary-contrast {
+    stroke: var(--primary-contrast);
+}
