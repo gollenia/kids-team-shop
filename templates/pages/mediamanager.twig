@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="{{conf.lang}}" dir="{{lang.direction}}">
+
+<head>
+    <meta charset="utf-8" />
+    <title>{{lang.mediaselect}}</title>
+    <link rel="stylesheet" href="{{tpl_basedir}}/public/css/main.css">
+    {% include "partials/colors.twig" with {'colors': colors} %}
+    {{ tpl_metaheaders() }}
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    {{ tpl_favicon|raw }}
+    {{ tpl_includeFile('meta.html') }}
+</head>
+
+<body>
+    <div id="media__manager" class="dokuwiki">
+        {{ html_msgarea() }}
+        <div id="mediamgr__aside"><div class="pad">
+            <h1>{{lang.mediaselect}}</h1>
+
+            <div id="media__opts"></div>
+
+            {{ tpl_mediaTree() }}
+        </div></div>
+
+        <div id="mediamgr__content"><div class="pad">
+            {{ tpl_mediaContent() }}
+        </div></div>
+    </div>
+</body>

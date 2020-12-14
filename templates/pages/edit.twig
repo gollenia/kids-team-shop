@@ -12,13 +12,12 @@
 </head>
 
 <body class="{{ tpl_classes }}">
-    EDITIIIING
     <div class="logo-image"><a href="/"><img data-src="{{ tpl_basedir }}assets/dist/img/logo.svg" class="ctx-logo-image" uk-svg width="70" height="70px"></a></div>
     {% include "partials/menu.twig" with {'menu': menu} %}
     {% include "partials/menu-mobile.twig" with {'menu': menu.get_items} %}
     {% include "partials/breadcrumbs.twig" with {'breadcrumbs': breadcrumbs} %}
-    <div class="uk-section">
-        <div class="uk-container">
+    <div class="bg-lightgray-lighter px-4 md:px-8 lg:px-0  py-8">
+        <div class="max-w-screen-xl mx-auto">
             {{ tpl_content(false) }}
         </div>
     </div>

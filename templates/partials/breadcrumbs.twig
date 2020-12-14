@@ -1,9 +1,8 @@
 {% if breadcrumbs %}
-<div class="ctx-breadcrumbs">
-    <a href="/" class="uk-text-small ctx-breadcrumbs-home ctx-icon ctx-icon-home"></a>
+<div class="absolute flex flex-row justify-end pt-4 top-0 right-0 mr-4">
+    <a href="/" class="text-xs bg-primary ml-2 px-2 py-1 text-primary-contrast rounded-tl-md">Home</a>
     {% for item in breadcrumbs %}
-        <a class="uk-text-small ctx-breadcrumbs-item {% if loop.last %} last{% endif %}" href="{{item.url}}">{{item.title}}</a>
+        <a class="text-xs bg-primary ml-2 px-2 py-1 text-primary-contrast {{ loop.last ? "rounded-br-md" }}" href="{{item.url}}">{{item.title}}</a>
     {% endfor %}
-
 </div>
 {% endif %}

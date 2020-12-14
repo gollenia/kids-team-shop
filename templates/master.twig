@@ -5,18 +5,17 @@
     <meta charset="utf-8" />
     <title>{{tpl_pagetitle()}} | {{conf.title}}</title>
     <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
-    <link rel="stylesheet" href="{{tpl_basedir}}/assets/dist/main.css">
+    <link rel="stylesheet" href="{{tpl_basedir}}public/css/main.css">
     
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     {{ tpl_favicon|raw }}
 </head>
 
-<body class="{{ tpl_classes }}">
-    <div class="logo-image"><a href="/"><img data-src="{{ tpl_basedir }}assets/dist/img/logo.svg" class="ctx-logo-image" uk-svg width="70" height="70px"></a></div>
+<body class="font-body antialiased mr-4 lg:mr-10 lg:text-lg {{ tpl_classes }}">
+    <div class="logo-image"><a href="/"><img data-src="{{ tpl_basedir }}/public/img/logo.svg" class="ctx-logo-image" uk-svg width="70" height="70px"></a></div>
     {% include "partials/menu.twig" with {'menu': menu} %}
-    {% include "partials/menu-mobile.twig" with {'menu': menu.get_items} %}
     {% include "partials/breadcrumbs.twig" with {'breadcrumbs': breadcrumbs} %}
-    <div class="uk-section">
+    <div class="uk-fghfgh">
         <div class="uk-container">
             {{ tpl_content(false) }}
         </div>
@@ -27,5 +26,5 @@
         <a class="ctx-floating-button" href="edit">EDIT</a>
     {% endif %}
     <script>DOKU_TPL = '{{tpl_basedir}}';</script>
-    <script src="{{tpl_basedir}}/assets/dist/main.js" type="text/javascript"></script>
+    <script src="{{tpl_basedir}}/public/js/main.js" type="text/javascript"></script>
 </body>

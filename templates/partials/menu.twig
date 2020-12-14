@@ -1,20 +1,45 @@
-<div uk-sticky="sel-target: .uk-navbar-container; cls-active: uk-navbar-sticky">
-	<nav class="uk-navbar-container" uk-navbar>
-		<div class="uk-navbar-left">
-			<a href="/" class="uk-navbar-item uk-logo">
+<div class="sticky top-0 bg-white z-40 right-0 left-0 pt-4">
+	<div x-data="{ open: false }" class="flex flex-col md:items-end md:justify-between md:flex-row">
+
+		<div class="flex justify-between md:items-end flex-row py-1">
+			<div class="-mb-5 ml-4 md:ml-8 z-40"><a alt="{{tpl_inc ~ 'public/img/logo.svg'}}" href="/">{% include "partials/logo.twig" with {'size': 70, 'fill': 'fill-primary'} %}</a></div>
+				{% if acl.edit %}
+					<a href="?do=edit" class="rounded-tl-xl rounded-br-xl py-0 px-3 bg-lightgray ml-4">Bearbeiten</a>
+				{% else %}
+				<a href="/" class="pl-4 hidden md:inline-block font-semibold  text-gray-900">...damit Kinder ihr Vertrauen auf Gott setzen</a>
+				{% endif %}
+				<a class="md:hidden align-end pt-5 pr-2" @click="open = !open">
+					HAM
+				</a>
+			
+			</div>
+
+			<div>
 				
-				<span class="uk-visible@m">...damit Kinder ihr Vertrauen auf Gott setzen</span>
-			</a>
-		</div>
-		<div class="uk-navbar-right">
-			{% include "partials/menu-desktop.twig" with {'menu': menu} %}
-			<ul class="uk-navbar-nav uk-hidden@m">
-				<li class="hamburger-menu">
-					<a class="hamburger hamburger--collapse" id="hamburger" type="button" uk-toggle="target: #mobile-menu; animation: uk-animation-slide-left">
-						<img data-src="{{ tpl_basedir }}/assets/dist/img/icons/menu.svg" class="hamburger-icon" uk-svg width="30" height="30px">
-					</a>
-				</li>
-			</ul>
-		</div>
-	</nav>
+				<nav :class="{'flex': open, 'hidden': !open}" class="h-full md:h-auto flex-col flex-grow hidden pb-4 ml-6 md:ml-0 mt-8 md:mt-0 md:md-0 md:pb-0 md:flex md:justify-end md:flex-row">
+				{% if menu %}
+				{% for item in menu %}
+					{% if item.children %}
+						{% include "partials/menu-dropdown.twig" with {'menu': item.children} %}
+					{% else %}
+				
+						<a href="{{item.id}}" class="lg:text-lg rounded-tl-xl rounded-br-xl hover:bg-lightgray px-4 py-1 font-semibold md:mt-0 {% if (item.current or item.current_item_ancestor) %}bg-lightgray{% endif %}">
+							{{item.title}}
+						</a>
+						
+				
+					{% endif %} 
+				{% endfor %}
+					
+						<a href="#" class="ctx-icon ctx-icon-search" uk-toggle="target: #search; animation: uk-animation-fade"></a>
+					
+				{% endif %}
+				</nav>
+				
+			</div>
+	</div>
 </div>
+
+
+
+
