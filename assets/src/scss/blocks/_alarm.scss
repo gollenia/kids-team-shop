@@ -1,6 +1,0 @@
-@each $color in $color-slugs {
-    .uk-alert-#{$color} {
-        background-color: var(--#{$color});
-        color: var(--#{$color}-contrast);
-    }
-}
