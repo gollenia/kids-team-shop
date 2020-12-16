@@ -1,5 +1,7 @@
 <?php
 
+require __DIR__ . '/vendor/autoload.php';
+
 use Contexis\Core\{
         Site,
         Router,
