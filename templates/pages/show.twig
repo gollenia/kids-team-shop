@@ -10,7 +10,7 @@
     {{ tpl_favicon|raw }}
 </head>
 
-<body class="font-body de antialiased mr-4 lg:mr-10 lg:text-lg {{tld}} {{ tpl_classes }} {{ tpl_classes }} {{ metadata.subject|join(" ") }}">
+<body class="font-body de antialiased mr-4 lg:mr-10 lg:text-lg {{tld}} {{ tpl_classes }} {{ metadata.subject|join(" ") }}">
     
     {% include "partials/menu.twig" with {'menu': menu} %}
     
@@ -18,9 +18,7 @@
     {% include "partials/breadcrumbs.twig" with {'breadcrumbs': breadcrumbs} %}
     <div class="max-w-screen-xl mx-auto">
         <div class="relative inline-block bg-primary-transparent bg-opacity-75 bg-blur  rounded-tr-3xl text-white text-right" style="margin-left: -2000px; padding: 50px 50px 50px 2000px;">
-            
             <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script">{{tpl_pagetitle()}}</div>
-            
         </div>
     </div>
     </header>
