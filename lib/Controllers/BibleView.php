@@ -12,8 +12,8 @@ use Contexis\Models\BibleModel;
 
 class BibleView extends Controller {
 
-    public function __construct($site) {
-        parent::__construct($site);
+    public function __construct($site, $is_ajax) {
+        parent::__construct($site, $is_ajax);
     }
 
     private function get_bible_data() {
@@ -34,11 +34,7 @@ class BibleView extends Controller {
         
         global $INPUT;
 
-        if($INPUT->bool('ajax',false)) {
-            //header('Content-Type: application/json');
-            echo json_encode($this->get_bible_data());
-            return;
-        }
+        
 
         $tags = new \Contexis\Models\Tag();
         $articles = $tags->getTopic("", NULL, "1mose");
