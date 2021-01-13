@@ -18,12 +18,14 @@ namespace Contexis\Core;
      {
          global $conf;
          global $ID;
+         global $ACT;
          global $INFO;
          global $lang;
          global $USERINFO;
          $auth = auth_quickaclcheck($ID);
          $this->twig_array['conf'] = $conf;
          $this->twig_array['id'] = $ID;
+         $this->twig_array['act'] = $ACT;
          $this->twig_array['info'] = $INFO;
          $this->twig_array['lang'] = $lang;
          $this->twig_array['userinfo'] = $USERINFO;
