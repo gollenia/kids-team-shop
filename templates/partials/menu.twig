@@ -3,10 +3,10 @@
 
 		<div class="flex justify-between md:items-end flex-row py-1">
 			<div class="-mb-5 ml-4 md:ml-8 z-40"><a alt="{{tpl_inc ~ 'public/img/logo.svg'}}" href="/">{% include "partials/logo.twig" with {'size': 70, 'fill': 'fill-primary'} %}</a></div>
-				{% if acl.edit %}
+				{% if ( acl.edit and act == "show" ) %}
 					<a href="?do=edit" class="rounded-tl-xl rounded-br-xl py-0 px-3 bg-lightgray ml-4">Bearbeiten</a>
 				{% else %}
-				<a href="/" class="pl-4 hidden md:inline-block font-semibold  text-gray-900">...damit Kinder ihr Vertrauen auf Gott setzen</a>
+					<a href="/" class="pl-4 hidden md:inline-block font-semibold  text-gray-900">{{ conf.tagline }}</a>
 				{% endif %}
 				<a class="md:hidden align-end pt-5 pr-2" @click="open = !open">
 					HAM

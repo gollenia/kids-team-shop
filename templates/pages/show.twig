@@ -10,7 +10,7 @@
     {{ tpl_favicon|raw }}
 </head>
 
-<body class="font-body de antialiased mr-4 lg:mr-10 lg:text-lg {{tld}} {{ tpl_classes }} {{ metadata.subject|join(" ") }}">
+<body class="font-body antialiased mr-4 lg:mr-10 lg:text-lg {{tld}} {{ tpl_classes }} {{ metadata.subject|join(" ") }}">
     
     {% include "partials/menu.twig" with {'menu': menu} %}
     
