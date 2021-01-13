@@ -8,19 +8,36 @@ use Contexis\Core\{
         Config
 };
 
-
+global $INPUT;
 
 $site = new Site();
-
 $route = new Router(Config::load("routes"));
 
-$controllerClass = $route->get();
+if($INPUT->str('controller',false)) {
+        
+        $controllerName = ucfirst ( $INPUT->str('controller'));
+	$controllerName = "Contexis\\Controllers\\" . $controllerName;
+	$controller = new $controllerName($site, true);
+	$method = $INPUT->str('method', 'get');
+        
+        if (method_exists( $controller, $INPUT->str('method', 'get'))) {
+                header('Content-Type: application/json');
+                echo call_user_func_array ( array($controller, $INPUT->str('method', 'get')), [$request]);
+                
+        } else {
+                header('Content-Type: application/json');
+                echo "{error: 'method " . $method . " in controller " . $controllerName . " not found'}";
+                
+        }
+} else {
 
-$controller = new $controllerClass($site);
+        $controllerClass = $route->get();
+        $controller = new $controllerClass($site, false);
+        echo $controller->render($twig);
+        tpl_indexerWebBug();
+}
 
-echo $controller->render($twig);
 
-tpl_indexerWebBug();
 
 // important function to build the index etc.
 
