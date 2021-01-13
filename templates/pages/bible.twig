@@ -1,27 +1,30 @@
 <!DOCTYPE html>
-<html lang="{{conf.lang}}" dir="{{lang.direction}}" class="no-js">
+<html lang="{{conf.lang}}" dir="{{lang.direction}}">
 
 <head>
     <meta charset="utf-8" />
     <title>{{tpl_pagetitle()}} | {{conf.title}}</title>
-    <script>(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
-    <link rel="stylesheet" href="{{tpl_basedir}}/assets/dist/main.css">
+    <link rel="stylesheet" href="{{tpl_basedir}}/public/css/main.css">
     {% include "partials/colors.twig" with {'colors': colors} %}
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     {{ tpl_favicon|raw }}
 </head>
 
-<body class="{{ tpl_classes }} {{ metadata.subject|join(" ") }}">
-    <header>
-
-    </header>
-    <div class="logo-image"><a href="/"><img data-src="{{ tpl_basedir }}assets/dist/img/logo.svg" class="ctx-logo-image" uk-svg width="70" height="70px"></a></div>
+<body class="font-body antialiased mr-4 lg:mr-10 lg:text-lg {{tld}} {{ tpl_classes }} {{ metadata.subject|join(" ") }}">
+    
     {% include "partials/menu.twig" with {'menu': menu} %}
-    {% include "partials/menu-mobile.twig" with {'menu': menu.get_items} %}
+    
+    <header class="bg-cover bg-primary-light relative" style="padding-top: 20vh;">
     {% include "partials/breadcrumbs.twig" with {'breadcrumbs': breadcrumbs} %}
-    <div class="uk-section">
-        <div class="uk-container">
-            {% if id == "bibel:start" %}
+    <div class="max-w-screen-xl mx-auto">
+        <div class="relative inline-block bg-primary-transparent bg-opacity-75 bg-blur  rounded-tr-3xl text-white text-right" style="margin-left: -2000px; padding: 50px 50px 50px 2000px;">
+            <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script">{{tpl_pagetitle()}}</div>
+        </div>
+    </div>
+    </header>
+    <article class="bg-lightgray-lighter px-4 md:px-8 xl:px-0 py-8">
+        <div class="max-w-screen-xl mx-auto">
+             {% if id == "bibel:start" %}
                 {{ tpl_content(false) }}
             {% else %}
                 <div uk-grid>
@@ -43,18 +46,17 @@
                 </div>
             {% endif %}
             
+            <div class="clear-both"></div>
         </div>
-    </div>
-    {{ tpl_include_page("sidebar", false) }}
-
-    {% if acl.admin %}
-        <a class="ctx-floating-button" href="edit">EDIT</a>
-    {% endif %}
+    </article>
+    
 
     {% include "partials/footer.twig" %}
 
     <script>DOKU_TPL = "{{tpl_basedir}}";</script>
-    <script src="{{tpl_basedir}}/assets/dist/main.js" type="text/javascript"></script>
+    <script src="{{tpl_basedir}}/public/js/main.js" type="text/javascript"></script>
     {{ tpl_indexerWebBug() }}
 </body>
 </html>
+
+
