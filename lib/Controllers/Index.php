@@ -53,7 +53,7 @@ class Index {
     public function tree($ns) {
     	$data = array('ns' => $ns);
     	$r = $this->_walk($data, $ns);
-    	return $data;
+    	return json_encode($data);
     }
     
     
