@@ -63,7 +63,9 @@
 }
 
 
-
+.button {
+    @apply px-3 py-1 bg-primary hover:bg-primary-darker
+}
 
 .bg-blur {
     backdrop-filter: blur(5px);;

@@ -14,3 +14,7 @@ footer h4 {
 .mediaright {
     float: right;
 }
+
+a.wikilink1 {
+    color: var(--primary);
+}

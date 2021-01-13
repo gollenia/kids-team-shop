@@ -1,4 +1,4 @@
-body.at {
+body.at, body.local {
     --primary: var(--blue);
     --primary-transparent: var(--blue-transparent);
     --primary-light: var(--lightblue);
