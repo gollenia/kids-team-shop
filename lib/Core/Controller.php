@@ -8,7 +8,7 @@ use Contexis\Core\Site;
 
 interface ControllerInterface {
     
-    public function __construct(Site $site);
+    public function __construct(Site $site, $is_ajax);
     public function render();
 }
 
@@ -17,7 +17,7 @@ class Controller implements ControllerInterface {
 
     public Site $site;
 
-    public function __construct(Site $site)
+    public function __construct(Site $site, $is_ajax)
     {
         $this->site = $site;
     }
