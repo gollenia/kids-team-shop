@@ -30,6 +30,12 @@
     "alpinejs": "^2.7.3",
     "laravel-mix": "^6.0.0-beta.17",
     "postcss": "^8.1.8",
-    "tailwindcss": "^2.0.1"
+    "tailwindcss": "^2.0.1",
+    "vue-loader": "^15.9.5",
+    "vue-template-compiler": "^2.6.12"
+  },
+  "dependencies": {
+    "vue": "^2.6.12",
+    "vue-codemirror": "^4.0.6"
   }
 }

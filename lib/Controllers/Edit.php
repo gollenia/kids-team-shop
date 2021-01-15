@@ -13,7 +13,7 @@ class Edit extends Controller {
             header('HTTP/1.0 403 Forbidden'); 
             die();
         }
-        parent::__construct($site);
+        parent::__construct($site, $is_ajax);
     }
 
     public function render() {

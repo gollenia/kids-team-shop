@@ -13,6 +13,7 @@ DokuWiki Template
 3. In kids-team, run
     - `composer install`
     - `npm install`
+    - `npm watch` to develop and keep Vue compiling
     - `npm run {development|production}` to create {dev|prod} build of css/js
 4. In DokuWiki log-in, then select the kids-team template in the Configuration Manager\
 `http://localhost:8000/doku.php?id=wiki:welcome&do=admin&page=config`

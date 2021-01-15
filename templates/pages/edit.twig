@@ -23,6 +23,15 @@
         </div>
     </div>
     </header> #}
+
+    <article class="bg-lightgray-lighter px-4 md:px-8 xl:px-0 py-8">
+        <div class="max-w-screen-xl mx-auto">
+            <div class="edit">
+                <div id="vue-editor">Vue-Editor</div>
+            </div>
+        </div>
+    </article>
+
     
     <article class="bg-lightgray-lighter px-4 md:px-8 xl:px-0 py-8">
         <div class="max-w-screen-xl mx-auto">
@@ -32,11 +41,11 @@
         </div>
     </article>
     
-
     {% include "partials/footer.twig" %}
 
     <script>DOKU_TPL = "{{tpl_basedir}}";</script>
     <script src="{{tpl_basedir}}/public/js/main.js" type="text/javascript"></script>
+    <script src="{{tpl_basedir}}/public/js/app.js" type="text/javascript"></script>
     {{ tpl_indexerWebBug() }}
 </body>
 </html>
