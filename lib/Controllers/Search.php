@@ -18,9 +18,6 @@ class Search extends Controller {
         
         global $INPUT;
 
- 
-
-        //var_dump($this->get_bible_data());
         return Renderer::compile("pages/search.twig", $this->site->get());
     }
 	
