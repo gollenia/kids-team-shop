@@ -19,10 +19,8 @@ class BibleView extends Controller {
     private function get_bible_data() {
         global $INPUT;
         global $ID;
-        
-        $verses = $INPUT->str('verses',"0");
-
-        $bible = new BibleModel($ID, $verses);
+    
+        $bible = new \dokuwiki\plugin\bibleverse\Model($ID);
         $bible->query();
 
         return $bible->get();
