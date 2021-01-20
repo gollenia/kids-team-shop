@@ -4,7 +4,7 @@ namespace Contexis\Controllers;
 use Contexis\Core\Controller;
 use Contexis\Twig\Renderer;
 use Contexis\Core\Site;
-
+ 
 class Index {
 	
 	private $counter;
