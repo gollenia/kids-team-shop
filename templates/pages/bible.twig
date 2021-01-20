@@ -18,7 +18,7 @@
     {% include "partials/breadcrumbs.twig" with {'breadcrumbs': breadcrumbs} %}
     <div class="max-w-screen-xl mx-auto">
         <div class="relative inline-block bg-primary-transparent bg-opacity-75 bg-blur  rounded-tr-3xl text-white text-right" style="margin-left: -2000px; padding: 50px 50px 50px 2000px;">
-            <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script">{{tpl_pagetitle()}}</div>
+            <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script">{{bible.book.title}} {{bible.chapter}}</div>
         </div>
     </div>
     </header>
@@ -27,9 +27,9 @@
              {% if id == "bibel:start" %}
                 {{ tpl_content(false) }}
             {% else %}
-                <div uk-grid>
-                    <div class="uk-width-2-3@l">
-                        <h2>{{bible.book.title}} {{bible.chapter}}</h2>
+                <div class="grid grid-cols-3 gap-16">
+                    <div class="col-span-2">
+                       
                         {% for verse in bible.verses %}
                             <span class="verse"><sup>{{verse.verse}}</sup> {{verse.text}}</span>
                         {% endfor %}

@@ -1,0 +1,11 @@
+#config__manager td {
+    @apply py-4;
+}
+
+#config__manager .outkey {
+    display: none;
+}
+
+#config__manager td.label img {
+    display: none;
+}
