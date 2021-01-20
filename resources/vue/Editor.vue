@@ -73,7 +73,10 @@
 
         <codemirror ref="cm" v-model="text" :options="cmOptions"></codemirror>
 
-        <button class="my-3" @click="save">Speichern</button>
+        <div class="my-3 m-auto">
+            <button @click="cancel">Abbrechen</button>
+            <button @click="save">Speichern</button>
+        </div>
 
         <link-picker v-if="showLinkPicker" @select="insertLink($event); showLinkPicker = false" @close="showLinkPicker = false"/>
 
@@ -139,6 +142,9 @@ export default {
             link += align === 'center' || align === 'left' ? ' ' : ''
             link += '|' + text  + ']]'
             this.$refs.cm.codemirror.replaceSelection(link)
+        },
+        async cancel () {
+            window.location.href = '/?id=' + window.DOKU_ID
         },
         async save () {
             const formData = new FormData()

@@ -29,4 +29,6 @@ DokuWiki Template
 
 
 # TODO
+- Abbrechen
+- PUshen!
 - Wrap: 1|1, 1|2 - Konfigurierbar?
