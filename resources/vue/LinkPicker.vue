@@ -1,5 +1,5 @@
 <template>
-    <modal title="Seite wählen">
+    <modal title="Seite wählen" @close="$emit('close')">
         <div v-if="tree">
             <link-picker-item
                 v-for="(item, i) in tree"

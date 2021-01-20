@@ -20,9 +20,9 @@ if($INPUT->str('controller',false)) {
 	$controller = new $controllerName($site, true);
 	$method = $INPUT->str('method', 'get');
         
-        if (method_exists( $controller, $INPUT->str('method', 'get'))) {
+        if (method_exists( $controller, $method)) {
                 header('Content-Type: application/json');
-                echo call_user_func_array ( array($controller, $INPUT->str('method', 'get')), [$request]);
+                echo call_user_func_array ( array($controller, $method), []); // , [$INPUT]
                 
         } else {
                 header('Content-Type: application/json');

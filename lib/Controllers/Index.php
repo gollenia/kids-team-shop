@@ -50,8 +50,8 @@ class Index {
     }
     
     
-    public function tree($ns) {
-    	$data = array('ns' => $ns);
+    public function tree() {
+    	$data = array('ns' => '');
     	$r = $this->_walk($data, $ns);
     	return json_encode($data);
     }
@@ -119,7 +119,7 @@ class Index {
 		if ($arrayRegex === true) return true;
 		global $conf;
 		if ((strlen($conf['hidepages']) != 0) && preg_match('/'.$conf['hidepages'].'/i', $item['id'])) return true;
-		foreach($arrayRegex as $regex) {
+		if (is_array($arrayRegex)) foreach($arrayRegex as $regex) {
 			if (preg_match('/'.$regex.(($exclutype=='title')?'/':'/i'), $item[$exclutype])) {
 				return true;
 			}
@@ -137,7 +137,7 @@ class Index {
 		$index_id_map = array( CATLIST_INDEX_START => $parid .$name.':'.$conf['start'],
 		                       CATLIST_INDEX_OUTSIDE => $parid .$name,
 		                       CATLIST_INDEX_INSIDE => $parid .$name.':'.$name );
-		foreach ($index_priority as $index_type) {
+		if (is_array($index_priority)) foreach ($index_priority as $index_type) {
 			if (is_file($index_path_map[$index_type])) {
 				$exists = true;
 				return $index_id_map[$index_type];

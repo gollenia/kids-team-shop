@@ -1,7 +1,7 @@
 <template>
-    <div v-if="item.folder" class="folder">
+    <div v-if="item.folder" class="link-folder">
         <div @click="expanded = !expanded">
-            <span class="icon">{{ expanded ? '-' : '+' }}</span>
+            <span class="link-folder-icon">{{ expanded ? '-' : '+' }}</span>
             <span>{{ item.title || item.name }}</span>
         </div>
         <ul v-if="expanded">
@@ -10,7 +10,7 @@
             </li>
         </ul>
     </div>
-    <div v-else class="item" @click="$emit('select', item)">
+    <div v-else class="link-item" @click="$emit('select', item)">
         {{ item.title || item.name }}
     </div>
 </template>
@@ -28,15 +28,17 @@ export default {
 </script>
 
 <style>
-.folder ul,
-.item {
-    padding-left: 20px;
+.link-folder ul,
+.link-item {
+    padding-left: 24px;
+    list-style-type: none;
 }
-.icon {
+.link-folder-icon {
     display: inline-block;
     width: 20px;
 }
-.item {
+.link-item {
+    cursor: pointer;
     text-decoration: underline;
 }
 </style>
