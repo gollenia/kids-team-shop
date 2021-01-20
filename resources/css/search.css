@@ -1,0 +1,15 @@
+.search_fullpage_result .meta {
+    @apply text-xs text-mediumgray;
+}
+
+.search_fullpage_result dt a.wikilink1 {
+    @apply text-lg font-bold;
+}
+
+.search_fullpage_result dt a:not[.wikilink1] {
+    display: none;
+}
+
+.search_fullpage_result {
+    @apply py-4
+}
