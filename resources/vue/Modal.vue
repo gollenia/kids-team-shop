@@ -28,7 +28,7 @@
                 From: "opacity-100 translate-y-0 sm:scale-100"
                 To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             -->
-            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-xl sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline" style="margin-top: 6rem" onclick="event.stopPropagation()">
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full" :class="boxClass" role="dialog" aria-modal="true" aria-labelledby="modal-headline" style="margin-top: 6rem" onclick="event.stopPropagation()">
                 <div class="bg-white p-4">
                     <div class="sm:flex sm:items-start">
                         <div class="w-full mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
@@ -50,7 +50,11 @@
 export default {
     name: 'Modal',
     props: {
-        title: String
+        title: String,
+        boxClass: {
+            type: String,
+            default: 'sm:max-w-xl'
+        }
     }
 }
 </script>

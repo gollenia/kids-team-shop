@@ -101,7 +101,6 @@ export default {
         MediaPicker
     },
     data: () => ({
-        pageId: '',
         text: '',
         cmOptions: {
             tabSize: 4,
@@ -130,38 +129,33 @@ export default {
             const link = '[[' + item.id + '|' + text  + ']]'
             this.$refs.cm.codemirror.replaceSelection(link)
         },
-        insertMedia (item) {
+        insertMedia ({ item, align, size }) {
             const selection = this.$refs.cm.codemirror.getSelection()
             const text = selection || item.file
-            const link = '{{:' + item.id + '|' + text  + ']]'
+            let link = '{{:'
+            link += align === 'center' || align === 'right' ? ' ' : ''
+            link += item.id
+            link += size ? ('?' + size) : ''
+            link += align === 'center' || align === 'left' ? ' ' : ''
+            link += '|' + text  + ']]'
             this.$refs.cm.codemirror.replaceSelection(link)
         },
         async save () {
             const formData = new FormData()
             formData.append('text', this.text)
-            
-            await axios.post('/?controller=page&method=save&id=' + this.pageId, formData, {
+
+            await axios.post('/?controller=page&method=save&id=' + window.DOKU_ID, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             })
 
-            // TODO: redirect back to view?
+            window.location.href = '/?id=' + window.DOKU_ID
         }
     },
     created () {
-        // TODO: simpler way to access page id?
-        const urlParams = new URLSearchParams(window.location.search)
-        this.pageId = urlParams.get('id')
-
-        axios.get('/?controller=page&method=raw&id=' + this.pageId)
+        axios.get('/?controller=page&method=raw&id=' + window.DOKU_ID)
             .then(response => {
                 this.text = response.data
             })
     }
 };
 </script>
-
-<style>
-.alert {
-    background: red;
-}
-</style>

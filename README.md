@@ -21,7 +21,12 @@ DokuWiki Template
 `http://localhost:8000/doku.php?id=wiki:welcome&do=admin&page=extension`
    - pagelist
    - filelist
+   - catlist
    - wrap
    - tag
 6. Install bibelverse Plugin (clone into /lib/plugins):\
 `https://github.com/gollenia/bibleverse`
+
+
+# TODO
+- Wrap: 1|1, 1|2 - Konfigurierbar?

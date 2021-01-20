@@ -1,6 +1,6 @@
 <template>
-    <modal title="Media Manager" @close="$emit('close')">
-        <div v-if="tree" class="flex space-x-4 mb-4">
+    <modal title="Media Manager" box-class="max-w-4xl" @close="$emit('close')">
+        <div class="flex space-x-4 mb-4">
             <div class="flex-1 pr-2" style="border-right: 1px solid #e5e7eb;">
                 <media-picker-item
                     v-for="(item, i) in tree"
@@ -16,24 +16,46 @@
                     v-for="(item, i) in list"
                     :key="i"
                     class="media-file"
-                    @click="$emit('select', item)"
+                    @click="file = item"
+                    @dblclick="select(item)"
                 >
                     <span>{{ item.file }}</span>
                     <span @click.stop="del(item)">
-                        <svg class="inline w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                        <img class="inline w-4 h-4 ml-2" src="/lib/images/trash.png" alt="Delete" title="Delete">
                     </span>
                 </div>
             </div>
-        </div>
-        <div v-else>
-            Wird geladen..
+
+            <div class="flex-1 pl-2" style="border-left: 1px solid #e5e7eb;">
+                <div v-if="file && file.meta">
+                    <img :src="file.meta._fileName" class="block mb-4">
+                    <div class="mb-4">
+                        Ausrichtung:
+                        <img src="/lib/images/media_align_noalign.png" alt="Keine" title="Keine" class="inline w-6 h-6 ml-2" :class="{ border: align === '' }" @click="align = ''">
+                        <img src="/lib/images/media_align_left.png" alt="Links" title="Links" class="inline w-6 h-6 ml-2" :class="{ border: align === 'left' }" @click="align = 'left'">
+                        <img src="/lib/images/media_align_center.png" alt="Mitte" title="Mitte" class="inline w-6 h-6 ml-2" :class="{ border: align === 'center' }" @click="align = 'center'">
+                        <img src="/lib/images/media_align_right.png" alt="Rechts" title="Rechts" class="inline w-6 h-6 ml-2" :class="{ border: align === 'right' }" @click="align = 'right'">
+                    </div>
+                    <div class="mb-4">
+                        Grösse:
+                        <img src="/lib/images/media_size_small.png" alt="Klein" title="Klein" class="inline w-4 h-4 ml-2" :class="{ border: size === '200' }" @click="size = '200'">
+                        <img src="/lib/images/media_size_medium.png" alt="Mittel" title="Mittel" class="inline w-4 h-4 ml-2" :class="{ border: size === '400' }" @click="size = '400'">
+                        <img src="/lib/images/media_size_large.png" alt="Gross" title="Gross" class="inline w-4 h-4 ml-2" :class="{ border: size === '600' }" @click="size = '600'">
+                        <img src="/lib/images/media_size_original.png" alt="Original" title="Original" class="inline w-4 h-4 ml-2" :class="{ border: size === '' }" @click="size = ''">
+                    </div>
+                </div>
+                <div v-if="file">
+                    <button class="block border m-auto" @click="select(file)">Einfügen</button>
+                </div>
+            </div>
         </div>
 
         <hr class="py-2">
         
         <div>
+            Hochladen: 
             <input type="file" @change="fileInput = $event.target.files || $event.dataTransfer.files">
-            <button v-show="fileInput" @click="upload">Upload</button>
+            <button v-show="fileInput" class="border" @click="upload">Upload</button>
             <div v-show="fileInput">Namespace: <input v-model="ns" type="text"></div>
         </div>
     </modal>
@@ -51,9 +73,12 @@ export default {
         Modal
     },
     data: () => ({
-        tree: null,
         ns: '',
+        tree: null,
         list: null,
+        file: null,
+        align: '',
+        size: '',
         fileInput: null
     }),
     methods: {
@@ -61,6 +86,13 @@ export default {
             this.ns = item.id
             this.list = null
             this.load()
+        },
+        select (item) {
+            this.$emit('select', {
+                item,
+                align: this.align,
+                size: this.size
+            })
         },
         async load () {
             const treeResponse = await axios.get('/?controller=media&method=tree')
