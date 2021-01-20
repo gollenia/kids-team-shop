@@ -8,6 +8,8 @@ use Contexis\Core\{
         Config
 };
 
+
+
 global $INPUT;
 
 $site = new Site();
