@@ -6,7 +6,7 @@
 				<a alt="{{tpl_inc ~ 'public/img/logo.svg'}}" href="/">{% include "partials/logo.twig" with {'size': 70, 'fill': 'fill-primary'} %}</a>
 			</div>
 			{% if ( acl.edit and act == "show" ) %}
-				<a href="?do=edit" class="rounded-tl-xl rounded-br-xl py-0 px-3 bg-lightgray ml-4">Bearbeiten</a>
+				<a href="?id={{id}}&do=edit" class="rounded-tl-xl rounded-br-xl py-0 px-3 bg-lightgray ml-4">Bearbeiten</a>
 			{% else %}
 				<a href="/" class="pl-4 hidden md:inline-block font-semibold  text-gray-900">{{ conf.tagline }}</a>
 			{% endif %}

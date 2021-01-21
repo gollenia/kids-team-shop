@@ -482,7 +482,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     onTreeSelect: function onTreeSelect(item) {
       this.ns = item.id;
       this.list = null;
-      this.load();
+      this.load(false);
     },
     select: function select(item) {
       this.$emit('select', {
@@ -492,28 +492,38 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       });
     },
     load: function load() {
-      var _this = this;
+      var _arguments = arguments,
+          _this = this;
 
       return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
-        var treeResponse, listResponse;
+        var tree, treeResponse, listResponse;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                _context.next = 2;
+                tree = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : true;
+
+                if (!tree) {
+                  _context.next = 6;
+                  break;
+                }
+
+                _context.next = 4;
                 return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/?controller=media&method=tree');
 
-              case 2:
+              case 4:
                 treeResponse = _context.sent;
                 _this.tree = treeResponse.data.tree;
-                _context.next = 6;
-                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/?controller=media&method=list&ns=' + _this.ns);
 
               case 6:
+                _context.next = 8;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/?controller=media&method=list&ns=' + _this.ns);
+
+              case 8:
                 listResponse = _context.sent;
                 _this.list = listResponse.data;
 
-              case 8:
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -576,6 +586,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     }
   },
   created: function created() {
+    this.ns = window.DOKU_ID;
     this.load();
   }
 });
@@ -13040,11 +13051,11 @@ var render = function() {
             staticStyle: { "border-left": "1px solid #e5e7eb" }
           },
           [
-            _vm.file && _vm.file.meta
+            _vm.file && _vm.file.src
               ? _c("div", [
                   _c("img", {
-                    staticClass: "block mb-4",
-                    attrs: { src: _vm.file.meta._fileName }
+                    staticClass: "block m-auto mb-4",
+                    attrs: { src: _vm.file.src }
                   }),
                   _vm._v(" "),
                   _c("div", { staticClass: "mb-4" }, [
