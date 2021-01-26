@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html lang="{{conf.lang}}" dir="{{lang.direction}}">
 
-<head>
-    <meta charset="utf-8" />
-    <title>{{tpl_pagetitle()}} | {{conf.title}}</title>
-    <link rel="stylesheet" href="{{tpl_basedir}}/public/css/main.css">
-    {% include "partials/colors.twig" with {'colors': colors} %}
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    {{ tpl_favicon|raw }}
-</head>
+{% include "partials/head.twig" with {'colors': colors} %}
+
+
 
 <body class="font-body de antialiased mr-4 lg:mr-10 lg:text-lg {{tld}} {{ tpl_classes }} {{ metadata.subject|join(" ") }}">
 
@@ -18,7 +13,7 @@
         <div class="relative inline-block bg-primary-transparent bg-opacity-75 bg-blur  rounded-tr-3xl text-white text-right" style="margin-left: -2000px; padding: 50px 50px 50px 2000px;">
             <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script">{{tpl_pagetitle()}}</div>
         </div>
-    </div>
+    </div> 
     </header>
 
     <article class="bg-lightgray-lighter px-4 md:px-8 xl:px-0 py-8">
@@ -31,26 +26,24 @@
                             <input type="hidden" name="do" value="login">
                             
                             <fieldset>
-                                <label class="md:flex" for="focus__this">
-                                    <span class="block md:flex-1">Benutzername</span>
+                                <label class="block mb-8" for="focus__this">
+                                    <span class="label md:flex-1">Benutzername</span>
                                     <input type="text" id="focus__this" name="u" class="block w-full md:flex-1 mb-2">
                                 </label>
-                                <label class="md:flex">
-                                    <span class="block md:flex-1">Passwort</span>
+                                <label class="block mb-8">
+                                    <span class="label md:flex-1">Passwort</span>
                                     <input type="password" name="p" class="block  w-full md:flex-1 mb-2">
                                 </label>
-                                <label class="md:flex" for="remember__me">
-                                    <span class="flex-1"></span>
-                                    <span class="block md:flex-1 text-sm">
-                                        <input type="checkbox" id="remember__me" name="r" value="1"> Angemeldet bleiben
-                                    </span>
+                                <label class="" for="remember__me">
+                                        <input type="checkbox" id="remember__me" name="r" value="1">
+                                        <span>Angemeldet bleiben</span>
                                 </label>
-                                <div class="flex justify-center my-6">
+                                <div class="flex justify-end my-6">
                                     <button type="submit">Anmelden</button>
                                 </div>
                             </fieldset>
 
-                            <p class="flex justify-center text-sm"><a href="/start?do=resendpwd" rel="nofollow" class="resendpwd">Passwort vergessen?</a></p>
+                            <p class="flex justify-end text-sm"><a href="/start?do=resendpwd" rel="nofollow" class="resendpwd">Passwort vergessen?</a></p>
                         </form>
                     </div>
         </div>
