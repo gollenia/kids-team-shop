@@ -1,0 +1,16 @@
+#dw__profiledelete {
+    background: var(--lightred);
+    padding: 20px;
+}
+
+#dw__profiledelete button {
+    background-color: var(--red);
+}
+
+#dw__profiledelete legend {
+    @apply font-bold mb-2
+}
+
+#dw__profiledelete label.block {
+    @apply mt-4
+}
