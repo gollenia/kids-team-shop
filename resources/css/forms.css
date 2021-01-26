@@ -1,0 +1,189 @@
+
+/* ########## CF7-Plugin ########## */
+
+.wpcf7 br {
+    display: none;
+}
+
+.wpcf7 span.wpcf7-form-control-wrap {
+    position: initial;
+}
+
+.wpcf7 .input-text {
+    margin-bottom: 30px;
+}
+
+/* ########## EVENT-Plugin ########## */
+
+form:invalid input[type="submit"] {
+    background-color: var(--lightgray) !important;
+    
+    color: var(--gray);
+}
+
+.input-group, .input-name, .input-user_email, .input-user-field {
+    @apply my-8;
+  }
+  
+input[type="text"], input[type="password"], select {
+    outline: none !important;
+    width: 100%;
+    @apply border-2;
+    @apply border-lightgray; 
+    @apply rounded-tl;
+    @apply rounded-br;
+    @apply bg-white;
+    padding-left: 18px;
+    padding-right: 18px;
+    padding-top: 7px !important;
+    padding-bottom: 7px !important;
+    @apply duration-300;
+    @apply transition-all;
+    @apply ease-in-out;
+    color: #222222;
+}
+
+input[type="text"]:focus, input[type="password"]:focus, select:focus {
+    outline: none !important;
+    @apply border-primary; 
+}
+
+select {
+    padding-left: 15px;
+}
+
+.input[type="checkbox"] {
+    margin-bottom: 30px;
+    margin-top: 20px;
+}
+
+.error-message {
+    @apply text-red;
+    @apply text-xs;
+    padding-left: 18px;
+    display: block;
+}
+
+input[type="checkbox"] {
+    opacity: 0;
+}
+
+input[type="checkbox"] + span::before {
+    width: 20px;
+    height: 20px;
+    @apply rounded-tl-sm;
+    @apply rounded-br-sm;
+    @apply border-2;
+    @apply border-lightgray;
+    background-color: #fff;
+    @apply duration-300;
+    @apply transition-all;
+    @apply ease-in-out;
+    display: block;
+    content: "";
+    float: left;
+    margin-right: 0px;
+    margin-top: 5px;
+  }
+  input[type="checkbox"]:checked+span::before {
+    box-shadow: inset 0px 0px 0px 3px #fff;
+    background-color: var(--primary);
+    @apply border-primary;
+  }
+
+  span.wpcf7-list-item {
+    display: inline-block;
+     margin: 0 0 0 0 !important; 
+}
+
+input[type="submit"] {
+    @apply px-4;
+    @apply py-2;
+    @apply bg-blue;
+    @apply text-white;
+    @apply font-bold;
+    @apply rounded-tl;
+    @apply rounded-br;  
+    @apply cursor-pointer;
+    @apply outline-none;
+}
+
+label span.label {
+    margin-top: -12px;
+    @apply inline-block;
+    height: max-content;
+    margin-left: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-right: 10px;
+    @apply rounded-tl-sm;
+    @apply rounded-br-sm;
+    white-space: nowrap;
+    @apply absolute;
+    @apply bg-lightgray;
+    @apply text-black;
+    @apply text-sm;
+    @apply duration-300;
+    @apply transition-all;
+    @apply ease-in-out;
+}
+  
+  
+  
+.error input, .error select {
+   @apply text-red;
+   @apply border-red;
+}
+  
+select:invalid {
+    @apply text-gray;
+}
+  
+  
+.error label {
+    @apply bg-red;
+    @apply text-white
+}
+  
+.input-textarea {
+    flex-flow: column;
+}
+  
+.input-textarea label {
+    width: max-content;
+    margin-top: 0px;
+}
+
+.textarea {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    width: 100%;
+    @apply border-2;
+    @apply border-lightgray;
+    @apply rounded-tl;
+    @apply rounded-br;
+    @apply bg-white;
+    padding-left: 18px;
+    padding-right: 10px;
+    padding-top: 6px;
+    /*margin-left: 20px;*/
+    /*margin-right: 20px;*/
+    margin-top: 12px;
+    outline: none !important;
+  }
+  
+  .search-form input[type="text"] {
+    @apply rounded-br-none;
+  }
+
+  .search-form button {
+      @apply rounded-tl-none;
+  }
+
+  fieldset.search-form {
+      display: flex;
+  }
+
+  fieldset.search-form input[type="text"] {
+    @apply mr-2;
+}

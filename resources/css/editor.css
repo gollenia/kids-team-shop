@@ -1,0 +1,12 @@
+.tool__bar button {
+    background-color: var(--lightgray);
+    border-radius: 0;
+}
+
+.tool__bar button:first-child {
+    @apply rounded-tl;
+}
+
+.tool__bar button:last-child {
+    @apply rounded-br;
+}

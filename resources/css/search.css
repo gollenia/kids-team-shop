@@ -1,15 +1,19 @@
 .search_fullpage_result .meta {
-    @apply text-xs text-mediumgray;
+    @apply text-xs text-gray;
 }
 
 .search_fullpage_result dt a.wikilink1 {
     @apply text-lg font-bold;
 }
 
-.search_fullpage_result dt a:not[.wikilink1] {
+.search_fullpage_result dt a.wikilink1 + a {
     display: none;
 }
 
 .search_fullpage_result {
     @apply py-4
+}
+
+h1#suche {
+    display: none;
 }

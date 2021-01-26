@@ -1,3 +1,14 @@
+body.de {
+    --primary: var(--green);
+    --primary-transparent: var(--green-transparent);
+    --primary-light-transparent: var(--lightgreen-transparent);
+    --primary-soft-contrast: var(--green-soft-contrast);
+    --primary-contrast: var(--orange-contrast);
+    --primary-light: var(--lightgreen);
+    --primary-dark: var(--darkgreen);
+}
+
+
 body.at, body.local {
     --primary: var(--blue);
     --primary-transparent: var(--blue-transparent);
@@ -9,15 +20,7 @@ body.at, body.local {
 }
 
 
-body.de {
-    --primary: var(--green);
-    --primary-transparent: var(--green-transparent);
-    --primary-light-transparent: var(--lightgreen-transparent);
-    --primary-soft-contrast: var(--green-soft-contrast);
-    --primary-contrast: var(--orange-contrast);
-    --primary-light: var(--lightgreen);
-    --primary-dark: var(--darkgreen);
-}
+
 
 body.ch {
     --primary: var(--orange);
