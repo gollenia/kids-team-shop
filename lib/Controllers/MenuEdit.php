@@ -6,7 +6,7 @@ use Contexis\Core\Controller;
 use Contexis\Twig\Renderer;
 
 
-class Edit extends Controller {
+class MenuEdit extends Controller {
 
     public function __construct($site, $is_ajax) {
         if($is_ajax) {
