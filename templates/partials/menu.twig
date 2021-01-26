@@ -6,12 +6,12 @@
 				<a alt="{{tpl_inc ~ 'public/img/logo.svg'}}" href="/">{% include "partials/logo.twig" with {'size': 70, 'fill': 'fill-primary'} %}</a>
 			</div>
 			{% if ( acl.edit and act == "show" ) %}
-				<a href="?do=edit" class="bg-green -mb-3 rounded-full h-12 w-12 ml-4 flex justify-center items-center"><span><i class="md-light material-icons">edit</i></span></a>
+				<a href="?do=edit" class="bg-green leading-none -mb-3 rounded-full h-12 w-12 ml-4 flex justify-center items-center"><span><i class="md-light material-icons">edit</i></span></a>
 				{% if ( acl.admin ) %}
-					<a href="?do=admin" class="bg-gray  -mb-3 rounded-full h-12 w-12  ml-4 flex justify-center items-center"><span><i class="md-light material-icons">settings</i></span></a>
+					<a href="?do=admin" class="bg-gray leading-none -mb-3 rounded-full h-12 w-12  ml-4 flex justify-center items-center"><span><i class="md-light material-icons">settings</i></span></a>
 				{% endif %}
-				<a href="?do=profile" class="bg-orange -mb-3 rounded-full h-12 w-12  ml-4 flex justify-center items-center"><span><i class="md-light material-icons">face</i></span></a>
-				<a href="?do=logout" class="bg-red -mb-3 rounded-full h-12 w-12  ml-4 flex justify-center items-center"><span><i class="md-light material-icons">lock</i></span></a>
+				<a href="?do=profile" class="bg-orange leading-none -mb-3 rounded-full h-12 w-12  ml-4 flex justify-center items-center"><span><i class="md-light material-icons">face</i></span></a>
+				<a href="?do=logout" class="bg-red leading-none -mb-3 rounded-full h-12 w-12  ml-4 flex justify-center items-center"><span><i class="md-light material-icons">lock</i></span></a>
 			{% else %}
 				<a href="/" class="pl-4 hidden md:inline-block font-semibold  text-gray-900">{{ conf.tagline }}</a>
 			{% endif %}
