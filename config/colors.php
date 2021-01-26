@@ -10,7 +10,7 @@ return [
     [
         "color" => "#999999",
         "name" => "Mittelgrau",
-        "slug" => "mediumgray",
+        "slug" => "gray",
         "dark" => false
     ],
     [
@@ -71,6 +71,12 @@ return [
         "color" => "#0b6127",
         "name" => "Dunkelgrün",
         "slug" => "darkgreen",
+        "dark" => true
+    ],
+    [
+        "color" => "#dd3333",
+        "name" => "Rot",
+        "slug" => "red",
         "dark" => true
     ]
 ];
