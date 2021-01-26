@@ -25,7 +25,7 @@ form:invalid input[type="submit"] {
     @apply my-8;
   }
   
-input[type="text"], input[type="password"], select {
+input[type="text"], input[type="password"], input[type="email"], select {
     outline: none !important;
     width: 100%;
     @apply border-2;
@@ -43,7 +43,7 @@ input[type="text"], input[type="password"], select {
     color: #222222;
 }
 
-input[type="text"]:focus, input[type="password"]:focus, select:focus {
+input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, select:focus {
     outline: none !important;
     @apply border-primary; 
 }
@@ -108,7 +108,7 @@ input[type="submit"] {
     @apply outline-none;
 }
 
-label span.label {
+label span.label, #dw__profiledelete label.block span {
     margin-top: -12px;
     @apply inline-block;
     height: max-content;
