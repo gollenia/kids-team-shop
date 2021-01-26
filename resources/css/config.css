@@ -9,3 +9,27 @@
 #config__manager td.label img {
     display: none;
 }
+
+.admin_tasks {
+    @apply grid grid-cols-3 gap-4
+}
+
+.admin_tasks li {
+    list-style-type: none;
+    @apply bg-primary-light p-4;
+
+}
+
+.admin_tasks .icon {
+    @apply flex justify-center;
+}
+
+.admin_tasks .icon svg {
+    width: 64px;
+    height: 64px;
+}
+
+.admin_tasks .prompt {
+    text-align: center;
+    display: block;
+}
