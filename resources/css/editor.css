@@ -5,6 +5,10 @@
     line-height: 1;
 }
 
+.tool__bar button:hover {
+    background-color: var(--lightgray-darker);
+}
+
 .tool__bar button:first-child {
     @apply rounded-tl;
 }
