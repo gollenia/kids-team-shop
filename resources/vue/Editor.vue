@@ -3,58 +3,40 @@
         <div>
             <div class="tool__bar" role="toolbar">
                 <button class="toolbutton" title="Fetter Text [B]" @click="textWrap('**', '**')" v-shortkey.once="['ctrl', 'b']" @shortkey="textWrap('**', '**')">
-                    <img src="/lib/images/toolbar/bold.png" alt="" width="16" height="16">
+                    <i class="material-icons">format_bold</i>
                 </button>
                 <button class="toolbutton" title="Kursiver Text [I]" @click="textWrap('//', '//')" v-shortkey.once="['ctrl', 'i']" @shortkey="textWrap('//', '//')">
-                    <img src="/lib/images/toolbar/italic.png" alt="" width="16" height="16">
+                    <i class="material-icons">format_italic</i>
                 </button>
                 <button class="toolbutton" title="Unterstrichener Text [U]" @click="textWrap('__', '__')" v-shortkey.once="['ctrl', 'i']" @shortkey="textWrap('__', '__')">
-                    <img src="/lib/images/toolbar/underline.png" alt="" width="16" height="16">
+                    <i class="material-icons">format_underlined</i>
                 </button>
-                <!-- <button class="toolbutton" title="Code Text [M]" aria-controls="wiki__text" accesskey="m">
-                    <img src="/lib/images/toolbar/mono.png" alt="" width="16" height="16">
-                </button>
-                <button class="toolbutton" title="Durchgestrichener Text [D]" aria-controls="wiki__text" accesskey="d">
-                    <img src="/lib/images/toolbar/strike.png" alt="" width="16" height="16">
-                </button>
-                <button class="toolbutton" title="Überschrift auf selber Ebene [8]" aria-controls="wiki__text" accesskey="8">
-                    <img src="/lib/images/toolbar/hequal.png" alt="" width="16" height="16">
-                </button>
-                <button class="toolbutton" title="Überschrift eine Ebene runter [9]" aria-controls="wiki__text" accesskey="9">
-                    <img src="/lib/images/toolbar/hminus.png" alt="" width="16" height="16">
-                </button>
-                <button class="toolbutton" title="Überschrift eine Ebene höher [0]" aria-controls="wiki__text" accesskey="0">
-                    <img src="/lib/images/toolbar/hplus.png" alt="" width="16" height="16">
-                </button>
-                <button class="toolbutton pk_hl" title="Wähle eine Überschrift" aria-controls="picker0" aria-haspopup="true">
-                    <img src="/lib/images/toolbar/h.png" alt="" width="16" height="16">
-                </button> -->
                 <button class="toolbutton" title="Überschrift 1" @click="textWrap('======', '======')">
-                    <img src="/lib/images/toolbar/h1.png" alt="" width="16" height="16">
+                    <i class="material-icons">filter_1</i>
                 </button>
                 <button class="toolbutton" title="Überschrift 2" @click="textWrap('=====', '=====')">
-                    <img src="/lib/images/toolbar/h2.png" alt="" width="16" height="16">
+                    <i class="material-icons">filter_2</i>
                 </button>
                 <button class="toolbutton" title="Überschrift3" @click="textWrap('====', '====')">
-                    <img src="/lib/images/toolbar/h3.png" alt="" width="16" height="16">
+                    <i class="material-icons">filter_3</i>
                 </button>
                 <button class="toolbutton" title="Interner Link [L]" @click="showLinkPicker = true" v-shortkey.once="['ctrl', 'l']" @shortkey="showLinkPicker = true">
-                    <img src="/lib/images/toolbar/link.png" alt="" width="16" height="16">
+                    <i class="material-icons">insert_link</i>
                 </button>
                 <button class="toolbutton" title="Externer Link"  @click="textWrap('[[', ']]', '[[https://www.example.com|Externer Link]]')">
-                    <img src="/lib/images/toolbar/linkextern.png" alt="" width="16" height="16">
+                    <i class="material-icons">explore</i>
                 </button>
                 <button class="toolbutton" title="Nummerierter Listenpunkt [-]" @click="textWrap(' - ', '', ' - Nummerierter Listenpunkt')" v-shortkey.once="['ctrl', '-']" @shortkey="textWrap(' - ', '', ' - Nummerierter Listenpunkt')">
-                    <img src="/lib/images/toolbar/ol.png" alt="" width="16" height="16">
+                    <i class="material-icons">format_list_numbered</i>
                 </button>
                 <button class="toolbutton" title="Listenpunkt [.]" @click="textWrap(' * ', '', ' * Listenpunkt')" v-shortkey.once="['ctrl', '.']" @shortkey="textWrap(' * ', '', ' - Listenpunkt')">
-                    <img src="/lib/images/toolbar/ul.png" alt="" width="16" height="16">
+                    <i class="material-icons">format_list_bulleted</i>
                 </button>
                 <button class="toolbutton" title="Horizontale Linie" aria-controls="wiki__text"@click="textWrap('\n----\n')">
-                    <img src="/lib/images/toolbar/hr.png" alt="" width="16" height="16">
+                    <i class="material-icons">horizontal_rule</i>
                 </button>
                 <button class="toolbutton" title="Bilder und andere Dateien hinzufügen"  @click="showMediaPicker = true">
-                    <img src="/lib/images/toolbar/image.png" alt="" width="16" height="16">
+                    <i class="material-icons">insert_photo</i>
                 </button>
                 <!-- <button class="toolbutton" title="Smileys" aria-controls="picker1" aria-haspopup="true">
                     <img src="/lib/images/toolbar/smiley.png" alt="" width="16" height="16">
