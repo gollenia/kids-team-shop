@@ -86,7 +86,9 @@
 @import "forms.css";
 @import "tags.css";
 @import "editor.css";
+@import "profile.css";
 
 
 
 .material-icons.md-light { color: rgba(255, 255, 255, 1); }
+.material-icons.md-gray { color: var(-gray) }
