@@ -91,11 +91,25 @@ class Media {
 	        $dir = utf8_encodeFN(str_replace(':','/',$ns));
 	        $data = array();
 	        search($data,$conf['mediadir'],'search_media',
-	                array('showmsg'=>false,'depth'=>1),$dir,1,$sort);
+									array('showmsg'=>false,'depth'=>1),$dir,1,$sort);
+									
+					foreach($data as &$file) {
+						$file['src'] = $this->getThumbnail($file['id']);
+					}
 	            
 	        echo json_encode($data);
-	  
 	    }
+	}
+
+	function getThumbnail ($image) {
+			if ($size = media_image_preview_size($image, '', false)) {
+					$opts = [
+							'w' => $size[0],
+							'h' => $size[1],
+							'w' => @filemtime(mediaFN($image))
+					];
+					return ml($image, $opts, true, '&'); 
+			}
 	}
 
 	function first() {

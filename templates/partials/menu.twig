@@ -6,12 +6,16 @@
 				<a alt="{{tpl_inc ~ 'public/img/logo.svg'}}" href="/">{% include "partials/logo.twig" with {'size': 70, 'fill': 'fill-primary'} %}</a>
 			</div>
 			{% if ( acl.edit and act == "show" ) %}
+<<<<<<< HEAD
 				<a href="?do=edit" class="bg-green -mb-3 rounded-full h-12 w-12 ml-4 flex justify-center items-center"><span><i class="md-light material-icons">edit</i></span></a>
 				{% if ( acl.admin ) %}
 					<a href="?do=admin" class="bg-gray  -mb-3 rounded-full h-12 w-12  ml-4 flex justify-center items-center"><span><i class="md-light material-icons">settings</i></span></a>
 				{% endif %}
 				<a href="?do=profile" class="bg-orange -mb-3 rounded-full h-12 w-12  ml-4 flex justify-center items-center"><span><i class="md-light material-icons">face</i></span></a>
 				<a href="?do=logout" class="bg-red -mb-3 rounded-full h-12 w-12  ml-4 flex justify-center items-center"><span><i class="md-light material-icons">lock</i></span></a>
+=======
+				<a href="?id={{id}}&do=edit" class="rounded-tl-xl rounded-br-xl py-0 px-3 bg-lightgray ml-4">Bearbeiten</a>
+>>>>>>> 4238543bd4c9ed2247ea368e83655c083c966d40
 			{% else %}
 				<a href="/" class="pl-4 hidden md:inline-block font-semibold  text-gray-900">{{ conf.tagline }}</a>
 			{% endif %}

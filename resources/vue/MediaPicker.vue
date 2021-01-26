@@ -27,8 +27,8 @@
             </div>
 
             <div class="flex-1 pl-2" style="border-left: 1px solid #e5e7eb;">
-                <div v-if="file && file.meta">
-                    <img :src="file.meta._fileName" class="block mb-4">
+                <div v-if="file && file.src">
+                    <img :src="file.src" class="block m-auto mb-4">
                     <div class="mb-4">
                         Ausrichtung:
                         <img src="/lib/images/media_align_noalign.png" alt="Keine" title="Keine" class="inline w-6 h-6 ml-2" :class="{ border: align === '' }" @click="align = ''">
@@ -85,7 +85,7 @@ export default {
         onTreeSelect (item) {
             this.ns = item.id
             this.list = null
-            this.load()
+            this.load(false)
         },
         select (item) {
             this.$emit('select', {
@@ -94,9 +94,11 @@ export default {
                 size: this.size
             })
         },
-        async load () {
-            const treeResponse = await axios.get('/?controller=media&method=tree')
-            this.tree = treeResponse.data.tree
+        async load (tree = true) {
+            if (tree) {
+                const treeResponse = await axios.get('/?controller=media&method=tree')
+                this.tree = treeResponse.data.tree
+            }
             const listResponse = await axios.get('/?controller=media&method=list&ns=' + this.ns)
             this.list = listResponse.data
         },
@@ -118,7 +120,8 @@ export default {
         }
     },
     created () {
-      this.load()
+        this.ns = window.DOKU_ID
+        this.load()
     }
 };
 </script>

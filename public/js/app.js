@@ -240,6 +240,7 @@ function createInstance(defaultConfig) {
   // Copy axios.prototype to instance
   utils.extend(instance, Axios.prototype, context);
 
+<<<<<<< HEAD
   // Copy context to instance
   utils.extend(instance, context);
 
@@ -256,6 +257,80 @@ axios.Axios = Axios;
 axios.create = function create(instanceConfig) {
   return createInstance(mergeConfig(axios.defaults, instanceConfig));
 };
+=======
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  name: 'MediaPicker',
+  components: {
+    MediaPickerItem: _MediaPickerItem_vue__WEBPACK_IMPORTED_MODULE_2__.default,
+    Modal: _Modal_vue__WEBPACK_IMPORTED_MODULE_3__.default
+  },
+  data: function data() {
+    return {
+      ns: '',
+      tree: null,
+      list: null,
+      file: null,
+      align: '',
+      size: '',
+      fileInput: null
+    };
+  },
+  methods: {
+    onTreeSelect: function onTreeSelect(item) {
+      this.ns = item.id;
+      this.list = null;
+      this.load(false);
+    },
+    select: function select(item) {
+      this.$emit('select', {
+        item: item,
+        align: this.align,
+        size: this.size
+      });
+    },
+    load: function load() {
+      var _arguments = arguments,
+          _this = this;
+
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        var tree, treeResponse, listResponse;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                tree = _arguments.length > 0 && _arguments[0] !== undefined ? _arguments[0] : true;
+
+                if (!tree) {
+                  _context.next = 6;
+                  break;
+                }
+
+                _context.next = 4;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/?controller=media&method=tree');
+
+              case 4:
+                treeResponse = _context.sent;
+                _this.tree = treeResponse.data.tree;
+
+              case 6:
+                _context.next = 8;
+                return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/?controller=media&method=list&ns=' + _this.ns);
+
+              case 8:
+                listResponse = _context.sent;
+                _this.list = listResponse.data;
+
+              case 10:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
+    },
+    upload: function upload() {
+      var _this2 = this;
+>>>>>>> 4238543bd4c9ed2247ea368e83655c083c966d40
 
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
@@ -276,6 +351,23 @@ module.exports = axios;
 // Allow use of default import syntax in TypeScript
 module.exports.default = axios;
 
+<<<<<<< HEAD
+=======
+              case 3:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3);
+      }))();
+    }
+  },
+  created: function created() {
+    this.ns = window.DOKU_ID;
+    this.load();
+  }
+});
+>>>>>>> 4238543bd4c9ed2247ea368e83655c083c966d40
 
 /***/ }),
 
@@ -11720,6 +11812,7 @@ if (document.getElementById('vue-editor')) {
         if (extraLinebreak) { text += lineSep; }
         closing = extraLinebreak = false;
       }
+<<<<<<< HEAD
     }
     function addText(str) {
       if (str) {
@@ -12173,6 +12266,251 @@ if (document.getElementById('vue-editor')) {
           } else {
             display.selForContextMenu = null;
             display.input.reset();
+=======
+    },
+    [
+      _c("div", { staticClass: "flex space-x-4 mb-4" }, [
+        _c(
+          "div",
+          {
+            staticClass: "flex-1 pr-2",
+            staticStyle: { "border-right": "1px solid #e5e7eb" }
+          },
+          _vm._l(_vm.tree, function(item, i) {
+            return _c("media-picker-item", {
+              key: i,
+              attrs: { item: item, selected: _vm.ns },
+              on: { select: _vm.onTreeSelect }
+            })
+          }),
+          1
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "flex-1" },
+          _vm._l(_vm.list, function(item, i) {
+            return _c(
+              "div",
+              {
+                key: i,
+                staticClass: "media-file",
+                on: {
+                  click: function($event) {
+                    _vm.file = item
+                  },
+                  dblclick: function($event) {
+                    return _vm.select(item)
+                  }
+                }
+              },
+              [
+                _c("span", [_vm._v(_vm._s(item.file))]),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    on: {
+                      click: function($event) {
+                        $event.stopPropagation()
+                        return _vm.del(item)
+                      }
+                    }
+                  },
+                  [
+                    _c("img", {
+                      staticClass: "inline w-4 h-4 ml-2",
+                      attrs: {
+                        src: "/lib/images/trash.png",
+                        alt: "Delete",
+                        title: "Delete"
+                      }
+                    })
+                  ]
+                )
+              ]
+            )
+          }),
+          0
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "flex-1 pl-2",
+            staticStyle: { "border-left": "1px solid #e5e7eb" }
+          },
+          [
+            _vm.file && _vm.file.src
+              ? _c("div", [
+                  _c("img", {
+                    staticClass: "block m-auto mb-4",
+                    attrs: { src: _vm.file.src }
+                  }),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mb-4" }, [
+                    _vm._v(
+                      "\n                    Ausrichtung:\n                    "
+                    ),
+                    _c("img", {
+                      staticClass: "inline w-6 h-6 ml-2",
+                      class: { border: _vm.align === "" },
+                      attrs: {
+                        src: "/lib/images/media_align_noalign.png",
+                        alt: "Keine",
+                        title: "Keine"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.align = ""
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("img", {
+                      staticClass: "inline w-6 h-6 ml-2",
+                      class: { border: _vm.align === "left" },
+                      attrs: {
+                        src: "/lib/images/media_align_left.png",
+                        alt: "Links",
+                        title: "Links"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.align = "left"
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("img", {
+                      staticClass: "inline w-6 h-6 ml-2",
+                      class: { border: _vm.align === "center" },
+                      attrs: {
+                        src: "/lib/images/media_align_center.png",
+                        alt: "Mitte",
+                        title: "Mitte"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.align = "center"
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("img", {
+                      staticClass: "inline w-6 h-6 ml-2",
+                      class: { border: _vm.align === "right" },
+                      attrs: {
+                        src: "/lib/images/media_align_right.png",
+                        alt: "Rechts",
+                        title: "Rechts"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.align = "right"
+                        }
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "mb-4" }, [
+                    _vm._v(
+                      "\n                    Grösse:\n                    "
+                    ),
+                    _c("img", {
+                      staticClass: "inline w-4 h-4 ml-2",
+                      class: { border: _vm.size === "200" },
+                      attrs: {
+                        src: "/lib/images/media_size_small.png",
+                        alt: "Klein",
+                        title: "Klein"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.size = "200"
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("img", {
+                      staticClass: "inline w-4 h-4 ml-2",
+                      class: { border: _vm.size === "400" },
+                      attrs: {
+                        src: "/lib/images/media_size_medium.png",
+                        alt: "Mittel",
+                        title: "Mittel"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.size = "400"
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("img", {
+                      staticClass: "inline w-4 h-4 ml-2",
+                      class: { border: _vm.size === "600" },
+                      attrs: {
+                        src: "/lib/images/media_size_large.png",
+                        alt: "Gross",
+                        title: "Gross"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.size = "600"
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("img", {
+                      staticClass: "inline w-4 h-4 ml-2",
+                      class: { border: _vm.size === "" },
+                      attrs: {
+                        src: "/lib/images/media_size_original.png",
+                        alt: "Original",
+                        title: "Original"
+                      },
+                      on: {
+                        click: function($event) {
+                          _vm.size = ""
+                        }
+                      }
+                    })
+                  ])
+                ])
+              : _vm._e(),
+            _vm._v(" "),
+            _vm.file
+              ? _c("div", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "block border m-auto",
+                      on: {
+                        click: function($event) {
+                          return _vm.select(_vm.file)
+                        }
+                      }
+                    },
+                    [_vm._v("Einfügen")]
+                  )
+                ])
+              : _vm._e()
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c("hr", { staticClass: "py-2" }),
+      _vm._v(" "),
+      _c("div", [
+        _vm._v("\n        Hochladen: \n        "),
+        _c("input", {
+          attrs: { type: "file" },
+          on: {
+            change: function($event) {
+              _vm.fileInput = $event.target.files || $event.dataTransfer.files
+            }
+>>>>>>> 4238543bd4c9ed2247ea368e83655c083c966d40
           }
         };
         display.detectingSelectAll = setTimeout(poll, 200);
