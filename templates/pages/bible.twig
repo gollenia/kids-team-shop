@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{conf.lang}}" dir="{{lang.direction}}">
 
-<head>
-    <meta charset="utf-8" />
-    <title>{{tpl_pagetitle()}} | {{conf.title}}</title>
-    <link rel="stylesheet" href="{{tpl_basedir}}/public/css/main.css">
-    {% include "partials/colors.twig" with {'colors': colors} %}
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
-    {{ tpl_favicon|raw }}
-</head>
+{% include "partials/head.twig" with {'colors': colors} %} 
 
 <body class="font-body antialiased mr-4 lg:mr-10 lg:text-lg {{tld}} {{ tpl_classes }} {{ metadata.subject|join(" ") }}">
     
