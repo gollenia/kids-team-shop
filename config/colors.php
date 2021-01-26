@@ -74,9 +74,33 @@ return [
         "dark" => true
     ],
     [
-        "color" => "#dd3333",
-        "name" => "Rot",
-        "slug" => "red",
-        "dark" => true
-    ]
+        "color"=> "#8E53C0",
+        "name"=> "Lila",
+        "slug"=> "purple",
+        "dark"=> true
+    ],
+    [
+        "color"=> "#D3BCE6",   
+        "name"=> "Hell-Lila",
+        "slug"=> "lightpurple",
+        "dark"=> false
+    ],
+    [
+        "color"=> "#491675",   
+        "name"=> "Dunkel-Lila",
+        "slug"=> "darkpurple",
+        "dark"=> true
+    ],
+    [
+        "color"=> "#e63749",
+        "name"=> "Rot",
+        "slug"=> "red",
+        "dark"=> true
+    ],
+    [
+        "color"=> "#ffb4bb",
+        "name"=> "Hell-Rot",
+        "slug"=> "lightred",
+        "dark"=> false
+    ],
 ];
