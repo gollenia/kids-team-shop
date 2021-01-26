@@ -64,7 +64,8 @@
 
 
 .button {
-    @apply px-3 py-1 bg-primary
+    @apply px-3 py-1 bg-primary;
+    line-height: 1;
 }
 .button:hover, button:hover {
     background-color: var(--primary-dark);
