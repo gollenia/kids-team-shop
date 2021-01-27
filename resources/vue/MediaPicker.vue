@@ -119,7 +119,8 @@ export default {
         }
     },
     created () {
-        this.ns = window.DOKU_ID
+        const nsStart = window.DOKU_ID.indexOf(':start')
+        this.ns = nsStart > -1 ? window.DOKU_ID.substr(0, nsStart) : window.DOKU_ID
         this.load()
     }
 };

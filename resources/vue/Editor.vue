@@ -56,7 +56,7 @@
         <codemirror ref="cm" v-model="text" :options="cmOptions"></codemirror>
 
         <div class="editor-tags mt-7">
-            <input-tag v-model="tags" placeholder="Tag hinzufügen"></input-tag>
+            <input-tag v-model="tags" :before-adding="tag => tag.toLowerCase().replace(' ', '_')" placeholder="Tag hinzufügen"></input-tag>
         </div>
 
         <div class="mt-5 mb-3 m-auto">

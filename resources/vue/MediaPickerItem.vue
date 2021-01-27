@@ -34,6 +34,9 @@ export default {
         if (!this.item.id) {
             // auto-expand root
             this.expanded = true
+        } else if (this.selected && this.selected.indexOf(this.item.id) > -1) {
+            // auto-expand current path
+            this.expanded = true
         }
     }
 }
