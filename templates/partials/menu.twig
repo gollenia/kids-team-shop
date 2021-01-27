@@ -24,7 +24,7 @@
 						</div>
 					</div>
 				{% endif %}
-				<div @mouseenter="usermenu = true" @mouseleave="usermenu = false" class="group inline-block"><a href="?do=edit" class="bg-gray group-hover:bg-red leading-none -mb-3 rounded-full h-12 w-12 ml-4 flex justify-center items-center"><span><i class="md-light material-icons">person</i></span></a>
+				<div @mouseenter="usermenu = true" @mouseleave="usermenu = false" class="group inline-block"><a href="/system/user/{{user.name}}?do=edit" class="bg-gray group-hover:bg-red leading-none -mb-3 rounded-full h-12 w-12 ml-4 flex justify-center items-center"><span><i class="md-light material-icons">person</i></span></a>
 					<div class="absolute ml-2 pt-4" x-show="usermenu">
 						<a href="/?do=profile" class="flex items-center"><span class="z-40 text-sm bg-red leading-none rounded-full mt-2 h-8 w-8 ml-4 flex justify-center items-center"><i class="md-light material-icons text-sm">access_time</i></span><span class="inline-block mt-2 rounded-r-full z-30 bg-white py-0 pr-2 pl-4 -ml-2 text-sm">Profil</span></a> 
 						<a href="/?do=logout" class="flex items-center"><span class="z-40 text-sm bg-red leading-none rounded-full mt-2 h-8 w-8 ml-4 flex justify-center items-center"><i class="md-light material-icons text-sm">lock</i></span><span class="inline-block mt-2 rounded-r-full z-30 bg-white py-0 pr-2 pl-4 -ml-2 text-sm">Abmelden</span></a> 
