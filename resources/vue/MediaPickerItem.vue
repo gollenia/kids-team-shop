@@ -2,7 +2,7 @@
     <div class="media-folder">
         <div :class="{ selected: selected === item.id }">
             <span v-if="item.id && item.children" class="icon" @click="expanded = !expanded">{{ expanded ? '-' : '+' }}</span>
-            <span v-else class="icon"></span>
+            <span v-else-if="item.id" class="icon"></span>
             <span @click="$emit('select', item)">{{ getItemName(item.id) }}</span>
         </div>
         <ul v-if="expanded">

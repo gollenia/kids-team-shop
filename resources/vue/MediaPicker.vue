@@ -1,6 +1,6 @@
 <template>
     <modal title="Media Manager" box-class="max-w-4xl" @close="$emit('close')">
-        <div class="flex space-x-4 mb-4">
+        <div class="flex space-x-4 mb-4 text-left" style="min-height: 400px">
             <div class="flex-1 pr-2" style="border-right: 1px solid #e5e7eb;">
                 <media-picker-item
                     v-for="(item, i) in tree"
@@ -11,7 +11,7 @@
                 />
             </div>
             
-            <div class="flex-1">
+            <div style="flex: 1.5">
                 <div
                     v-for="(item, i) in list"
                     :key="i"
@@ -19,22 +19,20 @@
                     @click="file = item"
                     @dblclick="select(item)"
                 >
-                    <span>{{ item.file }}</span>
-                    <span @click.stop="del(item)">
-                        <img class="inline w-4 h-4 ml-2" src="/lib/images/trash.png" alt="Delete" title="Delete">
-                    </span>
+                    <span><img v-if="item.src" :src="item.src"/></span>
+                    <span class="overflow-clip overflow-hidden">{{ item.file }}</span>
                 </div>
             </div>
 
             <div class="flex-1 pl-2" style="border-left: 1px solid #e5e7eb;">
                 <div v-if="file && file.src">
-                    <img :src="file.src" class="block m-auto mb-4">
+                    <img :src="file.src" class="block m-auto mb-4" style="max-width: 220px; max-height: 180px;">
                     <div class="mb-4">
                         Ausrichtung:
-                        <img src="/lib/images/media_align_noalign.png" alt="Keine" title="Keine" class="inline w-6 h-6 ml-2" :class="{ border: align === '' }" @click="align = ''">
-                        <img src="/lib/images/media_align_left.png" alt="Links" title="Links" class="inline w-6 h-6 ml-2" :class="{ border: align === 'left' }" @click="align = 'left'">
-                        <img src="/lib/images/media_align_center.png" alt="Mitte" title="Mitte" class="inline w-6 h-6 ml-2" :class="{ border: align === 'center' }" @click="align = 'center'">
-                        <img src="/lib/images/media_align_right.png" alt="Rechts" title="Rechts" class="inline w-6 h-6 ml-2" :class="{ border: align === 'right' }" @click="align = 'right'">
+                        <img src="/lib/images/media_align_noalign.png" alt="Keine" title="Keine" class="inline w-6 h-6 ml-1" :class="{ border: align === '' }" @click="align = ''">
+                        <img src="/lib/images/media_align_left.png" alt="Links" title="Links" class="inline w-6 h-6 ml-1" :class="{ border: align === 'left' }" @click="align = 'left'">
+                        <img src="/lib/images/media_align_center.png" alt="Mitte" title="Mitte" class="inline w-6 h-6 ml-1" :class="{ border: align === 'center' }" @click="align = 'center'">
+                        <img src="/lib/images/media_align_right.png" alt="Rechts" title="Rechts" class="inline w-6 h-6 ml-1" :class="{ border: align === 'right' }" @click="align = 'right'">
                     </div>
                     <div class="mb-4">
                         Grösse:
@@ -45,7 +43,8 @@
                     </div>
                 </div>
                 <div v-if="file">
-                    <button class="block border m-auto" @click="select(file)">Einfügen</button>
+                    <div><button class="block border m-auto" @click="select(file)">Einfügen</button></div>
+                    <div><button class="block m-auto mt-4" @click="del(file)">Löschen</button></div>
                 </div>
             </div>
         </div>
@@ -129,5 +128,20 @@ export default {
 <style scoped>
 .media-file {
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 5px 0;
+}
+.media-file >>> span:first-child {
+    width: 60px;
+    padding-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.media-file img {
+    max-width: 48px;
+    max-height: 48px;
 }
 </style>
