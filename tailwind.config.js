@@ -1,7 +1,8 @@
 module.exports = {
   purge: [
     './templates/**/*.twig',
-    './resources/css/*.css'
+    './resources/css/*.css',
+    '../../plugins/bibleverse/syntax.php'
   ],
   darkMode: false, // or 'media' or 'class'
   theme: {
