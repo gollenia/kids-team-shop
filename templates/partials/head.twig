@@ -4,8 +4,9 @@
 <head>
     <meta charset="utf-8" />
     <title>{{tpl_pagetitle()}} | {{conf.title}}</title>
-    <link rel="stylesheet" href="{{tpl_basedir}}/public/css/main.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="{{tpl_basedir}}/public/css/main.css">
+    
     {% include "partials/colors.twig" with {'colors': colors} %}
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     {{ tpl_favicon|raw }}
