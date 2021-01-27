@@ -36,12 +36,17 @@ class Page {
         }
         $text = rawWiki($id);
         $title = p_get_metadata($id, 'title');
+        $tags = p_get_metadata($id, 'subject');
         if(!$text) {
             $data = array($id);
             header("HTTP/1.0 404 Not Found");
             return;
         } else {
-            return json_encode($text);
+            return json_encode([
+                'title' => $title,
+                'text' => $text,
+                'tags' => $tags
+            ]);
         }
     }
     
@@ -83,7 +88,11 @@ class Page {
 
         lock($id);
 		saveWikiText($id,$TEXT,$sum,$minor);
-		unlock($id);
+        unlock($id);
+        
+        $tags = cleanText($INPUT->str('tags'));
+        $meta_subject = explode(',', $tags);
+        p_set_metadata($id, ['subject' => $meta_subject]);
 
         return json_encode(true);
     }

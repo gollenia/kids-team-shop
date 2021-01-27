@@ -55,7 +55,11 @@
 
         <codemirror ref="cm" v-model="text" :options="cmOptions"></codemirror>
 
-        <div class="my-3 m-auto">
+        <div class="editor-tags mt-7">
+            <input-tag v-model="tags" placeholder="Tag hinzufügen"></input-tag>
+        </div>
+
+        <div class="mt-5 mb-3 m-auto">
             <button @click="cancel">Abbrechen</button>
             <button @click="save">Speichern</button>
         </div>
@@ -70,6 +74,7 @@
 import Vue from 'vue'
 import VueCodemirror from 'vue-codemirror'
 import VueShortkey from 'vue-shortkey'
+import InputTag from 'vue-input-tag'
 import axios from 'axios'
 import LinkPicker from './LinkPicker.vue'
 import MediaPicker from './MediaPicker.vue'
@@ -82,6 +87,7 @@ Vue.use(VueShortkey)
 export default {
     name: 'Editor',
     components: {
+        InputTag,
         LinkPicker,
         MediaPicker
     },
@@ -96,7 +102,8 @@ export default {
             lineWrapping: true
         },
         showLinkPicker: false,
-        showMediaPicker: false
+        showMediaPicker: false,
+        tags: []
     }),
     methods: {
         textWrap: function(before = '', after = '', plain = '') {
@@ -131,6 +138,7 @@ export default {
         async save () {
             const formData = new FormData()
             formData.append('text', this.text)
+            formData.append('tags', this.tags)
 
             await axios.post('/?controller=page&method=save&id=' + window.DOKU_ID, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
@@ -142,8 +150,17 @@ export default {
     created () {
         axios.get('/?controller=page&method=raw&id=' + window.DOKU_ID)
             .then(response => {
-                this.text = response.data
+                this.text = response.data.text || ''
+                this.tags = response.data.tags || []
             })
     }
 };
 </script>
+
+<style>
+.editor-tags .new-tag {
+    width: unset;
+    padding-top: 4px !important;
+    margin-bottom: 0;
+}
+</style>
