@@ -1,9 +1,11 @@
 <?php
 namespace Contexis\Controllers;
+use \dokuwiki\Input\Input;
+use \Contexis\Models\Page;
 
 class Media {
 
-	function upload() {
+	function ajax_upload() {
 		global $INPUT;
 		global $_FILES;
 		$id = $INPUT->str('id', 'none');
@@ -36,7 +38,7 @@ class Media {
 	    return $res;
 	}
 
-	function tree($ns = '') {
+	function ajax_oldtree($response, $ns = '') {
 		global $conf;
 
 		$data = [];
@@ -49,7 +51,7 @@ class Media {
 					'id' => $match['id'],
 					'ns' => $match['ns']
 				];
-				$children = $this->tree($match['id']);
+				$children = $this->ajax_tree([], $match['id']);
 				if ($children) {
 					$item['children'] = $children;
 				}
@@ -71,7 +73,7 @@ class Media {
 		}
 	}
 	
-	function list() {
+	function ajax_list() {
 	    global $conf;
 			global $lang;
 			global $INPUT;
@@ -112,7 +114,7 @@ class Media {
 			}
 	}
 
-	function first() {
+	function ajax_first() {
 			global $conf;
 			global $INPUT;
 	    
@@ -122,8 +124,14 @@ class Media {
 	    return json_encode($references);
 	    
 	}
+
+	public function ajax_tree(Input $request) {
+        $id = $request->str($id = ""); 
+        $pageTree = Page::findAll($id, true, "bibel,system");
+        return json_encode($pageTree);
+    }
 	
-	public function delete() {
+	public function ajax_delete() {
 		global $INPUT;
 
 		$id = $INPUT->str('id', 'none');
