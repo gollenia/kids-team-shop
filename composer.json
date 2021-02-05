@@ -3,6 +3,7 @@
     "psr-4": {
       "Contexis\\Core\\": "lib/Core",
       "Contexis\\Core\\Utilities\\": "lib/Core/Utilities",
+      "Contexis\\Database\\": "lib/Database",
       "Contexis\\Controllers\\": "lib/Controllers",
       "Contexis\\Models\\": "lib/Models",
       "Contexis\\Twig\\": "lib/Twig",
