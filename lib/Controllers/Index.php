@@ -2,10 +2,8 @@
 namespace Contexis\Controllers;
 
 use Contexis\Core\Controller;
-use Contexis\Twig\Renderer;
-use Contexis\Core\Site;
  
-class Index {
+class Index extends Controller {
 	
 	private $counter;
 	
@@ -16,41 +14,28 @@ class Index {
 	}
 	
 	
-    public function get() {
+    public function ajax_get() {
         global $conf;
-        global $INFO;
         global $INPUT;
 		$id = $INPUT->str('id', ':');
 		$full = $INPUT->bool('full', false);
-        $depth = $INPUT->int('depth', 1);
+        
         $data = array();
 		$id = str_replace(':', "/", $id);
         $this->counter = 0;
         search($data,$conf['datadir'],array($this,'_search'),array(),$id,1,'natural');
         $this->counter = 0;
         
-        if ($depth==2) {
-        	
-        	foreach($data as $key => $value) {
-        		
-        		$subitems = array();
-        		$subid = str_replace(':', "/", $value['id']);
-        		search($subitems, $conf['datadir'], array($this,'_search'), array(), $subid, 1,'natural');
-        		$data[$key]['subitems'] = $subitems;
-        	}
-        }
-
-        if($full) {
-            foreach($data as $key => $value) {
+        foreach($data as $key => $value) {
         		$data[$key]['meta'] = p_get_metadata($value['id']);
-        	}
+        }
         }
         
         return json_encode($data);
     }
     
     
-    public function tree() {
+    public function ajax_tree() {
     	$data = array('ns' => '');
     	$r = $this->_walk($data, $ns);
     	return json_encode($data);
