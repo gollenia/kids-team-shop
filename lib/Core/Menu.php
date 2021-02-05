@@ -4,7 +4,7 @@ namespace Contexis\Core;
 
 use Contexis\Core\Dokuwiki;
 use Contexis\Core\Utilities;
-use Contexis\Core\ArrayData;
+
 
 class Menu {
 
@@ -20,9 +20,6 @@ class Menu {
     
 
     public static function get($id) {
-        
-        $raw =rawWiki($id);
-        
         return json_decode(rawWiki($id));
     }
 
