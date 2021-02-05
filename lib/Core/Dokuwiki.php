@@ -26,6 +26,8 @@ class Dokuwiki {
         return $title;
     }
 
+   
+
     public static function get_child_pages($namespace) {
         global $conf;
         $data = [];
