@@ -51,7 +51,7 @@
 
         <hr class="py-2">
         
-        <div>
+        <div class="-m-4 p-4 bg-lightgray">
             Hochladen: 
             <input type="file" @change="fileInput = $event.target.files || $event.dataTransfer.files">
             <button v-show="fileInput" class="border" @click="upload">Upload</button>
