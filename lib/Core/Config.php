@@ -103,7 +103,7 @@ class Config {
 
     public static function load(string $file) {
         
-        $config_path = tpl_incdir() . "config/";
+        $config_path = tpl_incdir() . "conf/";
 
 
         if (file_exists ( $config_path . $file . ".json" )) {
