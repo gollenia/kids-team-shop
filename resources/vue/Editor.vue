@@ -103,7 +103,9 @@ export default {
         },
         showLinkPicker: false,
         showMediaPicker: false,
-        tags: []
+        tags: [],
+        pageimage: '',
+        abstract: ''
     }),
     methods: {
         textWrap: function(before = '', after = '', plain = '') {
@@ -129,7 +131,7 @@ export default {
             link += item.id
             link += size ? ('?' + size) : ''
             link += align === 'center' || align === 'left' ? ' ' : ''
-            link += '|' + text  + ']]'
+            link += '|' + text  + '}}'
             this.$refs.cm.codemirror.replaceSelection(link)
         },
         async cancel () {
@@ -137,22 +139,26 @@ export default {
         },
         async save () {
             const formData = new FormData()
-            formData.append('text', this.text)
-            formData.append('tags', this.tags)
+            formData.append('content', this.text)
+            formData.append('tags', JSON.stringify(this.tags))
 
-            await axios.post('/?controller=page&method=save&id=' + window.DOKU_ID, formData, {
+            await axios.post('/?controller=edit&method=save&id=' + window.DOKU_ID, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             })
-
             window.location.href = '/?id=' + window.DOKU_ID
         }
     },
     created () {
-        axios.get('/?controller=page&method=raw&id=' + window.DOKU_ID)
+        
+        axios.get('/?controller=edit&method=get&id=' + window.DOKU_ID)
             .then(response => {
-                this.text = response.data.text || ''
+                this.text = response.data.content || ''
                 this.tags = response.data.tags || []
+                this.pageimage = response.data.pageimage || ''
+                this.abstract = response.data.abstract
             })
+
+            
     }
 };
 </script>
