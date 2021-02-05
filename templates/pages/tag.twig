@@ -17,7 +17,10 @@
     </header>
     <article class="bg-lightgray-lighter px-4 md:px-8 xl:px-0 py-8">
         <div class="max-w-screen-xl mx-auto">
-            {{ tpl_content(false) }}
+            {% if page_exists %}
+                    {{tpl_content(false) }}
+            {% endif %}
+            
             <div class="clear-both"></div>
             <div>
             {% for page in pages %}
