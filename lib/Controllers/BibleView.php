@@ -5,15 +5,16 @@
 namespace Contexis\Controllers;
 
 use Contexis\Core\Controller;
+use Contexis\Core\ControllerInterface;
 use Contexis\Core\Site;
 use Contexis\Twig\Renderer;
 use Contexis\Models\BibleModel;
 
 
-class BibleView extends Controller {
+class BibleView extends Controller implements ControllerInterface {
 
-    public function __construct($site, $is_ajax) {
-        parent::__construct($site, $is_ajax);
+    public function __construct($site) {
+        parent::__construct($site);
     }
 
     private function get_bible_data() {
@@ -42,14 +43,12 @@ class BibleView extends Controller {
         global $INPUT;
 
         
-
-        $tags = new \Contexis\Models\Tag();
-        $articles = $tags->getTopic("", NULL, "1mose");
+        $bible = $this->get_bible_data();
+        $this->site->add_data("bible", $bible);
         
+        $articles = \Contexis\Models\Page::where("tag", $bible["book"]["id"]);
         $this->site->add_data("articles", $articles);
-        
-        $this->site->add_data("bible", $this->get_bible_data());
-        //var_dump($this->get_bible_data());
+    
         return Renderer::compile("pages/bible.twig", $this->site->get());
     }
 }
