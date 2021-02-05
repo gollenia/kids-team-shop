@@ -47,6 +47,7 @@ namespace Contexis\Core;
          $this->twig_array['colors'] = \Contexis\Core\Config::load('colors');
          $this->twig_array['metadata'] = p_get_metadata($ID);
          $this->twig_array['tld'] = \Contexis\Core\Utilities\Domain::get_tld();
+         $this->twig_array['page_exists'] = page_exists($ID);
          
      }
 
