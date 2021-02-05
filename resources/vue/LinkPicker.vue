@@ -29,7 +29,7 @@ export default {
         tree: null
     }),
     async created () {
-      const response = await axios.get('/?controller=index&method=tree')
+      const response = await axios.get('/?controller=edit&method=tree')
       this.tree = response.data.tree
     }
 };
