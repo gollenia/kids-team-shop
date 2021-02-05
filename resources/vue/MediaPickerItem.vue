@@ -1,9 +1,9 @@
 <template>
     <div class="media-folder">
-        <div :class="{ selected: selected === item.id }">
-            <span v-if="item.id && item.children" class="icon" @click="expanded = !expanded">{{ expanded ? '-' : '+' }}</span>
+        <div class="flex items-center" :class="{ selected: selected === item.id }">
+            <span v-if="item.id && item.children" class="icon" @click="expanded = !expanded"><i class="material-icons">{{ expanded ? 'arrow_drop_down' : 'arrow_right' }}</i></span>
             <span v-else-if="item.id" class="icon"></span>
-            <span @click="$emit('select', item)">{{ getItemName(item.id) }}</span>
+            <span @click="$emit('select', item)">{{ item.title }}</span>
         </div>
         <ul v-if="expanded">
             <li v-for="(child, c) in item.children" :key="c">
@@ -24,6 +24,7 @@ export default {
         expanded: false
     }),
     methods: {
+        // Obsolete? Title is given my item Object
         getItemName (id) {
             if (!id) return 'root'
             const lastColon = id.lastIndexOf(':')

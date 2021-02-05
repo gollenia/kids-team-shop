@@ -1,7 +1,7 @@
 <template>
     <div v-if="item.folder" class="link-folder">
-        <div @click="expanded = !expanded">
-            <span class="link-folder-icon">{{ expanded ? '-' : '+' }}</span>
+        <div class=" flex items-center" @click="expanded = !expanded">
+            <span class="link-folder-icon"><i class="material-icons">{{ expanded ? 'arrow_drop_down' : 'arrow_right' }}</i></span>
             <span>{{ item.title || item.name }}</span>
         </div>
         <ul v-if="expanded">
@@ -35,7 +35,7 @@ export default {
 }
 .link-folder-icon {
     display: inline-block;
-    width: 20px;
+    width: 24px;
 }
 .link-item {
     cursor: pointer;
