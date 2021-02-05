@@ -55,8 +55,4 @@ class Edit extends Controller implements ControllerInterface {
         $page = Page::find($id);
         $page->delete();
     }
-
-    public ajax_getTemplates(Input $request) {
-        
-    }
 }
