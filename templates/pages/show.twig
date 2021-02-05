@@ -19,6 +19,11 @@
         <div class="max-w-screen-xl mx-auto">
             {{ tpl_content(false) }}
             <div class="clear-both"></div>
+            <div>
+            {% for tag in metadata.subject %}
+                <a href="/?do=showtag&tag={{tag}}">{{tag|capitalize}}</a>
+            {% endfor %}
+            </div>
         </div>
     </article>
     
