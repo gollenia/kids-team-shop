@@ -7,7 +7,7 @@ use Contexis\Database\Index;
 class Page {
 
     public string $id;
-    public array $tags;
+    public $tags;
     public string $image ="";
     public string $content;
     public string $summary = "";
