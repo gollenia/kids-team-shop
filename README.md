@@ -24,11 +24,6 @@ DokuWiki Template
    - catlist
    - wrap
    - tag
+   - pageimage
 6. Install bibelverse Plugin (clone into /lib/plugins):\
 `https://github.com/gollenia/bibleverse`
-
-
-# TODO
-- Abbrechen
-- PUshen!
-- Wrap: 1|1, 1|2 - Konfigurierbar?

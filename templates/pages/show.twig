@@ -9,12 +9,17 @@
     
     <header class="bg-cover bg-primary-light relative" style="padding-top: 20vh;">
     {% include "partials/breadcrumbs.twig" with {'breadcrumbs': breadcrumbs} %}
+    {% if pageimage %}
+    <div class="max-w-screen-xl mx-auto" style="background: url('{{ pageimage }}'); background-size: cover; background-repeat: no-repeat">
+    {% else %}
     <div class="max-w-screen-xl mx-auto">
+    {% endif %}
         <div class="relative inline-block bg-primary-transparent bg-opacity-75 bg-blur  rounded-tr-3xl text-white text-right" style="margin-left: -2000px; padding: 50px 50px 50px 2000px;">
             <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script">{{tpl_pagetitle()}}</div>
         </div>
     </div>
     </header>
+
     <article class="bg-lightgray-lighter px-4 md:px-8 xl:px-0 py-8">
         <div class="max-w-screen-xl mx-auto">
             {{ tpl_content(false) }}
@@ -26,7 +31,6 @@
             </div>
         </div>
     </article>
-    
 
     {% include "partials/footer.twig" %}
 

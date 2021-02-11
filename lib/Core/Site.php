@@ -11,6 +11,9 @@
 
 namespace Contexis\Core;
 
+define('PAGEIMAGE_WIDTH', 1200);
+define('PAGEIMAGE_HEIGHT', 400);
+
  class Site {
      private array $twig_array;
 
@@ -45,9 +48,11 @@ namespace Contexis\Core;
          $this->twig_array['menu'] = \Contexis\Core\Menu::get("system:menu");
          $this->twig_array['breadcrumbs'] = \Contexis\Core\Breadcrumbs::get();
          $this->twig_array['colors'] = \Contexis\Core\Config::load('colors');
-         $this->twig_array['metadata'] = p_get_metadata($ID);
+         $metadata = p_get_metadata($ID);
+         $this->twig_array['metadata'] = $metadata;
          $this->twig_array['tld'] = \Contexis\Core\Utilities\Domain::get_tld();
          $this->twig_array['page_exists'] = page_exists($ID);
+         $this->twig_array['pageimage'] = $this->getPageImage($metadata);
          
      }
 
@@ -65,5 +70,15 @@ namespace Contexis\Core;
          return $this->twig_array[$key];
      }
 
-     
+     private function getPageImage($metadata) {
+        if ($metadata && $metadata['pageimage']) {
+            $image = $metadata['pageimage'];
+            $opts = [
+                'w' => PAGEIMAGE_WIDTH,
+                'h' => PAGEIMAGE_HEIGHT,
+                'w' => @filemtime(mediaFN($image))
+            ];
+            return ml($image, $opts, true, '&');
+        }
+     }
  }

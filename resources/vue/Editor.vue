@@ -1,5 +1,14 @@
 <template>
-    <div v-shortkey="['esc']" @shortkey="showLinkPicker = false; showMediaPicker = false">
+    <div v-shortkey="['esc']" @shortkey="showLinkPicker = false; showMediaPicker = false; showPageImagePicker = false">
+        <h2>Headerbild:</h2>
+        <div><input v-model="pageimage" type="text"></div>
+        <div>
+            <button @click="showPageImagePicker = true">Bild auswählen</button>
+            <button @click="pageimage = ''">Bild entfernen</button>
+        </div>
+        <media-picker v-if="showPageImagePicker" @select="insertPageImage($event); showPageImagePicker = false" @close="showPageImagePicker = false"/>
+
+        <h2>Inhalt:</h2>
         <div>
             <div class="tool__bar" role="toolbar">
                 <button class="toolbutton" title="Fetter Text [B]" @click="textWrap('**', '**')" v-shortkey.once="['ctrl', 'b']" @shortkey="textWrap('**', '**')">
@@ -66,7 +75,7 @@
 
         <link-picker v-if="showLinkPicker" @select="insertLink($event); showLinkPicker = false" @close="showLinkPicker = false"/>
 
-        <media-picker v-if="showMediaPicker" @select="insertMedia($event); showMediaPicker = false" @close="showMediaPicker = false"/>        
+        <media-picker v-if="showMediaPicker" @select="insertMedia($event); showMediaPicker = false" @close="showMediaPicker = false"/>
     </div>
 </template>
 
@@ -103,6 +112,7 @@ export default {
         },
         showLinkPicker: false,
         showMediaPicker: false,
+        showPageImagePicker: false,
         tags: [],
         pageimage: '',
         abstract: ''
@@ -134,6 +144,9 @@ export default {
             link += '|' + text  + '}}'
             this.$refs.cm.codemirror.replaceSelection(link)
         },
+        insertPageImage ({ item, align, size }) {
+            this.pageimage = item.id || ''
+        },
         async cancel () {
             window.location.href = '/?id=' + window.DOKU_ID
         },
@@ -141,6 +154,7 @@ export default {
             const formData = new FormData()
             formData.append('content', this.text)
             formData.append('tags', JSON.stringify(this.tags))
+            formData.append('pageimage', this.pageimage)
 
             await axios.post('/?controller=edit&method=save&id=' + window.DOKU_ID, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }

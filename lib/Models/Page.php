@@ -8,7 +8,7 @@ class Page {
 
     public string $id;
     public $tags;
-    public string $image ="";
+    public string $pageimage ="";
     public string $content;
     public string $summary = "";
     public string $date;
@@ -31,7 +31,7 @@ class Page {
         $instance->id = $id;
         $instance->tags = p_get_metadata($id, 'subject');
         $instance->title = p_get_metadata($id, 'title');
-        $instance->image = p_get_metadata($id, 'pageimage') || "";
+        $instance->pageimage = p_get_metadata($id, 'pageimage') ?: '';
         $instance->user = p_get_metadata($id, 'user');
         $instance->date = p_get_metadata($id, 'date modified');
         $instance->abstract = p_get_metadata($id, 'description abstract');
@@ -98,7 +98,7 @@ class Page {
         }
 
         p_set_metadata($this->id, ['subject' => $this->tags]);
-        p_set_metadata($this->id, ['pageimage' => $this->image]);
+        p_set_metadata($this->id, ['pageimage' => $this->pageimage]);
         p_set_metadata($this->id, ['description abstract' => $this->abstract]);
         
         lock($this->id);

@@ -35,6 +35,7 @@ class Edit extends Controller implements ControllerInterface {
         $page->sum   = $request->str('sum', $page->sum);
         $page->minor_change = $request->str('minor', $page->minor_change);
         $page->tags = json_decode($request->str('tags'));
+        $page->pageimage = cleanText($request->str('pageimage'));
         $page->save();
         return json_encode($page->get());
     }
