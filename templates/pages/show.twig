@@ -10,7 +10,7 @@
     <header class="bg-cover bg-primary-light relative" style="padding-top: 20vh;">
     {% include "partials/breadcrumbs.twig" with {'breadcrumbs': breadcrumbs} %}
     {% if pageimage %}
-    <div class="max-w-screen-xl mx-auto" style="background: url('{{ pageimage }}'); background-size: cover; background-repeat: no-repeat">
+    <div class="max-w-screen-xl mx-auto object-cover bg-top bg-no-repeat" style="background-image: url('{{ pageimage }}');">
     {% else %}
     <div class="max-w-screen-xl mx-auto">
     {% endif %}
