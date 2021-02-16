@@ -78,7 +78,8 @@ define('PAGEIMAGE_HEIGHT', 400);
                 'h' => PAGEIMAGE_HEIGHT,
                 'w' => @filemtime(mediaFN($image))
             ];
-            return ml($image, $opts, true, '&');
+            //return ml($image, $opts, true, '&');
+            return $image;
         }
      }
  }
