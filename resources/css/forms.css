@@ -108,7 +108,7 @@ input[type="submit"] {
     @apply outline-none;
 }
 
-label span.label, #dw__profiledelete label.block span {
+label span.label, #dw__profiledelete label.block span, .input-text label {
     margin-top: -12px;
     @apply inline-block;
     height: max-content;
