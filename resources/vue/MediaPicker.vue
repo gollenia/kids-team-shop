@@ -20,7 +20,7 @@
                     @dblclick="select(item)"
                 >
                     <span><img v-if="item.src" :src="item.src"/></span>
-                    <span class="overflow-clip overflow-hidden">{{ item.file }}</span>
+                    <span class="overflow-clip text-sm overflow-hidden">{{ item.file }}</span>
                 </div>
             </div>
 
@@ -55,7 +55,7 @@
             Hochladen: 
             <input type="file" @change="fileInput = $event.target.files || $event.dataTransfer.files">
             <button v-show="fileInput" class="border" @click="upload">Upload</button>
-            <div v-show="fileInput">Namespace: <input v-model="ns" type="text"></div>
+            <div v-show="fileInput" class="input-text"><label>Namespace</label><input v-model="ns" type="text"></div>
         </div>
     </modal>
 </template>
@@ -102,14 +102,17 @@ export default {
             this.list = listResponse.data
         },
         async upload () {
+            const sec_response = await axios.post('/?controller=media&method=token');
+            var sectok = sec_response.data
             const file = this.fileInput[0]
             const formData = new FormData()
-            formData.append('file', file, file.name)
+            formData.append('upload', file, file.name)
+            formData.append('sectok', sectok)
 
             const response = await axios.post('/?controller=media&method=upload&id=' + this.ns, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             })
-
+            console.log(response);
             return this.load()
         },
         async del (item) {
