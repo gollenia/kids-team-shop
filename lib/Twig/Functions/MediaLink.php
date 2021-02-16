@@ -8,8 +8,8 @@ class MediaLink extends CustomFunctions {
 
     public string $name = "ml";
 
-    public function render($id, $opts = "") {
-        return ml($id, $opts, true, '&');
+    public function render($id, $width = false) {
+        return ml($id, ["w" => $width], true, '&');
     }
 
 }
