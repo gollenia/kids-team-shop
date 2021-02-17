@@ -1,77 +1,102 @@
 <template>
-    <div v-shortkey="['esc']" @shortkey="showLinkPicker = false; showMediaPicker = false; showPageImagePicker = false">
-        <h2>Headerbild:</h2>
-        <div><input v-model="pageimage" type="text"></div>
-        <div>
-            <button @click="showPageImagePicker = true">Bild auswählen</button>
-            <button @click="pageimage = ''">Bild entfernen</button>
+    <div class="bg-lightgray-lighter" v-shortkey="['esc']" @shortkey="showLinkPicker = false; showMediaPicker = false; showPageImagePicker = false">
+         <header class="bg-primary-light relative" style="padding-top: 20vh;">
+            <img class="object-cover absolute inset-0 w-full h-full" :src="media.src">
+            <div class="absolute bottom-0 right-0 text-right p-4">
+            <button class="bg-lightgray text-black mr-4" @click="showPageImagePicker = true"><i class="material-icons">image</i></button>
+            <button class="bg-lightgray text-black" @click="pageimage = ''"><i class="material-icons">delete</i></button>
+            </div>
+        <div class="max-w-screen-xl mx-auto">        
+        <div class="relative inline-block bg-primary-transparent bg-opacity-75 bg-blur  rounded-tr-3xl text-white text-right" style="margin-left: -2000px; padding: 50px 50px 50px 2000px;">
+            <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script pl-4 md:pl-8 xl:pl-0">
+                {{page.title}}
+            </div>
         </div>
+        </div>
+        </header>
+                
         <media-picker v-if="showPageImagePicker" @select="insertPageImage($event); showPageImagePicker = false" @close="showPageImagePicker = false"/>
 
-        <h2>Inhalt:</h2>
-        <div>
-            <div class="tool__bar" role="toolbar">
-                <button class="toolbutton" title="Fetter Text [B]" @click="textWrap('**', '**')" v-shortkey.once="['ctrl', 'b']" @shortkey="textWrap('**', '**')">
-                    <i class="material-icons">format_bold</i>
-                </button>
-                <button class="toolbutton" title="Kursiver Text [I]" @click="textWrap('//', '//')" v-shortkey.once="['ctrl', 'i']" @shortkey="textWrap('//', '//')">
-                    <i class="material-icons">format_italic</i>
-                </button>
-                <button class="toolbutton" title="Unterstrichener Text [U]" @click="textWrap('__', '__')" v-shortkey.once="['ctrl', 'i']" @shortkey="textWrap('__', '__')">
-                    <i class="material-icons">format_underlined</i>
-                </button>
-                <button class="toolbutton" title="Überschrift 1" @click="textWrap('======', '======')">
-                    <i class="material-icons">filter_1</i>
-                </button>
-                <button class="toolbutton" title="Überschrift 2" @click="textWrap('=====', '=====')">
-                    <i class="material-icons">filter_2</i>
-                </button>
-                <button class="toolbutton" title="Überschrift3" @click="textWrap('====', '====')">
-                    <i class="material-icons">filter_3</i>
-                </button>
-                <button class="toolbutton" title="Interner Link [L]" @click="showLinkPicker = true" v-shortkey.once="['ctrl', 'l']" @shortkey="showLinkPicker = true">
-                    <i class="material-icons">insert_link</i>
-                </button>
-                <button class="toolbutton" title="Externer Link"  @click="textWrap('[[', ']]', '[[https://www.example.com|Externer Link]]')">
-                    <i class="material-icons">explore</i>
-                </button>
-                <button class="toolbutton" title="Nummerierter Listenpunkt [-]" @click="textWrap(' - ', '', ' - Nummerierter Listenpunkt')" v-shortkey.once="['ctrl', '-']" @shortkey="textWrap(' - ', '', ' - Nummerierter Listenpunkt')">
-                    <i class="material-icons">format_list_numbered</i>
-                </button>
-                <button class="toolbutton" title="Listenpunkt [.]" @click="textWrap(' * ', '', ' * Listenpunkt')" v-shortkey.once="['ctrl', '.']" @shortkey="textWrap(' * ', '', ' - Listenpunkt')">
-                    <i class="material-icons">format_list_bulleted</i>
-                </button>
-                <button class="toolbutton" title="Horizontale Linie" aria-controls="wiki__text"@click="textWrap('\n----\n')">
-                    <i class="material-icons">horizontal_rule</i>
-                </button>
-                <button class="toolbutton" title="Bilder und andere Dateien hinzufügen"  @click="showMediaPicker = true">
-                    <i class="material-icons">insert_photo</i>
-                </button>
-                <!-- <button class="toolbutton" title="Smileys" aria-controls="picker1" aria-haspopup="true">
-                    <img src="/lib/images/toolbar/smiley.png" alt="" width="16" height="16">
-                </button>
-                <button class="toolbutton" title="Sonderzeichen" aria-controls="picker2" aria-haspopup="true">
-                    <img src="/lib/images/toolbar/chars.png" alt="" width="16" height="16">
-                </button>
-                <button class="toolbutton" title="Unterschrift einfügen [Y]" aria-controls="wiki__text" accesskey="y">
-                    <img src="/lib/images/toolbar/sig.png" alt="" width="16" height="16">
-                </button>
-                <button class="toolbutton" title="Wrap-Plugin" aria-controls="picker3" aria-haspopup="true">
-                    <img src="/lib/images/toolbar/../../plugins/wrap/images/toolbar/picker.png" alt="" width="
-                16" height="16"></button> -->
+        <div class="editor max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
+            <div class="mt-4 px-4 bg-lightgray rounded-tl-md">
+                <div class="tool__bar" role="toolbar">
+                    <button class="toolbutton" title="Fetter Text [B]" @click="textWrap('**', '**')" v-shortkey.once="['ctrl', 'b']" @shortkey="textWrap('**', '**')">
+                        <i class="material-icons">format_bold</i>
+                    </button>
+                    <button class="toolbutton" title="Kursiver Text [I]" @click="textWrap('//', '//')" v-shortkey.once="['ctrl', 'i']" @shortkey="textWrap('//', '//')">
+                        <i class="material-icons">format_italic</i>
+                    </button>
+                    <button class="toolbutton" title="Unterstrichener Text [U]" @click="textWrap('__', '__')" v-shortkey.once="['ctrl', 'i']" @shortkey="textWrap('__', '__')">
+                        <i class="material-icons">format_underlined</i>
+                    </button>
+                    <button class="toolbutton" title="Überschrift 1" @click="textWrap('======', '======')">
+                        <i class="material-icons">filter_1</i>
+                    </button>
+                    <button class="toolbutton" title="Überschrift 2" @click="textWrap('=====', '=====')">
+                        <i class="material-icons">filter_2</i>
+                    </button>
+                    <button class="toolbutton" title="Überschrift3" @click="textWrap('====', '====')">
+                        <i class="material-icons">filter_3</i>
+                    </button>
+                    <button class="toolbutton" title="Interner Link [L]" @click="showLinkPicker = true" v-shortkey.once="['ctrl', 'l']" @shortkey="showLinkPicker = true">
+                        <i class="material-icons">insert_link</i>
+                    </button>
+                    <button class="toolbutton" title="Externer Link"  @click="textWrap('[[', ']]', '[[https://www.example.com|Externer Link]]')">
+                        <i class="material-icons">explore</i>
+                    </button>
+                    <button class="toolbutton" title="Nummerierter Listenpunkt [-]" @click="textWrap(' - ', '', ' - Nummerierter Listenpunkt')" v-shortkey.once="['ctrl', '-']" @shortkey="textWrap(' - ', '', ' - Nummerierter Listenpunkt')">
+                        <i class="material-icons">format_list_numbered</i>
+                    </button>
+                    <button class="toolbutton" title="Listenpunkt [.]" @click="textWrap(' * ', '', ' * Listenpunkt')" v-shortkey.once="['ctrl', '.']" @shortkey="textWrap(' * ', '', ' - Listenpunkt')">
+                        <i class="material-icons">format_list_bulleted</i>
+                    </button>
+                    <button class="toolbutton" title="Horizontale Linie" aria-controls="wiki__text"@click="textWrap('\n----\n')">
+                        <i class="material-icons">horizontal_rule</i>
+                    </button>
+                    <button class="toolbutton" title="Bilder und andere Dateien hinzufügen"  @click="showMediaPicker = true">
+                        <i class="material-icons">insert_photo</i>
+                    </button>
+                    <!-- <button class="toolbutton" title="Smileys" aria-controls="picker1" aria-haspopup="true">
+                        <img src="/lib/images/toolbar/smiley.png" alt="" width="16" height="16">
+                    </button>
+                    <button class="toolbutton" title="Sonderzeichen" aria-controls="picker2" aria-haspopup="true">
+                        <img src="/lib/images/toolbar/chars.png" alt="" width="16" height="16">
+                    </button>
+                    <button class="toolbutton" title="Unterschrift einfügen [Y]" aria-controls="wiki__text" accesskey="y">
+                        <img src="/lib/images/toolbar/sig.png" alt="" width="16" height="16">
+                    </button>
+                    <button class="toolbutton" title="Wrap-Plugin" aria-controls="picker3" aria-haspopup="true">
+                        <img src="/lib/images/toolbar/../../plugins/wrap/images/toolbar/picker.png" alt="" width="
+                    16" height="16"></button> -->
+                </div>
+            </div>
+
+            <codemirror class="border-r-2 border-l-2 border-b-2 p-4 rounded-br-md bg-white" ref="cm" v-model="page.content" :options="cmOptions"></codemirror>
+        </div>
+
+        <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
+            <h5>Zusammenfassung</h5>
+            <div class="editor-tags">
+                <textarea class="w-full border-2 border-lightgray rounded-tl-md p-4 rounded-br-md outline-none" v-model="page.abstract"></textarea>
+            </div>
+        </div>
+        
+        
+        
+        <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
+            <h5>Schlagworte</h5>
+            <div class="editor-tags">
+                <input-tag v-model="page.tags" :before-adding="tag => tag.toLowerCase().replace(' ', '_')" placeholder="Tag hinzufügen"></input-tag>
             </div>
         </div>
 
-        <codemirror ref="cm" v-model="text" :options="cmOptions"></codemirror>
-
-        <div class="editor-tags mt-7">
-            <input-tag v-model="tags" :before-adding="tag => tag.toLowerCase().replace(' ', '_')" placeholder="Tag hinzufügen"></input-tag>
+        <div class="bg-primary-light">
+            <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8 text-right">
+                <button class="bg-primary-light text-primary" @click="cancel">Zurück</button>
+                <button @click="save">Speichern</button>
+            </div>
         </div>
-
-        <div class="mt-5 mb-3 m-auto">
-            <button @click="cancel">Abbrechen</button>
-            <button @click="save">Speichern</button>
-        </div>
+        
 
         <link-picker v-if="showLinkPicker" @select="insertLink($event); showLinkPicker = false" @close="showLinkPicker = false"/>
 
@@ -104,7 +129,9 @@ export default {
         text: '',
         cmOptions: {
             tabSize: 4,
-            mode: 'text/javascript',
+            mode: {
+                name: 'tiki'
+            },
             theme: 'base16-dark',
             lineNumbers: false,
             line: false,
@@ -113,9 +140,29 @@ export default {
         showLinkPicker: false,
         showMediaPicker: false,
         showPageImagePicker: false,
-        tags: [],
-        pageimage: '',
-        abstract: ''
+        page: {
+            abstract: "",
+            content: "",
+            date: "",
+            id: "start",
+            minor_change: false,
+            pageimage: "",
+            summary: "",
+            tags: [],
+            title: "",
+            user: ""
+        },
+        media: {
+            extension: "",
+            file: "",
+            id: "",
+            modified: "",
+            path: "",
+            size: "",
+            src: "",
+            thumbnail: "",
+            writable: false
+        }
     }),
     methods: {
         textWrap: function(before = '', after = '', plain = '') {
@@ -129,6 +176,7 @@ export default {
         },
         insertLink (item) {
             const selection = this.$refs.cm.codemirror.getSelection()
+            console.log(item);
             const text = selection || item.title || item.name
             const link = '[[' + item.id + '|' + text  + ']]'
             this.$refs.cm.codemirror.replaceSelection(link)
@@ -145,34 +193,35 @@ export default {
             this.$refs.cm.codemirror.replaceSelection(link)
         },
         insertPageImage ({ item, align, size }) {
-            this.pageimage = item.id || ''
+            this.page.pageimage = item.id || ''
+            axios.get('/?controller=media&method=get&id=' + this.page.pageimage)
+            .then(response => {
+                this.media = response.data
+            });
+
         },
         async cancel () {
-            window.location.href = '/?id=' + window.DOKU_ID
+            window.location.href = '/?id=' + window.DOKU_ID;
         },
         async save () {
             const formData = new FormData()
-            formData.append('content', this.text)
-            formData.append('tags', JSON.stringify(this.tags))
-            formData.append('pageimage', this.pageimage)
+            formData.append('page', JSON.stringify(this.page))
 
             await axios.post('/?controller=edit&method=save&id=' + window.DOKU_ID, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             })
-            window.location.href = '/?id=' + window.DOKU_ID
         }
     },
-    created () {
-        
-        axios.get('/?controller=edit&method=get&id=' + window.DOKU_ID)
+    async created () {
+        await axios.get('/?controller=edit&method=get&id=' + window.DOKU_ID)
             .then(response => {
-                this.text = response.data.content || ''
-                this.tags = response.data.tags || []
-                this.pageimage = response.data.pageimage || ''
-                this.abstract = response.data.abstract
-            })
+                this.page = response.data
+        });
 
-            
+        axios.get('/?controller=media&method=get&id=' + this.page.pageimage)
+            .then(response => {
+                this.media = response.data
+        });
     }
 };
 </script>
