@@ -34,8 +34,13 @@ class Page {
         $instance->pageimage = p_get_metadata($id, 'pageimage') ?: '';
         $instance->user = p_get_metadata($id, 'user');
         $instance->date = p_get_metadata($id, 'date modified');
-        $instance->abstract = p_get_metadata($id, 'abstract');
         $instance->content = rawWiki($id);
+        $instance->abstract = "";
+        $abstract = p_get_metadata($id, 'abstract');
+        if($abstract) {
+            $instance->abstract = $abstract;
+        }
+        
         return $instance;
     }
 
