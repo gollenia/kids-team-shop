@@ -27,6 +27,7 @@
             
         </section>
         <div class="clear-both"></div>
+        {% if metadata.subject is not empty %}
         <section class="bg-lightgray">
             <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
             <h4>Schlagworte</h4>
@@ -38,6 +39,7 @@
             
             </div>
         </section>
+        {% endif %}
     </article>
 
     {% include "partials/footer.twig" %}
