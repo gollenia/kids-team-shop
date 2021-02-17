@@ -18,3 +18,7 @@ footer h4 {
 a.wikilink1, a.urlextern {
     color: var(--primary);
 }
+
+div.content > h1:first-of-type {
+    display: none;
+}

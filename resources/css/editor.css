@@ -9,10 +9,29 @@
     background-color: var(--lightgray-darker);
 }
 
-.tool__bar button:first-child {
-    @apply rounded-tl;
+
+.vue-input-tag-wrapper {
+    @apply py-1 px-1 bg-white border-2 rounded-tl-md rounded-br-md block;
+    display: block !important;
+    border: 2px #dddddd solid !important;
 }
 
-.tool__bar button:last-child {
-    @apply rounded-br;
+.vue-input-tag-wrapper span.input-tag {
+    @apply inline-flex mx-2 rounded-tl rounded-br text-sm bg-gray text-white p-0;
+    border: none !important;
+}
+
+.vue-input-tag-wrapper span.input-tag span {
+    @apply px-2 py-1 inline-block;
+}
+
+.vue-input-tag-wrapper a.remove {
+    @apply py-1 px-2 bg-gray-darker inline-block rounded-br;
+    color: #fff !important;
+}
+
+
+.vue-input-tag-wrapper a.remove:before {
+    content: '\e5cd' !important;
+    font-family: 'Material Icons';
 }
