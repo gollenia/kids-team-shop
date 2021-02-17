@@ -30,12 +30,12 @@ class Edit extends Controller implements ControllerInterface {
     }
 
     public function ajax_save(Input $request) {
-        $page = Page::findOrNew($request->str("id"));
-        $page->content  = cleanText($request->str('content'));
-        $page->sum   = $request->str('sum', $page->sum);
-        $page->minor_change = $request->str('minor', $page->minor_change);
-        $page->tags = json_decode($request->str('tags'));
-        $page->pageimage = cleanText($request->str('pageimage'));
+        $data = json_decode($request->str("page"));
+        $page = Page::findOrNew($data->id);
+        $page->content = cleanText($data->content);
+        $page->abstract = cleanText($data->abstract);
+        $page->tags = $data->tags;
+        $page->pageimage = cleanText($data->pageimage);
         $page->save();
         return json_encode($page->get());
     }
