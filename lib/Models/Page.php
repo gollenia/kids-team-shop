@@ -12,7 +12,7 @@ class Page {
     public string $content;
     public string $summary = "";
     public string $date;
-    public string $abstract ="";
+    public string $abstract = "";
     public string $user;
     public bool $minor_change = false;
     
@@ -34,7 +34,7 @@ class Page {
         $instance->pageimage = p_get_metadata($id, 'pageimage') ?: '';
         $instance->user = p_get_metadata($id, 'user');
         $instance->date = p_get_metadata($id, 'date modified');
-        $instance->abstract = p_get_metadata($id, 'description abstract');
+        $instance->abstract = p_get_metadata($id, 'abstract');
         $instance->content = rawWiki($id);
         return $instance;
     }
@@ -99,13 +99,14 @@ class Page {
 
         p_set_metadata($this->id, ['subject' => $this->tags]);
         p_set_metadata($this->id, ['pageimage' => $this->pageimage]);
-        p_set_metadata($this->id, ['description abstract' => $this->abstract]);
+        
         
         lock($this->id);
         saveWikiText($this->id, $this->content ,$this->summary, $this->minor_change);
         idx_addPage($this->id, false, true);
         unlock($this->id);
        
+        p_set_metadata($this->id, ['abstract' => $this->abstract]);
         return true;
     }
 
