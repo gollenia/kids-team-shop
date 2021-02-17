@@ -1,6 +1,6 @@
 <template>
     <modal title="Seite wählen" @close="$emit('close')">
-        <div v-if="tree">
+        <div class="p-4" v-if="tree">
             <link-picker-item
                 v-for="(item, i) in tree"
                 :key="i"
@@ -8,9 +8,16 @@
                 @select="$emit('select', $event)"
             />
         </div>
-        <div v-else>
+        <div class="p-4" v-else>
             Wird geladen..
         </div>
+        <div class="bg-lightgray-lighter">
+            <div class="px-4 py-8 input-text">
+            <label>Link-Text</label>
+            <input type="text" v-model="title">
+        </div>
+        </div> 
+        
     </modal>
 </template>
 
@@ -26,7 +33,8 @@ export default {
         Modal
     },
     data: () => ({
-        tree: null
+        tree: null,
+        title: ""
     }),
     async created () {
       const response = await axios.get('/?controller=edit&method=tree')
