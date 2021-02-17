@@ -13,27 +13,31 @@
     <div class="max-w-screen-xl mx-auto">
     
         <div class="relative inline-block bg-primary-transparent bg-opacity-75 bg-blur  rounded-tr-3xl text-white text-right" style="margin-left: -2000px; padding: 50px 50px 50px 2000px;">
-            <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script">{{tpl_pagetitle()}}</div>
+            <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script pl-4 md:pl-8 xl:pl-0">{{tpl_pagetitle()}}</div>
         </div>
     </div>
     </header>
 
     <article class="bg-lightgray-lighter ">
         
-        <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
-            {{ tpl_content(false) }}
-        </div>
+        <section class="px-4 md:px-8 xl:px-0 py-8">
+            <div class="content max-w-screen-xl mx-auto">
+                {{ tpl_content(false) }}
+            </div>
+            
+        </section>
         <div class="clear-both"></div>
-        <div class="bg-lightgray">
+        <section class="bg-lightgray">
             <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
             <h4>Schlagworte</h4>
+            <div>
             {% for tag in metadata.subject %}
                 <a class="text-xs bg-darkgray ml-2 px-2 py-1 text-primary-contrast rounded-tl rounded-br" href="/tag/{{tag}}">{{tag|capitalize}}</a>
             {% endfor %}
             </div>
             
             </div>
-        </div>
+        </section>
     </article>
 
     {% include "partials/footer.twig" %}

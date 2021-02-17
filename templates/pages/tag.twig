@@ -11,26 +11,44 @@
     {% include "partials/breadcrumbs.twig" with {'breadcrumbs': breadcrumbs} %}
     <div class="max-w-screen-xl mx-auto">
         <div class="relative inline-block bg-primary-transparent bg-opacity-75 bg-blur  rounded-tr-3xl text-white text-right" style="margin-left: -2000px; padding: 50px 50px 50px 2000px;">
-            <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script">{{tag|capitalize}}</div>
+            <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script pl-4 md:pl-8 xl:pl-0">{{tag|capitalize}}</div>
         </div>
     </div>
     </header>
-    <article class="bg-lightgray-lighter px-4 md:px-8 xl:px-0 py-8">
-        <div class="max-w-screen-xl mx-auto">
+    <article class="bg-lightgray-lighter ">
+        
             {% if page_exists %}
+            <section class="bg-primary text-white px-4 md:px-8 xl:px-0 py-8">
+                <div class="content max-w-screen-xl mx-auto">
                     {{tpl_content(false) }}
+                </div>
+            </section>
             {% endif %}
             
             <div class="clear-both"></div>
-            <div>
-            {% for page in pages %}
-                <a class="" href="{{page.link}}">
-                    {% if page.image %}<img src="{{ml(page.image)}}">{% endif %}
-                    <div class="text-primary font-bold">{{page.title}}</div>
-                    <div>{{page.abstract}}</div>
-                </a>
-            {% endfor %}
-            </div>
+            <section class="bg-lightgray px-4 md:px-8 xl:px-0 py-8">
+                <div class="content max-w-screen-xl mx-auto">
+                    <div class="grid grid-cols-3 gap-8">
+                    {% for page in pages %}
+                        <a class="hover:shadow-lg bg-white" href="{{page.link}}">
+                            {% if page.pageimage %}<img class="object-cover h-64 w-full" src="{{ml(page.pageimage, 500)}}">
+                            {% else %}
+                            <div class="h-64 bg-primary-light"></div>
+                            {% endif %}
+                            <div class="p-4">
+                                <div class="text-primary font-bold">{{page.title}}</div>
+                                {% if page.abstract is not  empty %}
+                                    <div>{{page.abstract|striptags|slice(0, 100)}}...</div>
+                                {% else %}
+                                    <div>{{page.description|striptags|slice(0, 100)}}...</div>
+                                {% endif %}
+                            </div>
+                        </a>
+                    
+                    {% endfor %}
+                    </div>
+                </div>
+            </section>
         </div>
     </article>
     

@@ -12,15 +12,15 @@
     {% if pageimage %}<img class="object-cover absolute inset-0 w-full h-full" src={{ ml(pageimage, 2000) }}>{% endif %}
     <div class="max-w-screen-xl mx-auto">
         <div class="relative inline-block bg-primary-transparent bg-opacity-75 bg-blur  rounded-tr-3xl text-white text-right" style="margin-left: -2000px; padding: 50px 50px 50px 2000px;">
-            <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script">{{bible.book.title}} {{bible.chapter}}</div>
+            <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script pl-4 md:pl-8 xl:pl-0">{{bible.book.title}} {{bible.chapter}}</div>
         </div>
     </div>
     </header>
     <article class="bg-lightgray-lighter px-4 md:px-8 xl:px-0 py-8 relative " x-data="{selectChapter: false, selectBook: false}">
-        <div class="max-w-screen-xl mx-auto">
+        <section class="content max-w-screen-xl mx-auto">
              {% if id == "bibel:start" %}
                 {{ tpl_content(false) }}
-            {% else %}
+             {% else %}
                 <div class="grid grid-cols-3 gap-16">
                     <div class="col-span-2 relative">
                         <nav class="flex  gap-2 mb-10">
@@ -73,7 +73,7 @@
             {% endif %}
             
             <div class="clear-both"></div>
-        </div>
+        </section>
     </article>
     
 
