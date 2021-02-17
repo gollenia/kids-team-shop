@@ -29,7 +29,7 @@ class Page {
 
         $instance = new static();
         $instance->id = $id;
-        $instance->tags = p_get_metadata($id, 'subject');
+        $instance->tags = p_get_metadata($id, 'subject') ? p_get_metadata($id, 'subject') : [];
         $instance->title = p_get_metadata($id, 'title');
         $instance->pageimage = p_get_metadata($id, 'pageimage') ?: '';
         $instance->user = p_get_metadata($id, 'user');
