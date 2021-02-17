@@ -5,7 +5,7 @@
                 v-for="(item, i) in tree"
                 :key="i"
                 :item="item"
-                @select="$emit('select', $event)"
+                @select="selection = $event"
             />
         </div>
         <div class="p-4" v-else>
@@ -17,7 +17,7 @@
             <input type="text" v-model="title">
         </div>
         </div> 
-        
+        <button @click="save">Speichern</button>
     </modal>
 </template>
 
@@ -34,8 +34,17 @@ export default {
     },
     data: () => ({
         tree: null,
-        title: ""
+        selection: null,
+        title: ''
     }),
+    methods: {
+        save () {
+            this.$emit('select', {
+                item: this.selection,
+                title: this.title
+            })
+        }
+    },
     async created () {
       const response = await axios.get('/?controller=edit&method=tree')
       this.tree = response.data.tree

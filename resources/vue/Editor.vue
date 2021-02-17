@@ -174,10 +174,9 @@ export default {
             }
             this.$refs.cm.codemirror.focus()
         },
-        insertLink (item) {
+        insertLink ({ item, title }) {
             const selection = this.$refs.cm.codemirror.getSelection()
-            console.log(item);
-            const text = selection || item.title || item.name
+            const text = title || selection || item.title || item.name
             const link = '[[' + item.id + '|' + text  + ']]'
             this.$refs.cm.codemirror.replaceSelection(link)
         },
