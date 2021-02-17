@@ -64,7 +64,7 @@
 				
 			</div>
 		
-			<div x-show="searchbox" style="display: none" class="inset-0 z-30 absolute bg-white text-black border-0 outline-none rounded-tl-m rounded-br-m" >
+			<div x-show="searchbox" x-on:keydown.escape="searchbox = false"  @click.away="searchbox = false" style="display: none" class="inset-0 z-30 absolute bg-white text-black border-0 outline-none rounded-tl-m rounded-br-m" >
 				<form style="margin-top: 10px;" class="search-form flex content-end ml-36 relative" action="/start" role="search" id="dw__search" class="searchform">
 				<input type="hidden" name="do" value="search">
 				<input type="hidden" name="id" value="">
