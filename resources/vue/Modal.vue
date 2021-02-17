@@ -37,7 +37,7 @@
                                 {{ title }}
                             </h4>
                             </div>
-                            <div class="p-4 w-full">
+                            <div class="p-0 w-full">
                                 <slot></slot>
                             </div>
                         </div>
