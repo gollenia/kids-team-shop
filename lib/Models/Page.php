@@ -20,9 +20,12 @@ class Page {
      * Find a single page by it's id and retrieve all additional data
      *
      * @param string $id
-     * @return \Contexis\Models\Page $instance 
+     * @return \Contexis\Models\Page $instance or bool false
      */
-    public static function find(string $id) {
+    public static function find($id) {
+        if (!$id) {
+            return false;
+        }
         if (!page_exists($id) || auth_quickaclcheck($id) < AUTH_READ) {
             return false;
         }
@@ -34,7 +37,8 @@ class Page {
         $instance->pageimage = p_get_metadata($id, 'pageimage') ?: '';
         $instance->user = p_get_metadata($id, 'user');
         $instance->date = p_get_metadata($id, 'date modified');
-        $instance->content = rawWiki($id);
+        $instance->template = p_get_metadata($id, 'template');
+        $instance->content = $instance->get_raw($instance->id);
         $instance->abstract = "";
         $abstract = p_get_metadata($id, 'abstract');
         if($abstract) {
@@ -42,6 +46,19 @@ class Page {
         }
         
         return $instance;
+    }
+
+    /**
+     * get raw wiki test either without or with template
+     *
+     * @param string $id
+     * @return string raw wiki text
+     */
+    public function get_raw(string $id) {
+        if(p_get_metadata($id, 'raw')) {
+            return (p_get_metadata($id, 'raw'));
+        }
+        return rawWiki($id);
     }
 
     /**
@@ -57,9 +74,7 @@ class Page {
             $instance = new static();
             $instance->id = $id;
             foreach ($data as $key => $value) {
-                
                     $instance->$key = $value;
-                
             }
         }
         return $instance;
@@ -82,6 +97,7 @@ class Page {
             foreach($data as $key => $value) {
                     $data[$key]['meta'] = p_get_metadata($value['id']);
             }
+            return $data;
         }
         if($key == "tag" || $key == "subject") {
             $tag = \Contexis\Database\Tag::getPagesByTag($value);
@@ -105,13 +121,22 @@ class Page {
         p_set_metadata($this->id, ['subject' => $this->tags]);
         p_set_metadata($this->id, ['pageimage' => $this->pageimage]);
         
-        
+        $content = $this->content;
+        $template = Page::find($this->template);
+        if($template) {
+            p_set_metadata($this->id, ['raw' => $this->content]);
+            $content = \Contexis\Twig\Renderer::compile_string($template->content, $this->get());
+        }
+
         lock($this->id);
-        saveWikiText($this->id, $this->content ,$this->summary, $this->minor_change);
+        saveWikiText($this->id, $content ,$this->summary, $this->minor_change);
+        p_set_metadata($this->id, ['abstract' => $this->abstract]);
+        p_set_metadata($this->id, ['title' => $this->title]);
+        p_set_metadata($this->id, ['template' => $this->template]);
         idx_addPage($this->id, false, true);
         unlock($this->id);
        
-        p_set_metadata($this->id, ['abstract' => $this->abstract]);
+        
         return true;
     }
 
@@ -124,7 +149,6 @@ class Page {
     public static function findAll($namespace = "", $excludePages = false, $excludes = "" ) {
         $index = new Index();
         return $index->tree($namespace, $excludes, $excludePages);
-        
     }
 
     /**
