@@ -9,9 +9,6 @@
 
 
 @layer base {
-    button {
-        @apply px-3 py-2 text-primary-contrast rounded-tl rounded-br inline-block;
-    }
 
     h1 {
         @apply text-3xl;
@@ -60,15 +57,6 @@
         @apply pl-8;
     }
 
-}
-
-
-.button {
-    @apply px-3 py-1 bg-primary;
-    line-height: 1;
-}
-.button:hover, button:hover {
-    background-color: var(--primary-dark);
 }
 
 
