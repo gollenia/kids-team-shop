@@ -61,9 +61,8 @@ class Index {
     
     function _search(&$data,$base,$file,$type,$lvl,$opts){
         global $conf;
-        $this->counter++;
         $return = true;
-        $item = array();
+        
         $id = pathID($file);
         if($type == 'd' && !(
             preg_match('#^'.$id.'(:|$)#',$opts['ns']) ||
@@ -83,10 +82,7 @@ class Index {
             $exists = false;
             $id = "$id:";
             resolve_pageid('',$id,$exists);
-            $this->startpages[$id] = 1;
-        }elseif(!empty($this->startpages[$id])){
-            // skip already shown start pages
-            return false;
+            
         }elseif(noNS($id) == $conf['start']){
             // skip the main start page
             return false;
@@ -113,7 +109,7 @@ class Index {
             'extras' => $meta['extras'],
             'title' => $title,
             'open'  => $return) );
-        $data['meta'] = array();
+        
         return $return;
     }
     
