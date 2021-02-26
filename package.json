@@ -37,7 +37,7 @@
   "dependencies": {
     "axios": "^0.21.1",
     "vue": "^2.6.12",
-    "vue-codemirror": "^4.0.6",
+    "codemirror": "^5.59.3",
     "vue-input-tag": "^2.0.7",
     "vue-shortkey": "^3.1.7"
   }
