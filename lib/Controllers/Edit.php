@@ -36,12 +36,15 @@ class Edit extends Controller implements ControllerInterface {
         $page->abstract = cleanText($data->abstract);
         $page->tags = $data->tags;
         $page->pageimage = cleanText($data->pageimage);
+        $page->template = cleanText($data->template);
+        $page->title = cleanText($data->title);
         $page->save();
         return json_encode($page->get());
     }
 
     public function ajax_list(Input $request) {
-        $page = Page::where("id", ":bibel");
+        $id = $request->str("id", ":");
+        $page = Page::where("id", $id);
         return json_encode($page);
     }
 
