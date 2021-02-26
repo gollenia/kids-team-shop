@@ -19,4 +19,12 @@ class Renderer {
         Colors::add_twig_filter($twig);
         return $twig->render($filenames, $data);
     }
+
+    static function compile_string(string $template, array $data) {
+        $loader = new \Twig\Loader\ArrayLoader([
+            'index.html' => $template,
+        ]);
+        $twig = new Environment($loader);
+        return $twig->render('index.html', $data);
+    }
 }
