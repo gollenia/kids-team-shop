@@ -1,0 +1,43 @@
+
+
+.button { @apply transition duration-300 ease-in-out relative rounded-tl rounded-br inline-block px-4 py-2 overflow-hidden; }
+.button-sm { @apply px-2 py-1 text-xs }
+.button-lg { @apply px-6 py-3 text-lg }
+.button::after {
+    content: " ";
+    @apply inset-0 absolute;
+    background-color: #00000011;
+    opacity: 0;
+    backdrop-filter: saturate(1.8);
+}
+.button.dark::after {
+    background-color: #ffffff11 !important;
+}
+
+.button:not(.outline):hover::after {
+    opacity: 1;
+}
+
+.button.outline.light:hover { color: #000000dd !important; }
+.button.outline.dark:hover { color: #ffffffdd !important; }
+
+.alert { @apply my-6 p-4 md:p-6 rounded-tl-md rounded-br-md text-white }
+
+.card { @apply flex transition transform overflow-hidden shadow-sm m-0}
+.card.hover { @apply hover:shadow-2xl hover:scale-105 }
+.card.image-left { @apply flex-row items-center }
+.card.image-right { @apply flex-row-reverse items-center }
+.card.image-top { @apply flex-col }
+.card.image-bottom { @apply flex-col-reverse }
+.card.image-top img.card-image, card-image-bottom img.card-image { @apply object-cover h-64 w-full }
+.card.image-left img.card-image, card-image-right img.card-image { @apply object-cover w-64 self-stretch }
+.card-content  { @apply flex flex-col h-full w-full flex-grow p-4 md:p-6 }
+.card.image-replacement { @apply h-64 w-full  bg-primary }
+.card.first { @apply rounded-tl-lg}
+.card.last { @apply rounded-br-lg}
+
+.description-item { @apply flex py-2 items-center }
+.description-item.img { @apply h-16 w-16 rounded-full mx-0 mr-4}
+
+.section {}
+.section .content { @apply max-w-screen-xl mx-4 md:mx-8 lg:mx-8 xl:mx-auto }
