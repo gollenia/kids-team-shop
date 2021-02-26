@@ -17,6 +17,22 @@
                 
         <media-picker v-if="showPageImagePicker" @select="insertPageImage($event); showPageImagePicker = false" @close="showPageImagePicker = false"/>
 
+        <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
+            <h5>Titel</h5>
+            <div class="input-text">
+                <input type="text" class="w-full border-2 outline-none" v-model="page.title" required>
+            </div>
+        </div>
+
+        <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
+            <h5>Vorlage</h5>
+            <div class="input-select">
+                <select type="text" class="w-full border-2 outline-none" v-model="page.template" required>
+                    <option v-for="(template, c) in templates" :value="template.id" v-text="template.title" :key="c"></option>
+                </select>
+            </div>
+        </div>
+
         <div class="editor max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
             <div class="mt-4 px-4 bg-lightgray rounded-tl-md">
                 <div class="tool__bar" role="toolbar">
@@ -56,22 +72,10 @@
                     <button class="toolbutton" title="Bilder und andere Dateien hinzufügen"  @click="showMediaPicker = true">
                         <i class="material-icons">insert_photo</i>
                     </button>
-                    <!-- <button class="toolbutton" title="Smileys" aria-controls="picker1" aria-haspopup="true">
-                        <img src="/lib/images/toolbar/smiley.png" alt="" width="16" height="16">
-                    </button>
-                    <button class="toolbutton" title="Sonderzeichen" aria-controls="picker2" aria-haspopup="true">
-                        <img src="/lib/images/toolbar/chars.png" alt="" width="16" height="16">
-                    </button>
-                    <button class="toolbutton" title="Unterschrift einfügen [Y]" aria-controls="wiki__text" accesskey="y">
-                        <img src="/lib/images/toolbar/sig.png" alt="" width="16" height="16">
-                    </button>
-                    <button class="toolbutton" title="Wrap-Plugin" aria-controls="picker3" aria-haspopup="true">
-                        <img src="/lib/images/toolbar/../../plugins/wrap/images/toolbar/picker.png" alt="" width="
-                    16" height="16"></button> -->
                 </div>
             </div>
 
-            <codemirror class="border-r-2 border-l-2 border-b-2 p-4 rounded-br-md bg-white" ref="cm" v-model="page.content" :options="cmOptions"></codemirror>
+            <codemirror class="border-r-2 border-l-2 border-b-2 p-4 rounded-br-md bg-white" ref="cm" v-model="page.content" :options="cmOptions" @keyHandled="cmOnKeyHandle($event)"></codemirror>
         </div>
 
         <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
@@ -106,7 +110,7 @@
 
 <script>
 import Vue from 'vue'
-import VueCodemirror from 'vue-codemirror'
+import VueCodemirror from './codereflector'
 import VueShortkey from 'vue-shortkey'
 import InputTag from 'vue-input-tag'
 import axios from 'axios'
@@ -115,7 +119,7 @@ import MediaPicker from './MediaPicker.vue'
 
 import 'codemirror/lib/codemirror.css'
 
-Vue.use(VueCodemirror)
+Vue.use(VueCodemirror, {events: ["keyHandled"]})
 Vue.use(VueShortkey)
 
 export default {
@@ -126,7 +130,6 @@ export default {
         MediaPicker
     },
     data: () => ({
-        text: '',
         cmOptions: {
             tabSize: 4,
             mode: {
@@ -140,10 +143,12 @@ export default {
         showLinkPicker: false,
         showMediaPicker: false,
         showPageImagePicker: false,
+        templates: [],
         page: {
             abstract: "",
             content: "",
             date: "",
+            template: "",
             id: "start",
             minor_change: false,
             pageimage: "",
@@ -165,6 +170,7 @@ export default {
         }
     }),
     methods: {
+        
         textWrap: function(before = '', after = '', plain = '') {
             const selection = this.$refs.cm.codemirror.getSelection()
             if (selection || !plain) {
@@ -179,6 +185,12 @@ export default {
             const text = title || selection || item.title || item.name
             const link = '[[' + item.id + '|' + text  + ']]'
             this.$refs.cm.codemirror.replaceSelection(link)
+        },
+        cmOnKeyHandle(event) {
+            if(event[1] === "Enter") {
+                this.newLine();
+                console.log("newLine");
+            }
         },
         insertMedia ({ item, align, size }) {
             const selection = this.$refs.cm.codemirror.getSelection()
@@ -197,7 +209,19 @@ export default {
             .then(response => {
                 this.media = response.data
             });
-
+        },
+      
+        newLine() {
+            var lastLine = this.$refs.cm.codemirror.getCursor()
+            
+            var lastLineContent = this.$refs.cm.codemirror.getLine(lastLine.line - 1);
+            console.log(lastLineContent);
+            if (lastLineContent.match(/\s{2,}\*\s/g)) {
+                this.$refs.cm.codemirror.replaceSelection("* ")
+            }
+            if (lastLineContent.match(/\s{2,}\-\s/g)) {
+                this.$refs.cm.codemirror.replaceSelection("- ")
+            }
         },
         async cancel () {
             window.location.href = '/?id=' + window.DOKU_ID;
@@ -220,6 +244,11 @@ export default {
         axios.get('/?controller=media&method=get&id=' + this.page.pageimage)
             .then(response => {
                 this.media = response.data
+        });
+
+        axios.get('/?controller=edit&method=list&id=system:templates')
+            .then(response => {
+                this.templates = response.data
         });
     }
 };
