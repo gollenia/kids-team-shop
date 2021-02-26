@@ -14,7 +14,7 @@ class Tag {
      *
      * @author  Esther Brunner <wikidesign@gmail.com>
      */
-    public function getPagesByTag($tag = '', $ns = '', $num = NULL ) {
+    static public function getPagesByTag($tag = '', $ns = '', $num = NULL ) {
         
         $instance = new static();
         $tag = $instance->_parseTagList($tag, true);
