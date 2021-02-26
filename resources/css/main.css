@@ -10,7 +10,7 @@
 
 @layer base {
     button {
-        @apply bg-primary px-3 py-2 text-primary-contrast rounded-tl rounded-br inline-block hover:bg-primary-darker;
+        @apply px-3 py-2 text-primary-contrast rounded-tl rounded-br inline-block;
     }
 
     h1 {
@@ -79,6 +79,7 @@
 
 
 /* Local import */
+@import "base.css";
 @import "elements.css";
 @import "colors.css";
 @import "config.css";
