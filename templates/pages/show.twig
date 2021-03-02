@@ -7,7 +7,7 @@
     
     {% include "partials/menu.twig" with {'menu': menu} %}
     
-    <header class="bg-primary-light relative" style="padding-top: 20vh;">
+    <header class="bg-secondary relative" style="padding-top: 20vh;">
     {% include "partials/breadcrumbs.twig" with {'breadcrumbs': breadcrumbs} %}
     {% if pageimage %}<img class="object-cover absolute inset-0 w-full h-full" src={{ ml(pageimage, 2000) }}>{% endif %}
     <div class="max-w-screen-xl mx-auto">
@@ -18,22 +18,22 @@
     </div>
     </header>
 
-    <article class="bg-lightgray-lighter ">
+    <article class="bg-gray-100 ">
         
         <section class="px-4 md:px-8 xl:px-0 py-8">
             <div class="content max-w-screen-xl mx-auto">
-                {{ tpl_content(false) }}
+                {{content|raw}}
             </div>
             
         </section>
         <div class="clear-both"></div>
         {% if metadata.subject is not empty %}
-        <section class="bg-lightgray">
+        <section class="bg-gray-200">
             <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
                 <h4>Schlagworte</h4>
                 <div>
                 {% for tag in metadata.subject %}
-                    <a class="text-xs bg-darkgray ml-2 px-2 py-1 text-primary-contrast rounded-tl rounded-br" href="/tag/{{tag}}">{{tag|capitalize}}</a>
+                    <a class="text-xs bg-gray-600 ml-2 px-2 py-1 text-primary-contrast hover:bg-primary rounded-tl rounded-br" href="/tag/{{tag}}">{{tag|capitalize}}</a>
                 {% endfor %}
                 </div>
             </div>
