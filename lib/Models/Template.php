@@ -2,6 +2,7 @@
 namespace Contexis\Models;
 
 use \Contexis\Models\Page;
+use Contexis\Twig\Renderer;
 
 class Template {
 
@@ -20,7 +21,8 @@ class Template {
         return Page::where('id', 'system:templates');
     }
 
-    public static function apply($wiki_text) {
-        
+    public static function apply($template, $content, $id) {
+        $template = Page::find($template);
+        return Renderer::compile_string($template->content, ["content" => $content, "id" => $id]);
     }
 }
