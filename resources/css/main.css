@@ -10,6 +10,8 @@
 
 @layer base {
 
+
+
     h1 {
         @apply text-3xl;
         @apply lg:text-5xl;
@@ -57,7 +59,10 @@
         @apply pl-8;
     }
 
+    
+
 }
+
 
 
 .bg-blur {
@@ -76,6 +81,7 @@
 @import "tags.css";
 @import "editor.css";
 @import "profile.css";
+@import "filetypes.css";
 
 
 
