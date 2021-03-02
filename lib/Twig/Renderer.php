@@ -3,6 +3,7 @@
 namespace Contexis\Twig;
 
 use Contexis\Twig\CustomFunctions;
+use Contexis\Twig\CustomFilters;
 use Contexis\Twig\Colors;
 
 use Twig\{
@@ -16,6 +17,7 @@ class Renderer {
         $loader = new FilesystemLoader(tpl_incdir() . './templates');
         $twig = new Environment($loader, $options);
         CustomFunctions::register($twig);
+        CustomFilters::register($twig);
         Colors::add_twig_filter($twig);
         return $twig->render($filenames, $data);
     }
@@ -24,7 +26,10 @@ class Renderer {
         $loader = new \Twig\Loader\ArrayLoader([
             'index.html' => $template,
         ]);
+        
         $twig = new Environment($loader);
+        CustomFunctions::register($twig);
+        CustomFilters::register($twig);
         return $twig->render('index.html', $data);
     }
 }
