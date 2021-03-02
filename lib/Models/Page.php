@@ -11,6 +11,7 @@ class Page {
     public string $pageimage ="";
     public string $content;
     public string $summary = "";
+    public string $link = "";
     public string $date;
     public string $abstract = "";
     public string $user;
@@ -24,9 +25,11 @@ class Page {
      */
     public static function find($id) {
         if (!$id) {
+            
             return false;
         }
         if (!page_exists($id) || auth_quickaclcheck($id) < AUTH_READ) {
+            //var_dump("not found");
             return false;
         }
 
@@ -36,6 +39,7 @@ class Page {
         $instance->title = p_get_metadata($id, 'title');
         $instance->pageimage = p_get_metadata($id, 'pageimage') ?: '';
         $instance->user = p_get_metadata($id, 'user');
+        $instance->link = wl($id);
         $instance->date = p_get_metadata($id, 'date modified');
         $instance->template = p_get_metadata($id, 'template');
         $instance->content = $instance->get_raw($instance->id);
@@ -81,36 +85,42 @@ class Page {
     } 
 
     /**
-     * General search function, whicht retrieves a list of pages by it's meta data
+     * General search function, whicht retrieves a list of pages by it's id or metadata
      *
      * @param string $key
      * @param mixed $value
-     * @return void
+     * @return array of Pages
      */
     public static function where(string $key, $value) {
-        if($key == "id") {
-            global $conf;
-            $data = [];
-            $id = str_replace(':', "/", $value);
-            search($data,$conf['datadir'],array('\\Contexis\\Database\\Index','_search'),array(),$id,1,'natural');
-            
-            foreach($data as $key => $value) {
-                    $data[$key]['meta'] = p_get_metadata($value['id']);
-            }
-            return $data;
-        }
-        if($key == "tag" || $key == "subject") {
-            $tag = \Contexis\Database\Tag::getPagesByTag($value);
-            return $tag;
+
+        $pages = [];
+        $data = [];
+
+        switch ($key) {
+            case "id":
+                global $conf;
+                $id = str_replace(':', "/", $value);
+                $id = str_replace("/start", "", $id);
+                search($data,$conf['datadir'],array('\\Contexis\\Database\\Index','_search'),array(),$id,1,'natural');
+                break;
+            case "tag":
+                $data = \Contexis\Database\Tag::getPagesByTag($value);
+                break;
+            default:
+                $data = idx_get_indexer()->lookupKey($key, $value);
         }
 
-        return idx_get_indexer()->lookupKey($key, $value);
+        foreach($data as $key => $value) {            
+            array_push($pages, self::find($value['id']));
+        }
+        return $pages;
     }
+
 
     /**
      * Save page including it's metadata
      *
-     * @return bool True fopr success, false for failure
+     * @return bool True for success, false for failure
      */
     public function save() {
         
@@ -122,11 +132,6 @@ class Page {
         p_set_metadata($this->id, ['pageimage' => $this->pageimage]);
         
         $content = $this->content;
-        $template = Page::find($this->template);
-        if($template) {
-            p_set_metadata($this->id, ['raw' => $this->content]);
-            $content = \Contexis\Twig\Renderer::compile_string($template->content, $this->get());
-        }
 
         lock($this->id);
         saveWikiText($this->id, $content ,$this->summary, $this->minor_change);
@@ -136,12 +141,11 @@ class Page {
         idx_addPage($this->id, false, true);
         unlock($this->id);
        
-        
         return true;
     }
 
     /**
-     * List all pages within a Namespace, including depth (tree?)
+     * Get Tree. This function does not fit into the page model as it does not return a Page Opbject.
      *
      * @param [type] $namespace
      * @return void
