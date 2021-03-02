@@ -17,7 +17,7 @@
 }
 
 .vue-input-tag-wrapper span.input-tag {
-    @apply inline-flex mx-2 rounded-tl rounded-br text-sm bg-gray text-white p-0;
+    @apply inline-flex mx-2 rounded-tl rounded-br text-sm bg-gray-500 text-white p-0;
     border: none !important;
 }
 
@@ -26,10 +26,9 @@
 }
 
 .vue-input-tag-wrapper a.remove {
-    @apply py-1 px-2 bg-gray-darker inline-block rounded-br;
+    @apply py-1 px-2 bg-gray-600 inline-block rounded-br;
     color: #fff !important;
 }
-
 
 .vue-input-tag-wrapper a.remove:before {
     content: '\e5cd' !important;

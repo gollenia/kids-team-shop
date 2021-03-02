@@ -1,5 +1,5 @@
 .search_fullpage_result .meta {
-    @apply text-xs text-gray;
+    @apply text-xs text-gray-500;
 }
 
 .search_fullpage_result dt a.wikilink1 {

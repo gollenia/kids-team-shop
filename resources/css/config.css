@@ -16,7 +16,7 @@
 
 .admin_tasks li {
     list-style-type: none;
-    @apply bg-primary-light p-4;
+    @apply bg-secondary p-4;
 
 }
 

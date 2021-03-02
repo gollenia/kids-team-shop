@@ -16,7 +16,7 @@
 /* ########## EVENT-Plugin ########## */
 
 form:invalid input[type="submit"] {
-    background-color: var(--lightgray) !important;
+    background-color: var(--gray-200) !important;
     
     color: var(--gray);
 }
@@ -29,7 +29,7 @@ input[type="text"], input[type="password"], input[type="email"], select {
     outline: none !important;
     width: 100%;
     @apply border-2;
-    @apply border-lightgray; 
+    @apply border-gray-200; 
     @apply rounded-tl;
     @apply rounded-br;
     @apply bg-white;
@@ -58,7 +58,7 @@ select {
 }
 
 .error-message {
-    @apply text-red;
+    @apply text-red-500;
     @apply text-xs;
     padding-left: 18px;
     display: block;
@@ -74,7 +74,7 @@ input[type="checkbox"] + span::before {
     @apply rounded-tl-sm;
     @apply rounded-br-sm;
     @apply border-2;
-    @apply border-lightgray;
+    @apply border-gray-200;
     background-color: #fff;
     @apply duration-300;
     @apply transition-all;
@@ -99,7 +99,7 @@ input[type="checkbox"] + span::before {
 input[type="submit"] {
     @apply px-4;
     @apply py-2;
-    @apply bg-blue;
+    @apply bg-primary;
     @apply text-white;
     @apply font-bold;
     @apply rounded-tl;
@@ -108,7 +108,7 @@ input[type="submit"] {
     @apply outline-none;
 }
 
-label span.label, #dw__profiledelete label.block span, .input-text label {
+label span.label, #dw__profiledelete label.block span, .input-text label, .input-select label {
     margin-top: -12px;
     @apply inline-block;
     height: max-content;
@@ -116,11 +116,11 @@ label span.label, #dw__profiledelete label.block span, .input-text label {
     padding-left: 10px;
     padding-right: 10px;
     margin-right: 10px;
-    @apply rounded-tl-sm;
-    @apply rounded-br-sm;
+    @apply rounded-tl-md;
+    @apply rounded-br-md;
     white-space: nowrap;
     @apply absolute;
-    @apply bg-lightgray;
+    @apply bg-gray-200;
     @apply text-black;
     @apply text-sm;
     @apply duration-300;
@@ -131,17 +131,17 @@ label span.label, #dw__profiledelete label.block span, .input-text label {
   
   
 .error input, .error select {
-   @apply text-red;
-   @apply border-red;
+   @apply text-red-500;
+   @apply border-red-500;
 }
   
 select:invalid {
-    @apply text-gray;
+    @apply text-gray-500;
 }
   
   
 .error label {
-    @apply bg-red;
+    @apply bg-red-500;
     @apply text-white
 }
   
@@ -159,7 +159,7 @@ select:invalid {
     margin-bottom: 0px;
     width: 100%;
     @apply border-2;
-    @apply border-lightgray;
+    @apply border-gray-200;
     @apply rounded-tl;
     @apply rounded-br;
     @apply bg-white;
