@@ -62,7 +62,6 @@ define('PAGEIMAGE_HEIGHT', 400);
 
      public function get($key = false) {
          if(!$key) {
-            \Contexis\Core\Utilities\Debug::to_browser_console($this->twig_array);
             return $this->twig_array;
          }
 
