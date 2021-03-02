@@ -1,5 +1,4 @@
 <?php
-
 namespace Contexis\Twig;
 
 use Twig\TwigFilter;
@@ -24,8 +23,8 @@ class CustomFilters {
 		foreach($files as $file) {
 
 			if ("php" === pathinfo($file, PATHINFO_EXTENSION)) {
-                require_once(tpl_incdir() . '/lib/Twig/Filter/' . $file);
-                $class = "Contexis\\Twig\\Filter\\" . substr($file, 0, -4);
+                require_once(tpl_incdir() . 'lib/Twig/Filters/' . $file);
+                $class = "Contexis\\Twig\\Filters\\" . substr($file, 0, -4);
                 $instance = new $class($twig);
 			}
 		}
