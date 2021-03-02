@@ -40,7 +40,7 @@ class File {
         $instance->size = filesize($filename);
         $instance->extension = pathinfo($filename, PATHINFO_EXTENSION);
         $instance->src = ml($id);
-        $instance->thumbnail = ml($id, ['w' => 600]);
+        $instance->thumbnail = in_array(strtolower($instance->extension), ['jpg', 'jpeg', 'png']) ? ml($id, ['w' => 600]) : "";
         return $instance;
     }
 
@@ -74,7 +74,14 @@ class File {
         return false;
     }
 
-    public static function findAll($ns) {
+    /**
+     * Get list of files in a namespace and filter them by a wildcard pattern
+     *
+     * @param string $ns
+     * @param string $excludes 
+     * @return array List of files
+     */
+    public static function findAll($ns, $excludes = "") {
         global $conf;
 	
 	    if(auth_quickaclcheck("$ns:*") < AUTH_READ){
@@ -89,12 +96,16 @@ class File {
         
         foreach ($data as $item) {
             $file = self::find($item['id']);
+            
+            if (fnmatch($excludes, $item['file'])) {
+                continue;
+            }
             array_push($result, $file->get());
             unset($file);
+            
         }
             
         return $result;
-	    
     }
 
 
