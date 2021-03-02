@@ -7,7 +7,6 @@ use Contexis\Twig\Renderer;
 
 
 interface ControllerInterface {
-    
     public function __construct(Site $site);
     public function render();
 }
