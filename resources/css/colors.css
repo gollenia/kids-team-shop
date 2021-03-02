@@ -1,22 +1,22 @@
 body.de {
     --primary: var(--green);
     --primary-transparent: var(--green-transparent);
-    --primary-light-transparent: var(--lightgreen-transparent);
-    --primary-soft-contrast: var(--green-soft-contrast);
-    --primary-contrast: var(--orange-contrast);
-    --primary-light: var(--lightgreen);
-    --primary-dark: var(--darkgreen);
+    --primary-contrast: var(--green-contrast);
+    
+    --secondary: var(--lightgreen);
+    --secondary-transparent: var(--lightgreen-transparent);
+    --secondary-contrast: var(--lightgreen-contrast);
 }
 
 
 body.at, body.local {
     --primary: var(--blue);
     --primary-transparent: var(--blue-transparent);
-    --primary-light: var(--lightblue);
     --primary-contrast: var(--blue-contrast);
-    --primary-soft-contrast: var(--blue-soft-contrast);
-    --primary-light-transparent: var(--lightblue-transparent);
-    --primary-dark: var(--darkblue);
+    
+    --secondary: var(--lightblue);
+    --secondary-transparent: var(--lightblue-transparent);
+    --secondary-contrast: var(--lightblue-contrast);
 }
 
 
@@ -25,10 +25,12 @@ body.at, body.local {
 body.ch {
     --primary: var(--orange);
     --primary-transparent: var(--orange-transparent);
-    --primary-light: var(--lightorange);
-    --primary-light-transparent: var(--lightorange-transparent);
     --primary-contrast: var(--green-contrast);
-    --primary-dark: var(--darkorange);
+
+    --secondary: var(--lightorange);
+    --secondary-transparent: var(--lightorange-transparent);
+    --secondary-contrast: var(--lightorange-contrast);
+
 }
 
 .fill-primary {
