@@ -3,6 +3,12 @@
 .button { @apply transition duration-300 ease-in-out relative rounded-tl rounded-br inline-block px-4 py-2 overflow-hidden; }
 .button-sm { @apply px-2 py-1 text-xs }
 .button-lg { @apply px-6 py-3 text-lg }
+.button.primary {
+    @apply bg-primary;
+}
+.button.primary {
+    @apply bg-secondary;
+}
 .button::after {
     content: " ";
     @apply inset-0 absolute;
