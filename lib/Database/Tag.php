@@ -5,6 +5,7 @@ namespace Contexis\Database;
 class Tag {
 
     public $result;
+    private $sort = "title";
     /**
      * Returns a list of pages with a certain tag; very similar to ft_backlinks()
      *
@@ -33,48 +34,19 @@ class Tag {
             // don't trust index
             if (!$instance->_checkPageTags($tags, $tag)) continue;
 
-            // get metadata
-            $meta = p_get_metadata($page);
-
             $perm = auth_quickaclcheck($page);
 
             // skip drafts unless for users with create privilege
             $draft = ($meta['type'] == 'draft');
             if ($draft && ($perm < AUTH_CREATE)) continue;
 
-            $title = $meta['title'];
-            $date  = ($instance->sort == 'mdate' ? $meta['date']['modified'] : $meta['date']['created'] );
-            $taglinks = $instance->tagLinks($tags);
-
-            // determine the sort key
-            if ($instance->sort == 'id') $key = $page;
-            elseif ($instance->sort == 'ns') {
-                $pos = strrpos($page, ':');
-                if ($pos === false) $key = "\0".$page;
-                else $key = substr_replace($page, "\0\0", $pos, 1);
-                $key = str_replace(':', "\0", $key);
-            } elseif ($instance->sort == 'pagename') $key = noNS($page);
-            elseif ($instance->sort == 'title') {
-                $key = utf8_strtolower($title);
-                if (empty($key)) $key = str_replace('_', ' ', noNS($page));
-            } else $key = $date;
-            // make sure that the key is unique
+            $key = mb_strtolower($title);
+            if (empty($key)) $key = str_replace('_', ' ', noNS($page));
+            
             $key = $instance->_uniqueKey($key, $result);
 
             $result[$key] = array(
-                    'id'     => $page,
-                    'link'   => wl($page),
-                    'title'  => $title,
-                    'date'   => $date,
-                    'user'   => $meta['creator'],
-                    'abstract'   => p_get_metadata($page, 'abstract'),
-                    'description'   => p_get_metadata($page, 'description abstract'),
-                    'pageimage'   => $meta['pageimage'],
-                    'cat'    => $tags[0],
-                    'tags'   => $taglinks,
-                    'perm'   => $perm,
-                    'exists' => true,
-                    'draft'  => $draft, );
+                    'id'     => $page );
 
             if ($num && count($result) >= $num) break;
         }
