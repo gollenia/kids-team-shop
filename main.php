@@ -21,5 +21,3 @@ $controller = Controller::get($route->get(), $site);
 
 
 // important function to build the index etc.
-
-
