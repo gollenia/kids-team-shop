@@ -22,11 +22,11 @@
 }
 
 .vue-input-tag-wrapper span.input-tag span {
-    @apply px-2 py-1 inline-block;
+    @apply px-2 py-0 inline-block;
 }
 
 .vue-input-tag-wrapper a.remove {
-    @apply py-1 px-2 bg-gray-600 inline-block rounded-br;
+    @apply py-0 px-2 bg-gray-600 inline-block rounded-br;
     color: #fff !important;
 }
 
