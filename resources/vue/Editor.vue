@@ -15,7 +15,7 @@
         </div>
         </header>
                 
-        <media-picker v-if="showPageImagePicker" @select="insertPageImage($event); showPageImagePicker = false" @close="showPageImagePicker = false"/>
+        <pageimage-picker v-if="showPageImagePicker" @select="insertPageImage($event); showPageImagePicker = false" @close="showPageImagePicker = false"/>
 
         <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
             
@@ -74,6 +74,9 @@
                     <button class="toolbutton button" title="Bilder und andere Dateien hinzufügen"  @click="showMediaPicker = true">
                         <i class="material-icons">insert_photo</i>
                     </button>
+                    <button class="toolbutton button" title="Bilder und andere Dateien hinzufügen"  @click="showBiblePicker = true">
+                        <i class="material-icons">menu_book</i>
+                    </button>
                 </div>
             </div>
 
@@ -108,6 +111,8 @@
 
         <link-picker v-if="showLinkPicker" @select="insertLink($event); showLinkPicker = false" @close="showLinkPicker = false"/>
 
+        <bible-picker v-if="showBiblePicker" @select="insertBible($event); showBiblePicker = false" @close="showBiblePicker = false"/>
+
         <media-picker v-if="showMediaPicker" @select="insertMedia($event); showMediaPicker = false" @close="showMediaPicker = false"/>
     </div>
 </template>
@@ -119,7 +124,9 @@ import VueShortkey from 'vue-shortkey'
 import InputTag from 'vue-input-tag'
 import axios from 'axios'
 import LinkPicker from './LinkPicker.vue'
+import BiblePicker from './BiblePicker.vue'
 import MediaPicker from './MediaPicker.vue'
+import PageimagePicker from './PageimagePicker.vue'
 
 import 'codemirror/lib/codemirror.css'
 
@@ -131,7 +138,9 @@ export default {
     components: {
         InputTag,
         LinkPicker,
-        MediaPicker
+        MediaPicker,
+        BiblePicker,
+        PageimagePicker
     },
     data: () => ({
         cmOptions: {
@@ -147,6 +156,7 @@ export default {
         showLinkPicker: false,
         showMediaPicker: false,
         showPageImagePicker: false,
+        showBiblePicker: false,
         templates: [],
         page: {
             abstract: "",
@@ -190,6 +200,15 @@ export default {
             const link = '[[' + item.id + '|' + text  + ']]'
             this.$refs.cm.codemirror.replaceSelection(link)
         },
+        insertBible ( {item}) {
+            const selection = this.$refs.cm.codemirror.getSelection()
+            var verse = item.book.short_name + ":" + item.chapter + "," + item.verses.join(';')
+            var title = item.book.long_name + " " + item.chapter + "," + item.verses.join(';')
+            if(selection) {
+                title = selection
+            }
+            this.$refs.cm.codemirror.replaceSelection("<bible " + verse + ">" + title + "</bible>")
+        },
         cmOnKeyHandle(event) {
             if(event[1] === "Enter") {
                 this.newLine();
@@ -207,7 +226,7 @@ export default {
             link += '|' + text  + '}}'
             this.$refs.cm.codemirror.replaceSelection(link)
         },
-        insertPageImage ({ item, align, size }) {
+        insertPageImage ({ item }) {
             this.page.pageimage = item.id || ''
             axios.get('/?controller=media&method=get&id=' + this.page.pageimage)
             .then(response => {
@@ -257,11 +276,3 @@ export default {
     }
 };
 </script>
-
-<style>
-.editor-tags .new-tag {
-    width: unset;
-    padding-top: 4px !important;
-    margin-bottom: 0;
-}
-</style>
