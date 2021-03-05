@@ -1,7 +1,7 @@
 <template>
     <modal title="Media Manager" box-class="max-w-4xl" @close="$emit('close')">
-        <div class="flex space-x-4 mb-4 text-left" style="min-height: 400px">
-            <div class="flex-1 pr-2" style="border-right: 1px solid #e5e7eb;">
+        <div class="flex space-x-4 text-left" style="min-height: 400px">
+            <div class="flex-1 p-4 border-r border-gray-200">
                 <media-picker-item
                     v-for="(item, i) in tree"
                     :key="i"
@@ -20,22 +20,24 @@
                     @dblclick="select(item)"
                 >
                     <span><img v-if="item.src" :src="item.src"/></span>
-                    <span class="overflow-clip text-sm overflow-hidden">{{ item.file }}</span>
+                    <span class="overflow-clip text-sm overflow-hidden flex-grow">{{ item.file }}</span>
+                    <span><button class="block m-auto" @click="$emit('delete', item)"><i class="text-gray-400 text-sm material-icons">delete</i></button></span>
                 </div>
             </div>
 
-            <div class="flex-1 pl-2" style="border-left: 1px solid #e5e7eb;">
-                <div v-if="file && file.src">
+            <div class="flex-1 p-4 border-l border-gray-200 flex flex-col">
+                
+                <div class="flex-grow" v-if="file && file.src">
                     <img :src="file.src" class="block m-auto mb-4" style="max-width: 220px; max-height: 180px;">
                     <div class="mb-4">
-                        Ausrichtung:
+                        Ausrichtung:<br>
                         <img src="/lib/images/media_align_noalign.png" alt="Keine" title="Keine" class="inline w-6 h-6 ml-1" :class="{ border: align === '' }" @click="align = ''">
                         <img src="/lib/images/media_align_left.png" alt="Links" title="Links" class="inline w-6 h-6 ml-1" :class="{ border: align === 'left' }" @click="align = 'left'">
                         <img src="/lib/images/media_align_center.png" alt="Mitte" title="Mitte" class="inline w-6 h-6 ml-1" :class="{ border: align === 'center' }" @click="align = 'center'">
                         <img src="/lib/images/media_align_right.png" alt="Rechts" title="Rechts" class="inline w-6 h-6 ml-1" :class="{ border: align === 'right' }" @click="align = 'right'">
                     </div>
                     <div class="mb-4">
-                        Grösse:
+                        Grösse:<br>
                         <img src="/lib/images/media_size_small.png" alt="Klein" title="Klein" class="inline w-4 h-4 ml-2" :class="{ border: size === '200' }" @click="size = '200'">
                         <img src="/lib/images/media_size_medium.png" alt="Mittel" title="Mittel" class="inline w-4 h-4 ml-2" :class="{ border: size === '400' }" @click="size = '400'">
                         <img src="/lib/images/media_size_large.png" alt="Gross" title="Gross" class="inline w-4 h-4 ml-2" :class="{ border: size === '600' }" @click="size = '600'">
@@ -44,14 +46,13 @@
                 </div>
                 <div v-if="file">
                     <div><button class="block border m-auto" @click="select(file)">Einfügen</button></div>
-                    <div><button class="block m-auto mt-4" @click="del(file)">Löschen</button></div>
+                    
                 </div>
             </div>
+            
         </div>
-
-        <hr class="py-2">
         
-        <div class="-m-4 p-4 bg-lightgray">
+        <div class="p-4 bg-gray-200">
             Hochladen: 
             <input type="file" @change="fileInput = $event.target.files || $event.dataTransfer.files">
             <button v-show="fileInput" class="border" @click="upload">Upload</button>
@@ -115,9 +116,8 @@ export default {
             console.log(response);
             return this.load()
         },
-        async del (item) {
+        async delete(item) {
             await axios.delete('/?controller=media&method=delete&id=' + item.id)
-
             return this.load()
         }
     },
