@@ -20,8 +20,9 @@ class Media {
 	    global $conf;
 	    
 		$ns = cleanID($request->str('ns', 'none'));
+		$filter = $request->str('filter', '*.*');
 	
-	    return json_encode(File::findAll($ns));
+	    return json_encode(File::findAllByWildcard($ns, $filter));
 	}
 
 	function ajax_get ($request) {
