@@ -42,7 +42,7 @@ class Page {
         $instance->link = wl($id);
         $instance->date = p_get_metadata($id, 'date modified');
         $instance->template = p_get_metadata($id, 'template');
-        $instance->content = $instance->get_raw($instance->id);
+        $instance->content = rawWiki($id);
         $instance->abstract = "";
         $abstract = p_get_metadata($id, 'abstract');
         if($abstract) {
@@ -62,7 +62,7 @@ class Page {
         if(p_get_metadata($id, 'raw')) {
             return (p_get_metadata($id, 'raw'));
         }
-        return rawWiki($id);
+        return ($id);
     }
 
     /**
