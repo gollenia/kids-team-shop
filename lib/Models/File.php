@@ -109,6 +109,38 @@ class File {
     }
 
 
+    /**
+     * @param mixed $ns 
+     * @param string $filter 
+     * @return false|array 
+     */
+    public static function findAllByWildcard($ns, $filter = "*.*") {
+        global $conf;
+	
+	    if(auth_quickaclcheck("$ns:*") < AUTH_READ){
+	        return false;
+	    }
+	
+        $dir = utf8_encodeFN(str_replace(':','/',$ns));
+        $data = [];
+        search($data,$conf['mediadir'],'search_media',['showmsg'=>false,'depth'=>1],$dir);
+        
+        $result = [];
+        
+        foreach ($data as $item) {
+            $file = self::find($item['id']);
+            
+            if (fnmatch($filter, $item['file'])) {
+                array_push($result, $file->get());
+            }
+            unset($file);
+            
+        }
+            
+        return $result;
+    }
+
+
 
 
 
