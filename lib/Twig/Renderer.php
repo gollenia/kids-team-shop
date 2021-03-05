@@ -19,6 +19,7 @@ class Renderer {
         CustomFunctions::register($twig);
         CustomFilters::register($twig);
         Colors::add_twig_filter($twig);
+        \Contexis\Core\Utilities\Debug::to_browser_console($data);
         return $twig->render($filenames, $data);
     }
 
@@ -30,6 +31,7 @@ class Renderer {
         $twig = new Environment($loader);
         CustomFunctions::register($twig);
         CustomFilters::register($twig);
+        
         return $twig->render('index.html', $data);
     }
 }
