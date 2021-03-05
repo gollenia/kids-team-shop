@@ -15,7 +15,6 @@ class Show extends Controller {
         $content = $this->get_content();
         if($this->site->get('metadata')['template']) {
             $content = Template::apply($this->site->get('metadata')['template'], $content, $this->site->get("id"));
-            
         }
         $this->site->add_data("content", $content);     
     }
