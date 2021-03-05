@@ -7,12 +7,12 @@
     
     {% include "partials/menu.twig" with {'menu': menu} %}
     
-    <header class="bg-primary-light relative" style="padding-top: 20vh;">
+    <header class="bg-secondary relative" style="padding-top: 20vh;">
     {% include "partials/breadcrumbs.twig" with {'breadcrumbs': breadcrumbs} %}
     {% if pageimage %}<img class="object-cover absolute inset-0 w-full h-full" src={{ ml(pageimage, 2000) }}>{% endif %}
     <div class="max-w-screen-xl mx-auto">
         <div class="relative inline-block bg-primary-transparent bg-opacity-75 bg-blur  rounded-tr-3xl text-white text-right" style="margin-left: -2000px; padding: 50px 50px 50px 2000px;">
-            <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script pl-4 md:pl-8 xl:pl-0">{{bible.book.title}} {{bible.chapter}}</div>
+            <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script pl-4 md:pl-8 xl:pl-0">{{bible.book.long_name}} {{bible.chapter}}</div>
         </div>
     </div>
     </header>
@@ -25,42 +25,44 @@
                     <div class="col-span-2 relative">
                         <nav class="flex  gap-2 mb-10">
                             {% if bible.chapter == 1 %} 
-                            <span class="bg-lightgray leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons text-gray">keyboard_arrow_left</i></span>
+                                <span class="bg-gray-200 leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons text-gray-400">keyboard_arrow_left</i></span>
                             {% else %}
-                            <a href="/{{bible.base}}/{{bible.book.id}}/{{bible.chapter -1}}"  class="button leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons md-light">keyboard_arrow_left</i></a>
+                                <a href="/{{bible.base}}/{{bible.book.short_name}}/{{bible.chapter -1}}"  class="bg-gray-200 text-black hover:bg-primary hover:text-white leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons">keyboard_arrow_left</i></a>
                             {% endif %}
-                            <a href="#" @click="selectChapter = true" :class="{ 'bg-gray text-white': selectChapter, 'bg-lightgray': !selectChapter }" class="mx-4 h-4 bg-lightgray rounded-full h-12 flex-grow flex justify-center items-center">Kapitel {{bible.chapter}}</a>
+                            <a href="#" @click="selectChapter = true" :class="{ 'bg-gray-500 text-white': selectChapter, 'bg-gray-200': !selectChapter }" class="hover:bg-primary hover:text-white mx-4 h-4 rounded-full h-12 flex-grow flex justify-center items-center">Kapitel {{bible.chapter}}</a>
                             <div @click.away="selectChapter = false" style="display: none; margin-top: 55px" class="rounded-tl-lg rounded-br-lg z-20 shadow-lg p-4 bg-white flex absolute w-50 flex-wrap" x-show="selectChapter">
                             {% for chapter in 1..bible.book.chapters %}
-                                <a href="/{{bible.base}}/{{bible.book.id}}/{{chapter}}"  class="m-2 {{bible.chapter == chapter ? "bg-gray text-white" : "bg-lightgray hover:bg-blue hover:text-white"}}   leading-none rounded-full h-12 w-12 flex justify-center items-center">{{chapter}}</a>
+                                <a href="/{{bible.base}}/{{bible.book.short_name}}/{{chapter}}"  class="m-2 {{bible.chapter == chapter ? "bg-gray-500 text-white" : "bg-gray-200 hover:bg-primary hover:text-white"}}   leading-none rounded-full h-12 w-12 flex justify-center items-center">{{chapter}}</a>
                             {% endfor %}
                             </div>
                             {% if bible.chapter == bible.book.chapters %} 
-                            <span class="bg-lightgray leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons text-gray">keyboard_arrow_right</i></span>
+                            <span class="bg-gray-200 leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons text-gray-400">keyboard_arrow_right</i></span>
                             {% else %}
-                            <a href="/{{bible.base}}/{{bible.book.id}}/{{bible.chapter +1}}"  class="button leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons md-light">keyboard_arrow_right</i></a>
+                            <a href="/{{bible.base}}/{{bible.book.short_name}}/{{bible.chapter +1}}"  class="bg-gray-200 hover:bg-primary hover:text-white leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons">keyboard_arrow_right</i></a>
                             {% endif %}
                             </nav>
                         {% for verse in bible.verses %}
-                            <span class="verse"><sup class="text-gray">{{verse.verse}}</sup> {{verse.text}}</span>
+                            <span class="verse"><sup class="text-gray">{{verse.verse}}</sup> {{verse.text|raw}}</span>
+                            {{ verse.linebreak ? "<div class='py-2'></div>" }}
                         {% endfor %}
                     </div>
                     <div class="">
                     <nav class="flex mb-10">
-                            {% if bible.chapter == 1 %} 
-                            <span class="bg-lightgray leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons text-gray">keyboard_arrow_left</i></span>
+                            {% if bible.book.number == 1 %} 
+                                <span class="bg-gray-200 leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons text-gray-400">keyboard_arrow_left</i></span>
                             {% else %}
-                            <a href="/{{bible.base}}/{{bible.book.id}}/{{bible.chapter -1}}"  class="button leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons md-light">keyboard_arrow_left</i></a>
+                                <a href="/{{bible.base}}/{{all_books[bible.book.number - 2].short_name}}/1"  class="leading-none bg-gray-200 hover:bg-primary hover:text-white rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons">keyboard_arrow_left</i></a>
                             {% endif %}
-                            <a href="#" class="mx-4 h-4 bg-lightgray rounded-full h-12 flex-grow flex justify-center items-center">{{bible.book.title}}</a>
-                            {% if bible.chapter == bible.book.chapters %} 
-                            <span class="bg-lightgray leading-none rounded-full h-12 w-12  flex justify-center items-center"><i class="material-icons text-gray">keyboard_arrow_right</i></span>
+                                <a href="#" class="mx-4 h-4 bg-lightgray rounded-full h-12 flex-grow flex justify-center items-center">{{bible.book.long_name}}</a>
+                            {% if bible.book.number == 66 %} 
+                            <span class="bg-gray-200 leading-none rounded-full h-12 w-12  flex justify-center items-center"><i class="material-icons text-gray-400">keyboard_arrow_right</i></span>
                             {% else %}
-                            <a href="/{{bible.base}}/{{bible.book.id}}/{{bible.chapter +1}}"  class="button leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons md-light">keyboard_arrow_right</i></a>
+                            <a href="/{{bible.base}}/{{all_books[bible.book.number].short_name}}/1"  class="leading-none bg-gray-200 hover:bg-primary hover:text-white rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons">keyboard_arrow_right</i></a>
                             {% endif %}
                             </nav>
-                        <div class="bg-lightgray p-8 ">
-                            <h4>Artikel zu {{bible.book.title}}</h4>
+                        {% if articles %}
+                        <div class="bg-gray-200 p-8 ">
+                            <h4>Artikel zu {{bible.book.long_name}}</h4>
                             {% for article in articles %}
                                 <a href="?id={{article.id}}" class="uk-display-block uk-padding uk-card uk-card-white">
                                     <h5>{{article.title}}</h5>
@@ -68,6 +70,7 @@
                                 </a>
                             {% endfor %}
                         </div>
+                        {% endif %}
                     </div>
                 </div>
             {% endif %}
