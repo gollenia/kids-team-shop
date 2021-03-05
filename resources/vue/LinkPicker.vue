@@ -11,13 +11,20 @@
         <div class="p-4" v-else>
             Wird geladen..
         </div>
-        <div class="bg-lightgray-lighter">
+        <div class="bg-gray-100">
+            <div class="px-4 py-8 input-text">
+            <label>Link</label>
+            <input type="text" v-model="selection.id">
+            </div>
             <div class="px-4 py-8 input-text">
             <label>Link-Text</label>
             <input type="text" v-model="title">
-        </div>
+            </div>
         </div> 
-        <button @click="save">Speichern</button>
+        
+        <div class="p-4 text-right bg-gray-200">
+            <button class="button">Abbrechen</button><button class="button bg-primary" @click="save">Übernehmen</button>
+        </div>
     </modal>
 </template>
 
@@ -34,7 +41,7 @@ export default {
     },
     data: () => ({
         tree: null,
-        selection: null,
+        selection: { id: "" },
         title: ''
     }),
     methods: {
