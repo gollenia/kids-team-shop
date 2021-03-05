@@ -4,6 +4,7 @@
             <span v-if="item.id && item.children" class="icon" @click="expanded = !expanded"><i class="material-icons">{{ expanded ? 'arrow_drop_down' : 'arrow_right' }}</i></span>
             <span v-else-if="item.id" class="icon"></span>
             <span class="text-sm" @click="$emit('select', item)">{{ item.title }}</span>
+            
         </div>
         <ul v-if="expanded">
             <li v-for="(child, c) in item.children" :key="c">
