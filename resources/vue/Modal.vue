@@ -28,7 +28,7 @@
                 From: "opacity-100 translate-y-0 sm:scale-100"
                 To: "opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
             -->
-            <div class="inline-block align-bottom bg-white rounded-tl-3xl rounded-br-3xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full" :class="boxClass" role="dialog" aria-modal="true" aria-labelledby="modal-headline" onclick="event.stopPropagation()">
+            <div class="inline-block align-bottom bg-white rounded-tl-3xl rounded-br-3xl text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:w-full md:w-4/5" :class="boxClass" role="dialog" aria-modal="true" aria-labelledby="modal-headline" onclick="event.stopPropagation()">
                 <div class="bg-white">
                     <div class="sm:flex sm:items-start">
                         <div class="w-full text-center sm:mt-0 sm:text-left">
