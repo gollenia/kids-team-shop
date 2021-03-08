@@ -6,6 +6,8 @@ use Contexis\Twig\CustomFunctions;
 use Contexis\Twig\CustomFilters;
 use Contexis\Twig\Colors;
 
+use Twig\Extra\String\StringExtension;
+
 use Twig\{
     Loader\FilesystemLoader,
     Environment
@@ -16,6 +18,7 @@ class Renderer {
     static function compile($filenames, $data, $options = []) {
         $loader = new FilesystemLoader(tpl_incdir() . './templates');
         $twig = new Environment($loader, $options);
+        $twig->addExtension(new StringExtension());
         CustomFunctions::register($twig);
         CustomFilters::register($twig);
         Colors::add_twig_filter($twig);
@@ -28,6 +31,7 @@ class Renderer {
         ]);
         
         $twig = new Environment($loader);
+        $twig->addExtension(new StringExtension());
         CustomFunctions::register($twig);
         CustomFilters::register($twig);
         
