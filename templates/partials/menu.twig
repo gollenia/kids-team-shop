@@ -1,33 +1,33 @@
 <div class="sticky top-0 bg-white z-40 right-0 left-0 pt-4">
-	<div x-data="{ open: false, searchbox: false, editmenu: false, adminmenu: false, usermenu: false }" class="relative flex flex-col md:items-end md:justify-between md:flex-row">
+	<div x-data="{ open: false, searchbox: false }" class="relative flex flex-col md:items-end md:justify-between md:flex-row">
 
 		<div class="flex justify-between md:items-end flex-row py-1">
 			<div class="-mb-5 ml-4 md:ml-8 z-40">
 				<a alt="{{tpl_inc ~ 'public/img/logo.svg'}}" href="/">{% include "partials/logo.twig" with {'size': 70, 'fill': 'fill-primary'} %}</a>
 			</div>
 			{% if ( acl.edit and act == "show" ) %}
-				<div @mouseenter="editmenu = true" @mouseleave="editmenu = false" class="group inline-block"><a href="/{{id}}?do=edit" class="bg-secondary group-hover: leading-none -mb-3 rounded-full h-12 w-12 ml-4 flex justify-center items-center"><span><i class="material-icons">edit</i></span></a>
-					<div class="absolute ml-2 pt-4" x-show="editmenu">
-						<a href="/{{id}}?do=revisions" class="flex items-center"><span class="z-40 text-sm bg-secondary leading-none rounded-full mt-2 h-8 w-8 ml-4 flex justify-center items-center"><i class="material-icons text-sm">access_time</i></span><span class="inline-block mt-2 rounded-r-full z-30 bg-white py-0 pr-2 pl-4 -ml-2 text-sm">Revisionen</span></a> 
-						<a href="/system:menu?do=edit" class="flex items-center"><span class="z-40 text-sm bg-green leading-none rounded-full mt-2 h-8 w-8 ml-4 flex justify-center items-center"><i class="material-icons text-sm">sort</i></span><span class="inline-block mt-2 rounded-r-full z-30 bg-white py-0 pr-2 pl-4 -ml-2 text-sm">Menü bearbeiten</span></a> 
+				<div class="bubble-menu"><a href="/{{id}}?do=edit" class=""><span><i class="material-icons">edit</i></span></a>
+					<div class="bubble-submenu">
+						<a href="/{{id}}?do=revisions"><span class="bubble-icon"><i class="material-icons">access_time</i></span><span class="bubble-description">Revisionen</span></a> 
+						<a href="/system:menu?do=edit"><span class="bubble-icon"><i class="material-icons">sort</i></span><span class="bubble-description">Menü bearbeiten</span></a> 
 					</div>
 				</div>
 				{% if ( acl.admin ) %}
-					<div @mouseenter="adminmenu = true" @mouseleave="adminmenu = false" class="group inline-block"><a href="/?do=admin" class="bg-secondary group-hover:bg-primary leading-none -mb-3 rounded-full h-12 w-12 ml-4 flex justify-center items-center"><span><i class="material-icons">settings</i></span></a>
-						<div class="absolute ml-2 pt-4" x-show="adminmenu">
-							<a href="/start?do=admin&page=config" class="flex items-center"><span class="z-40 text-sm bg-secondary leading-none rounded-full mt-2 h-8 w-8 ml-4 flex justify-center items-center"><i class="material-icons text-sm">handyman</i></span><span class="inline-block mt-2 rounded-r-full z-30 bg-white py-0 pr-2 pl-4 -ml-2 text-sm">Konfiguration</span></a> 
-							<a href="/start?do=admin&page=extension" class="flex items-center"><span class="z-40 text-sm bg-purple leading-none rounded-full mt-2 h-8 w-8 ml-4 flex justify-center items-center"><i class="material-icons text-sm">extension</i></span><span class="inline-block mt-2 rounded-r-full z-30 bg-white py-0 pr-2 pl-4 -ml-2 text-sm">Plugins</span></a> 
-							<a href="/start?do=admin&page=usermanager" class="flex items-center"><span class="z-40 text-sm bg-purple leading-none rounded-full mt-2 h-8 w-8 ml-4 flex justify-center items-center"><i class="material-icons text-sm">people</i></span><span class="inline-block mt-2 rounded-r-full z-30 bg-white py-0 pr-2 pl-4 -ml-2 text-sm">Benutzerverwaltung</span></a> 
-							<a href="/start?do=admin&page=styling" class="flex items-center"><span class="z-40 text-sm bg-purple leading-none rounded-full mt-2 h-8 w-8 ml-4 flex justify-center items-center"><i class="material-icons text-sm">color_lens</i></span><span class="inline-block mt-2 rounded-r-full z-30 bg-white py-0 pr-2 pl-4 -ml-2 text-sm">Design</span></a> 
-							<a href="/start?do=admin&page=acl" class="flex items-center"><span class="z-40 text-sm bg-purple leading-none rounded-full mt-2 h-8 w-8 ml-4 flex justify-center items-center"><i class="material-icons text-sm">vpn_key</i></span><span class="inline-block mt-2 rounded-r-full z-30 bg-white py-0 pr-2 pl-4 -ml-2 text-sm">Zugriffsrechte</span></a> 
-							<a href="/start?do=admin&page=revert" class="flex items-center"><span class="z-40 text-sm bg-purple leading-none rounded-full mt-2 h-8 w-8 ml-4 flex justify-center items-center"><i class="material-icons text-sm">history</i></span><span class="inline-block mt-2 rounded-r-full z-30 bg-white py-0 pr-2 pl-4 -ml-2 text-sm">Seite wiederherstellen</span></a> 
+					<div class="bubble-menu"><a href="/?do=admin" class=""><span><i class="material-icons">settings</i></span></a>
+						<div class="bubble-submenu">
+							<a href="/start?do=admin&page=config" class="flex items-center"><span class="bubble-icon"><i class="material-icons">handyman</i></span><span class="bubble-description">Konfiguration</span></a> 
+							<a href="/start?do=admin&page=extension" class="flex items-center"><span class="bubble-icon"><i class="material-icons">extension</i></span><span class="bubble-description">Plugins</span></a> 
+							<a href="/start?do=admin&page=usermanager" class="flex items-center"><span class="bubble-icon"><i class="material-icons">people</i></span><span class="bubble-description">Benutzerverwaltung</span></a> 
+							<a href="/start?do=admin&page=styling" class="flex items-center"><span class="bubble-icon"><i class="material-icons">color_lens</i></span><span class="bubble-description">Design</span></a> 
+							<a href="/start?do=admin&page=acl" class="flex items-center"><span class="bubble-icon"><i class="material-icons">vpn_key</i></span><span class="bubble-description">Zugriffsrechte</span></a> 
+							<a href="/start?do=admin&page=revert" class="flex items-center"><span class="bubble-icon"><i class="material-icons">history</i></span><span class="bubble-description">Seite wiederherstellen</span></a> 
 						</div>
 					</div>
 				{% endif %}
-				<div @mouseenter="usermenu = true" @mouseleave="usermenu = false" class="group inline-block"><a href="/system/user/{{user.name}}?do=edit" class="bg-secondary group-hover:bg-primary leading-none -mb-3 rounded-full h-12 w-12 ml-4 flex justify-center items-center"><span><i class="material-icons">person</i></span></a>
-					<div class="absolute ml-2 pt-4" x-show="usermenu">
-						<a href="/?do=profile" class="flex items-center"><span class="z-40 text-sm bg-red leading-none rounded-full mt-2 h-8 w-8 ml-4 flex justify-center items-center"><i class="material-icons text-sm">access_time</i></span><span class="inline-block mt-2 rounded-r-full z-30 bg-white py-0 pr-2 pl-4 -ml-2 text-sm">Profil</span></a> 
-						<a href="/?do=logout" class="flex items-center"><span class="z-40 text-sm bg-red leading-none rounded-full mt-2 h-8 w-8 ml-4 flex justify-center items-center"><i class="material-icons text-sm">lock</i></span><span class="inline-block mt-2 rounded-r-full z-30 bg-white py-0 pr-2 pl-4 -ml-2 text-sm">Abmelden</span></a> 
+				<div class="bubble-menu"><a href="/system/user/{{user.name}}?do=edit" class=""><span><i class="material-icons">person</i></span></a>
+					<div class="bubble-submenu">
+						<a href="/?do=profile" class="flex items-center"><span class="bubble-icon"><i class="material-icons">access_time</i></span><span class="bubble-description">Profil</span></a> 
+						<a href="/?do=logout" class="flex items-center"><span class="bubble-icon"><i class="material-icons">lock</i></span><span class="bubble-description">Abmelden</span></a> 
 					</div>
 				</div>
 			{% else %}
