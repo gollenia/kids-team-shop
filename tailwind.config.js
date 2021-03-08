@@ -2,6 +2,7 @@ module.exports = {
   purge: [
     './templates/**/*.twig',
     './resources/css/*.css',
+    './resources/vue/*.vue',
     './public/css/*.css',
     '../../plugins/bibleverse/syntax.php'
   ],
