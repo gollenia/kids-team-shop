@@ -23,6 +23,7 @@ class Template {
 
     public static function apply($template, $content, $id) {
         $template = Page::find($template);
-        return Renderer::compile_string($template->content, ["content" => $content, "id" => $id]);
+        $page = Page::find($id);
+        return Renderer::compile_string($template->content, ["content" => $content, "id" => $id, "page" => $page]);
     }
 }
