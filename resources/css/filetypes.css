@@ -1,18 +1,6 @@
-.mediafile.mf_jpg::before {
-    content: "";
-    background: url('/lib/tpl/kids-team-shop/public/img/filetypes/jpg.svg');
-    background-repeat: no-repeat;
-    height: 16px;
-    width: 16px;
-    display: block;
-    position: absolute;
-    margin-left: -25px;
-}
-
 .fileicon { 
-    @apply w-4 h-4 block mr-2;
-    background-image: url("/lib/tpl/kids-team-shop/public/img/filetypes/file.svg");
-    background-repeat: no-repeat;
+    @apply mr-2;
+    width: 16px;
 }
 
 .fileicon.jpg {
