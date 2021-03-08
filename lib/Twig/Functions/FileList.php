@@ -14,7 +14,6 @@ class FileList extends CustomFunctions {
     public string $name = "file_list";
 
     public function render($id, $excludes = "") {
-        
         return File::findAll($id, $excludes);
     }
 
