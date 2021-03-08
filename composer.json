@@ -13,6 +13,7 @@
   },
   "require": {
     "twig/twig": "^2.13",
-    "ozdemirburak/iris": "^2.1"
+    "ozdemirburak/iris": "^2.1",
+    "twig/string-extra": "^3.3"
   }
 }
