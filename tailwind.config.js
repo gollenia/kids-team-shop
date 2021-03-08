@@ -36,7 +36,11 @@ module.exports = {
   },
   
   variants: {
-    borderRadius: ['responsive', 'last', 'first', 'hover', 'focus'],
+    extend: {
+      borderRadius: ['responsive', 'last', 'first', 'hover', 'focus'],
+      backgroundColor: ['checked'],
+      borderColor: ['checked']
+    }
   },
   plugins: [],
 }
