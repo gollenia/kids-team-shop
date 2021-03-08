@@ -9,7 +9,7 @@ return [
         "dark" => true
     ],
     [
-        "color" => "#ADE8FF",
+        "color" => "#add8e6",
         "name" => "Hellblau",
         "slug" => "lightblue",
         "dark" => false
