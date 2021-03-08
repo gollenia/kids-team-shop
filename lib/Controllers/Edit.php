@@ -36,6 +36,7 @@ class Edit extends Controller implements ControllerInterface {
         $page->abstract = cleanText($data->abstract);
         $page->tags = $data->tags;
         $page->pageimage = cleanText($data->pageimage);
+        $page->exclude = cleanText($data->exclude);
         $page->template = cleanText($data->template);
         $page->title = cleanText($data->title);
         $page->save();

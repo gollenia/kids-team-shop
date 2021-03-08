@@ -9,9 +9,12 @@ class Page {
     public string $id;
     public $tags;
     public string $pageimage ="";
-    public string $content;
+    public string $title = "";
+    public string $content ="";
     public string $summary = "";
     public string $link = "";
+    public string $exclude = "";
+    public string $template = "";
     public string $date;
     public string $abstract = "";
     public string $user;
@@ -41,8 +44,9 @@ class Page {
         $instance->user = p_get_metadata($id, 'user');
         $instance->link = wl($id);
         $instance->date = p_get_metadata($id, 'date modified');
-        $instance->template = p_get_metadata($id, 'template');
+        $instance->template = p_get_metadata($id, 'template') ?: '';
         $instance->content = rawWiki($id);
+        $instance->exclude = p_get_metadata($id, 'exclude') ?: '';
         $instance->abstract = "";
         $abstract = p_get_metadata($id, 'abstract');
         if($abstract) {
@@ -138,6 +142,7 @@ class Page {
         p_set_metadata($this->id, ['abstract' => $this->abstract]);
         p_set_metadata($this->id, ['title' => $this->title]);
         p_set_metadata($this->id, ['template' => $this->template]);
+        p_set_metadata($this->id, ['exclude' => $this->exclude]);
         idx_addPage($this->id, false, true);
         unlock($this->id);
        
