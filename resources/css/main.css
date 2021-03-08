@@ -68,7 +68,13 @@
 }
 
 
+.hover-trigger .hover-target {
+    display: none;
+}
 
+.hover-trigger:hover .hover-target {
+    display: inline-block;
+}
 
 
 
@@ -83,6 +89,7 @@
 @import "editor.css";
 @import "profile.css";
 @import "filetypes.css";
+@import "menu.css";
 
 
 
