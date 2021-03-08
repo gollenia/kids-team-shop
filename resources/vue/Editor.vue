@@ -20,7 +20,7 @@
         <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
             
             <div class="input-text">
-                <label>Titel</label>
+                <label class="label">Titel</label>
                 <input type="text" class="w-full border-2 outline-none" v-model="page.title" required>
             </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
             
             <div class="input-select">
-                <label>Vorlage</label>
+                <label class="label">Vorlage</label>
                 <select type="text" class="w-full border-2 outline-none" v-model="page.template" required>
                     <option v-for="(template, c) in templates" :value="template.id" v-text="template.title" :key="c"></option>
                 </select>
@@ -86,7 +86,7 @@
         <div class="input-text max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
             
             <div class="editor-tags">
-                <label>Zusammenfassung</label>
+                <label class="label">Zusammenfassung</label>
                 <textarea class="w-full border-2 border-lightgray rounded-tl-md p-4 rounded-br-md outline-none" v-model="page.abstract"></textarea>
             </div>
         </div>
@@ -96,15 +96,24 @@
         <div class="input-text max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
             
             <div class="editor-tags input-text">
-                <label>Schlagworte</label>
+                <label class="label">Schlagworte</label>
                 <input-tag v-model="page.tags" :before-adding="tag => tag.toLowerCase().replace(' ', '_')" placeholder="Tag hinzufügen"></input-tag>
             </div>
         </div>
 
+        <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
+            
+            <div class="input-text">
+                <label class="label">Download-Ausnahmen</label>
+                <input type="text" class="w-full border-2 outline-none" v-model="page.exclude" required>
+            </div>
+            <p class="text-xs">Hier können Dateinnamen oder Muster angegeben werden, die nicht in der Downloadliste erscheinen sollen. Mit *.jpg können zb alle Bilder ausgeblendet werden.</p>
+        </div>
+
         <div class="bg-primary-light">
-            <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8 text-right">
-                <button class="bg-primary-light text-primary" @click="cancel">Zurück</button>
-                <button @click="save">Speichern</button>
+            <div class="button-group max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8 text-right">
+                <div><button class="hover:bg-secondary button" @click="cancel">Zurück</button></div>
+                <div><button class="button bg-primary text-white" @click="save">Speichern</button></div>
             </div>
         </div>
         
@@ -163,6 +172,7 @@ export default {
             content: "",
             date: "",
             template: "",
+            exclude: "",
             id: "start",
             minor_change: false,
             pageimage: "",
@@ -256,6 +266,8 @@ export default {
             await axios.post('/?controller=edit&method=save&id=' + window.DOKU_ID, formData, {
                 headers: { 'Content-Type': 'multipart/form-data' }
             })
+
+            window.location.href = '/?id=' + window.DOKU_ID;
         }
     },
     async created () {
