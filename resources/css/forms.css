@@ -1,19 +1,4 @@
 
-/* ########## CF7-Plugin ########## */
-
-.wpcf7 br {
-    display: none;
-}
-
-.wpcf7 span.wpcf7-form-control-wrap {
-    position: initial;
-}
-
-.wpcf7 .input-text {
-    margin-bottom: 30px;
-}
-
-/* ########## EVENT-Plugin ########## */
 
 form:invalid input[type="submit"] {
     background-color: var(--gray-200) !important;
@@ -30,8 +15,8 @@ input[type="text"], input[type="password"], input[type="email"], select {
     width: 100%;
     @apply border-2;
     @apply border-gray-200; 
-    @apply rounded-tl;
-    @apply rounded-br;
+    @apply rounded-tl-xl;
+    @apply rounded-br-xl;
     @apply bg-white;
     padding-left: 18px;
     padding-right: 18px;
@@ -52,9 +37,25 @@ select {
     padding-left: 15px;
 }
 
-.input[type="checkbox"] {
-    margin-bottom: 30px;
-    margin-top: 20px;
+input[type="checkbox"] {
+    @apply appearance-none h-6 w-6 border-2 bg-white border-gray-200 rounded-tl-md rounded-br-md focus:outline-none transition-all;
+}
+
+input[type="checkbox"]:checked {
+    @apply border-primary;
+    box-shadow: inset 0px 0px 0px 2px #fff;
+}
+
+input[type="checkbox"]::after {
+    content: "\2714";
+    @apply text-white transition-all font-bold absolute transform scale-y-0;
+    font-size: 19px;
+    margin-top: -4px;
+    margin-left: 2px;
+}
+
+input[type="checkbox"]:checked:after {
+    @apply text-primary scale-y-100;
 }
 
 .error-message {
@@ -64,36 +65,9 @@ select {
     display: block;
 }
 
-input[type="checkbox"] {
-    opacity: 0;
-}
 
-input[type="checkbox"] + span::before {
-    width: 20px;
-    height: 20px;
-    @apply rounded-tl-sm;
-    @apply rounded-br-sm;
-    @apply border-2;
-    @apply border-gray-200;
-    background-color: #fff;
-    @apply duration-300;
-    @apply transition-all;
-    @apply ease-in-out;
-    display: block;
-    content: "";
-    float: left;
-    margin-right: 0px;
-    margin-top: 5px;
-  }
-  input[type="checkbox"]:checked+span::before {
-    box-shadow: inset 0px 0px 0px 3px #fff;
-    background-color: var(--primary);
-    @apply border-primary;
-  }
-
-  span.wpcf7-list-item {
-    display: inline-block;
-     margin: 0 0 0 0 !important; 
+.button-group .button {
+    margin-left: 10px;
 }
 
 input[type="submit"] {
@@ -102,30 +76,19 @@ input[type="submit"] {
     @apply bg-primary;
     @apply text-white;
     @apply font-bold;
-    @apply rounded-tl;
-    @apply rounded-br;  
+    @apply rounded-tl-lg;
+    @apply rounded-br-lg;  
     @apply cursor-pointer;
     @apply outline-none;
 }
 
-label span.label, #dw__profiledelete label.block span, .input-text label, .input-select label {
-    margin-top: -12px;
-    @apply inline-block;
+.input-text .label, .input-select label {
+    @apply inline-block px-4 mx-4 rounded-tl-md  rounded-br-md absolute -mt-2 bg-gray-200 text-black text-sm duration-300 transition-all ease-in-out whitespace-nowrap;
     height: max-content;
-    margin-left: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-right: 10px;
-    @apply rounded-tl-md;
-    @apply rounded-br-md;
-    white-space: nowrap;
-    @apply absolute;
-    @apply bg-gray-200;
-    @apply text-black;
-    @apply text-sm;
-    @apply duration-300;
-    @apply transition-all;
-    @apply ease-in-out;
+}
+
+.input-text:focus-within .label {
+    @apply bg-primary text-primary-contrast;
 }
   
   
