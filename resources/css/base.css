@@ -1,14 +1,9 @@
 
 
-.button { @apply transition duration-300 ease-in-out relative rounded-tl rounded-br inline-block px-4 py-2 overflow-hidden; }
+.button { @apply transition duration-300 ease-in-out relative rounded-tl-xl rounded-br-xl inline-block px-4 py-2 overflow-hidden; }
 .button-sm { @apply px-2 py-1 text-xs }
 .button-lg { @apply px-6 py-3 text-lg }
-.button.primary {
-    @apply bg-primary;
-}
-.button.primary {
-    @apply bg-secondary;
-}
+
 .button::after {
     content: " ";
     @apply inset-0 absolute;
@@ -20,8 +15,24 @@
     background-color: #ffffff11 !important;
 }
 
+.button.primary {
+    @apply bg-primary text-primary-contrast;
+}
+
+.button.secondary {
+    @apply bg-secondary text-secondary-contrast;
+}
+
+.button.minor {
+    @apply text-gray-400 hover:text-gray-800 hover:bg-gray-200;
+}
+
 .button:not(.outline):hover::after {
     opacity: 1;
+}
+
+.button-group {
+    @apply flex justify-end;
 }
 
 .button.outline.light:hover { color: #000000dd !important; }
