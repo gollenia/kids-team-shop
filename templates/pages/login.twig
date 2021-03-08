@@ -7,7 +7,7 @@
 
 <body class="font-body de antialiased mr-4 lg:mr-10 lg:text-lg {{tld}} {{ tpl_classes }} {{ metadata.subject|join(" ") }}">
 
-    <header class="bg-cover bg-primary-light relative" style="padding-top: 10vh;">
+    <header class="bg-cover bg-secondary relative" style="padding-top: 10vh;">
     {% include "partials/breadcrumbs.twig" with {'breadcrumbs': breadcrumbs} %}
     <div class="max-w-screen-xl mx-auto">
         <div class="relative inline-block bg-primary-transparent bg-opacity-75 bg-blur  rounded-tr-3xl text-white text-right" style="margin-left: -2000px; padding: 50px 50px 50px 2000px;">
@@ -26,11 +26,11 @@
                             <input type="hidden" name="do" value="login">
                             
                             <fieldset>
-                                <label class="block mb-8" for="focus__this">
+                                <label class="block mb-8 input-text" for="focus__this">
                                     <span class="label md:flex-1">Benutzername</span>
                                     <input type="text" id="focus__this" name="u" class="block w-full md:flex-1 mb-2">
                                 </label>
-                                <label class="block mb-8">
+                                <label class="block mb-8 input-text">
                                     <span class="label md:flex-1">Passwort</span>
                                     <input type="password" name="p" class="block  w-full md:flex-1 mb-2">
                                 </label>
@@ -38,12 +38,13 @@
                                         <input type="checkbox" id="remember__me" name="r" value="1">
                                         <span>Angemeldet bleiben</span>
                                 </label>
-                                <div class="flex justify-end my-6">
-                                    <button class="button primary" type="submit">Anmelden</button>
+                                <div class="flex justify-end my-6 button-group">
+                                    <div><a class="button minor" href="/start?do=resendpwd" rel="nofollow" class="resendpwd">Passwort vergessen?</a></div>
+                                    <div><button class="button primary" type="submit">Anmelden</button></div>
                                 </div>
                             </fieldset>
 
-                            <p class="flex justify-end text-sm"><a href="/start?do=resendpwd" rel="nofollow" class="resendpwd">Passwort vergessen?</a></p>
+                            
                         </form>
                     </div>
         </div>
