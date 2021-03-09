@@ -7,8 +7,10 @@ namespace Contexis\Controllers;
 use Contexis\Core\Controller;
 use Contexis\Core\ControllerInterface;
 use Contexis\Core\Site;
+use Contexis\Models\Template;
 use Contexis\Twig\Renderer;
-use Contexis\Models\BibleModel;
+
+use dokuwiki\Extension\Event;
 
 
 class BibleView extends Controller implements ControllerInterface {
@@ -18,25 +20,11 @@ class BibleView extends Controller implements ControllerInterface {
 
     public function __construct($site) {
         parent::__construct($site);
-    }
-
-    private function get_bible_data() {
-        global $INPUT;
-        global $ID;
-    
-        if (!class_exists("\dokuwiki\plugin\bibleverse\Model")) {
-            return array(
-                "book" => ["id" => "", "title" => "", "chapters" => 0],
-                "translation" => "",
-                "chapter" => "",
-                "verses" => []
-            );
+        $content = $this->get_content();
+        if($this->site->get('metadata')['template']) {
+            $content = Template::apply($this->site->get('metadata')['template'], $content, $this->site->get("id"));
         }
-        $bible = new \dokuwiki\plugin\bibleverse\Book($ID);
-
-        $bible->query();
-
-        return $bible->get();
+        $this->site->add_data("content", $content); 
     }
 
     public function ajax_get_books() {
@@ -94,14 +82,26 @@ class BibleView extends Controller implements ControllerInterface {
     }
 
     public function ajax_verse_count() {}
+    
+    private function get_content() {
+        global $ACT;
+        ob_start();
+        Event::createAndTrigger('TPL_ACT_RENDER', $ACT, 'tpl_content_core');
+        Event::createAndTrigger('TPL_CONTENT_DISPLAY', $html_output, 'ptln');
+        $html_output = ob_get_clean();
+        return $html_output;
+    }
+
+    
 
     public function render() {
         
-        global $ACT;
-        
-        global $INPUT;
         global $ID;
         $path=explode(":", $ID);
+
+        if($path[1] == "start" || count($path) == 1) {
+            return Renderer::compile("pages/show.twig", $this->site->get());
+        }
         $bible = $this->get_book($path[1]);
         $verses = $this->get_verses($bible,$path[2]);
         $all_books = $this->get_books();
@@ -109,6 +109,7 @@ class BibleView extends Controller implements ControllerInterface {
         $this->site->add_data("all_books", $all_books);
         
         $articles = \Contexis\Models\Page::where("tag", $bible->short_name);
+        $articles_chapter = \Contexis\Models\Page::where("tag", $bible->short_name . $path[2]);
         
         $this->site->add_data("articles", $articles);
     

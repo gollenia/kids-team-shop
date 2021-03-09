@@ -1,12 +1,12 @@
 <template>
     <div class="media-folder">
-        <div class="flex items-center" :class="{ selected: selected === item.id }">
+        <div class="flex items-center" :class="{ 'bg-secondary': selected === item.id }">
             <span v-if="item.id && item.children" class="icon" @click="expanded = !expanded"><i class="material-icons">{{ expanded ? 'arrow_drop_down' : 'arrow_right' }}</i></span>
             <span v-else-if="item.id" class="icon"></span>
             <span class="text-sm" @click="$emit('select', item)">{{ item.title }}</span>
             
         </div>
-        <ul v-if="expanded">
+        <ul v-if="expanded && item.children">
             <li v-for="(child, c) in item.children" :key="c">
                 <media-picker-item :item="child" :selected="selected" @select="$emit('select', $event)"/>
             </li>
@@ -57,6 +57,6 @@ export default {
     width: 20px;
 }
 .media-folder .selected {
-    font-weight: bold;
+    
 }
 </style>

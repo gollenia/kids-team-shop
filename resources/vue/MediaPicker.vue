@@ -2,6 +2,10 @@
     <modal title="Media Manager" box-class="max-w-4xl" @close="$emit('close')">
         <div class="flex space-x-4 text-left" style="min-height: 400px">
             <div class="flex-1 p-4 border-r border-gray-200">
+                <div class="flex items-center cursor-pointer">
+                    <span class="icon"><i class="material-icons">home</i></span>
+                    <span @click="onTreeSelect({id: ''})" class="text-sm" >Startseite</span>
+                </div>
                 <media-picker-item
                     v-for="(item, i) in tree"
                     :key="i"
@@ -16,12 +20,12 @@
                     v-for="(item, i) in list"
                     :key="i"
                     class="media-file"
-                    @click="file = item"
-                    @dblclick="select(item)"
+                    
                 >
-                    <span><img v-if="item.src" :src="item.src"/></span>
-                    <span class="overflow-clip text-sm overflow-hidden flex-grow">{{ item.file }}</span>
-                    <span><button class="block m-auto" @click="$emit('delete', item)"><i class="text-gray-400 text-sm material-icons">delete</i></button></span>
+                    <span @click="file = item"><img v-if="['jpg', 'jpeg', 'png'].includes(item.extension)" :src="item.src"/>
+                   <img v-if="!['jpg', 'jpeg', 'png'].includes(item.extension)" :src="'/lib/tpl/kids-team-shop/public/img/filetypes/' + item.extension + '.svg'" class="fileicon"></img></span>
+                    <span @click="file = item" class="overflow-clip text-sm overflow-hidden flex-grow">{{ item.file }}</span>
+                    <span><button class="block m-auto" @click="deleteImage(item)"><i class="text-gray-400 text-sm material-icons">delete</i></button></span>
                 </div>
             </div>
 
@@ -52,11 +56,16 @@
             
         </div>
         
-        <div class="p-4 bg-gray-200">
-            Hochladen: 
-            <input type="file" @change="fileInput = $event.target.files || $event.dataTransfer.files">
-            <button v-show="fileInput" class="border" @click="upload">Upload</button>
-            <div v-show="fileInput" class="input-text"><label>Namespace</label><input v-model="ns" type="text"></div>
+        <div class="p-4 bg-gray-100 flex items-center">
+            <label for="file-upload" class="button" :class="{'bg-gray-300 text-white': fileInput, 'primary': !fileInput}">
+                Datei zum Upload auswählen
+            </label>
+            <input id="file-upload" class="opacity-0 w-0" type="file" @change="fileInput = $event.target.files || $event.dataTransfer.files">
+            
+            <button v-show="fileInput" class="button primary border ml-4" @click="upload">Upload</button>
+        </div>
+        <div class=" p-4 bg-gray-100">
+            <div v-show="fileInput" class="input-text"><label class="label">Ort</label><input v-model="ns" type="text"></div>
         </div>
     </modal>
 </template>
@@ -116,8 +125,9 @@ export default {
             console.log(response);
             return this.load()
         },
-        async delete(item) {
-            await axios.delete('/?controller=media&method=delete&id=' + item.id)
+        async deleteImage(item) {
+            const response = await axios.get('/?controller=media&method=delete&id=' + item.id)
+            console.log(response);
             return this.load()
         }
     },

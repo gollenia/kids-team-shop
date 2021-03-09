@@ -40,7 +40,7 @@
 
 .alert { @apply my-6 p-4 md:p-6 rounded-tl-md rounded-br-md text-white }
 
-.card { @apply flex transition transform overflow-hidden shadow-sm m-0}
+.card { @apply flex transition transform overflow-hidden shadow-md m-0}
 .card.hover { @apply hover:shadow-2xl hover:scale-105 }
 .card.image-left { @apply flex-row items-center }
 .card.image-right { @apply flex-row-reverse items-center }

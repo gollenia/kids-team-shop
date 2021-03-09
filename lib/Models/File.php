@@ -66,12 +66,13 @@ class File {
     }
 
     public function delete() {
-        
+        global $INFO;
 		$id = $this->id;
-        if (media_delete($id, 0) === 1) {
-            return true;
+        $delete = media_delete($id, $INFO['perm']);
+        if ($delete === 1) {
+            return "deleted";
         }
-        return false;
+        return $this->file . " not deleted " . $delete;
     }
 
     /**

@@ -42,14 +42,15 @@ class Media {
 	}
 
 	public function ajax_tree(Input $request) {
-        $id = $request->str($id = ""); 
-        $pageTree = Page::findAll($id, true, "bibel,system");
+        $id = $request->str('id', ""); 
+        $pageTree = Page::findAll($id, false, "bibel,system");
         return json_encode($pageTree);
     }
 	
-	public function ajax_delete($id) {
+	public function ajax_delete(Input $request) {
+		$id = $request->str('id', ""); 
 		$file = File::find($id);
-		$file->delete();
+		return json_encode($file->delete());
 	}
 	
 }

@@ -66,7 +66,6 @@ export default {
     }),
     methods: {
         save () {
-            console.log(this.selection)
             this.$emit('select', {
                 item: this.selection
             })

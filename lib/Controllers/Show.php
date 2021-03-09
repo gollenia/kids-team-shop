@@ -13,9 +13,10 @@ class Show extends Controller {
     public function __construct($site) {
         parent::__construct($site);
         $content = $this->get_content();
-        if($this->site->get('metadata')['template']) {
-            $content = Template::apply($this->site->get('metadata')['template'], $content, $this->site->get("id"));
-        }
+        $template = $this->site->get('metadata')['template'] ?: "system:templates:default";
+        
+        
+        $content = Template::apply($template, $content, $this->site->get("id"));
         $this->site->add_data("content", $content);     
     }
 

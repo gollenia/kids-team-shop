@@ -5,7 +5,7 @@
             <span class="link-folder-icon cursor-pointer absolute ml-6"><i class="material-icons">folder</i></span>
             <span class="pl-8 text-sm">{{ item.title || item.name }}</span>
         </div>
-        <ul v-if="expanded">
+        <ul v-if="expanded && item.children.length > 0">
             <li v-for="(child, c) in item.children" :key="c">
                 <link-picker-item :item="child" @select="$emit('select', $event)"/>
             </li>

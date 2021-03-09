@@ -7,12 +7,16 @@
     
     {% include "partials/menu.twig" with {'menu': menu} %}
     
-    <header class="bg-secondary relative" style="padding-top: 20vh;">
+    <header class="bg-secondary relative" style="padding-top: 30vh;">
     {% include "partials/breadcrumbs.twig" with {'breadcrumbs': breadcrumbs} %}
-    {% if pageimage %}<img class="object-cover absolute inset-0 w-full h-full" src={{ ml(pageimage, 2000) }}>{% endif %}
+    {% if pageimage %}<img class="object-cover absolute inset-0 w-full h-full" src={{ ml(pageimage, 2000) }}>
+    {% else %}
+        <img class="object-cover absolute inset-0 w-full h-full" src={{ ml(":background.jpg", 2000) }}>
+    {% endif %}
     <div class="max-w-screen-xl mx-auto">
-    
         <div class="relative inline-block bg-primary-transparent bg-opacity-75 bg-blur  rounded-tr-3xl text-white text-right" style="margin-left: -2000px; padding: 50px 50px 50px 2000px;">
+            {% set link = metadata.pagelink|split('|') %}
+            <a class="button button-lg" href="{{tpl_link(link[0])}}">{{link[1]}}</a>
             <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script pl-4 md:pl-8 xl:pl-0">{{tpl_pagetitle()}}</div>
         </div>
     </div>
@@ -20,12 +24,9 @@
 
     <article class="bg-gray-100 ">
         
-        <section class="px-4 md:px-8 xl:px-0 py-8">
-            <div class="content max-w-screen-xl mx-auto">
-                {{content|raw}}
-            </div>
-            
-        </section>
+
+        {{content|raw}}
+ 
         <div class="clear-both"></div>
         {% if metadata.subject is not empty %}
         <section class="bg-gray-200">

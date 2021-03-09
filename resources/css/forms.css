@@ -2,7 +2,6 @@
 
 form:invalid input[type="submit"] {
     background-color: var(--gray-200) !important;
-    
     color: var(--gray);
 }
 
@@ -10,22 +9,10 @@ form:invalid input[type="submit"] {
     @apply my-8;
   }
   
-input[type="text"], input[type="password"], input[type="email"], select {
+input[type="text"], input[type="password"], input[type="email"], select[type="text"] {
     outline: none !important;
     width: 100%;
-    @apply border-2;
-    @apply border-gray-200; 
-    @apply rounded-tl-xl;
-    @apply rounded-br-xl;
-    @apply bg-white;
-    padding-left: 18px;
-    padding-right: 18px;
-    padding-top: 7px !important;
-    padding-bottom: 7px !important;
-    @apply duration-300;
-    @apply transition-all;
-    @apply ease-in-out;
-    color: #222222;
+    @apply border-2 border-gray-200 rounded-tl-xl rounded-br-xl bg-white duration-300 transition-all ease-in-out text-gray-700 px-4 py-2;
 }
 
 input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, select:focus {
@@ -71,15 +58,7 @@ input[type="checkbox"]:checked:after {
 }
 
 input[type="submit"] {
-    @apply px-4;
-    @apply py-2;
-    @apply bg-primary;
-    @apply text-white;
-    @apply font-bold;
-    @apply rounded-tl-lg;
-    @apply rounded-br-lg;  
-    @apply cursor-pointer;
-    @apply outline-none;
+    @apply px-4 py-2 bg-primary  text-white font-bold rounded-tl-lg rounded-br-lg cursor-pointer outline-none;
 }
 
 .input-text .label, .input-select label {
@@ -120,18 +99,7 @@ select:invalid {
 .textarea {
     margin-top: 0px;
     margin-bottom: 0px;
-    width: 100%;
-    @apply border-2;
-    @apply border-gray-200;
-    @apply rounded-tl;
-    @apply rounded-br;
-    @apply bg-white;
-    padding-left: 18px;
-    padding-right: 10px;
-    padding-top: 6px;
-    /*margin-left: 20px;*/
-    /*margin-right: 20px;*/
-    margin-top: 12px;
+    @apply border-2 w-full border-gray-200 rounded-tl rounded-br bg-white px-4 py-2;
     outline: none !important;
   }
   

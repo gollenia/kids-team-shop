@@ -3,8 +3,8 @@
          <header class="bg-secondary relative" style="padding-top: 20vh;">
             <img class="object-cover absolute inset-0 w-full h-full" v-if="media.src != '/_media/'" :src="media.src">
             <div class="absolute bottom-0 right-0 text-right p-4">
-            <button class="bg-lightgray text-black mr-4" @click="showPageImagePicker = true"><i class="material-icons">image</i></button>
-            <button class="bg-lightgray text-black" @click="pageimage = ''"><i class="material-icons">delete</i></button>
+            <button class="button bg-gray-200 text-black mr-4" @click="showPageImagePicker = true"><i class="material-icons">image</i></button>
+            <button class="button bg-gray-200 text-black" @click="removePageImage()"><i class="material-icons">delete</i></button>
             </div>
         <div class="max-w-screen-xl mx-auto">        
         <div class="relative inline-block bg-primary-transparent bg-opacity-75 bg-blur  rounded-tr-3xl text-white text-right" style="margin-left: -2000px; padding: 50px 50px 50px 2000px;">
@@ -110,6 +110,14 @@
             <p class="text-xs">Hier können Dateinnamen oder Muster angegeben werden, die nicht in der Downloadliste erscheinen sollen. Mit *.jpg können zb alle Bilder ausgeblendet werden.</p>
         </div>
 
+        <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
+            
+            <div class="input-text">
+                <label class="label">Seitenlink</label>
+                <input type="text" @click="showPageLinkPicker = true" class="w-full border-2 outline-none" v-model="page.pagelink" required>
+            </div>
+        </div>
+
         <div class="bg-primary-light">
             <div class="button-group max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8 text-right">
                 <div><button class="hover:bg-secondary button" @click="cancel">Zurück</button></div>
@@ -119,6 +127,8 @@
         
 
         <link-picker v-if="showLinkPicker" @select="insertLink($event); showLinkPicker = false" @close="showLinkPicker = false"/>
+
+        <link-picker v-if="showPageLinkPicker" @select="setPageLink($event); showLinkPicker = false" @close="showPageLinkPicker = false"/>
 
         <bible-picker v-if="showBiblePicker" @select="insertBible($event); showBiblePicker = false" @close="showBiblePicker = false"/>
 
@@ -163,6 +173,7 @@ export default {
             lineWrapping: true
         },
         showLinkPicker: false,
+        showPageLinkPicker: false,
         showMediaPicker: false,
         showPageImagePicker: false,
         showBiblePicker: false,
@@ -174,6 +185,7 @@ export default {
             template: "",
             exclude: "",
             id: "start",
+            pagelink: "",
             minor_change: false,
             pageimage: "",
             summary: "",
@@ -203,6 +215,10 @@ export default {
                 this.$refs.cm.codemirror.replaceSelection(plain)
             }
             this.$refs.cm.codemirror.focus()
+        },
+
+        setPageLink({ item, title }) {
+            this.page.pagelink = item.id + '|' + item.title;
         },
         insertLink ({ item, title }) {
             const selection = this.$refs.cm.codemirror.getSelection()
@@ -242,6 +258,21 @@ export default {
             .then(response => {
                 this.media = response.data
             });
+        },
+
+        removePageImage() {
+            this.page.pageimage = ''
+            this.media = {
+                extension: "",
+                file: "",
+                id: "",
+                modified: "",
+                path: "",
+                size: "",
+                src: "",
+                thumbnail: "",
+                writable: false
+            }
         },
       
         newLine() {

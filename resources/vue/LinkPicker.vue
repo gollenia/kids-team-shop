@@ -18,7 +18,7 @@
             </div>
             <div class="px-4 py-8 input-text">
             <label>Link-Text</label>
-            <input type="text" v-model="title">
+            <input type="text" v-model="selection.title">
             </div>
         </div> 
         
@@ -50,6 +50,7 @@ export default {
                 item: this.selection,
                 title: this.title
             })
+            this.$emit('close');
         }
     },
     async created () {
