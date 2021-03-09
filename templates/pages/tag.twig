@@ -6,15 +6,19 @@
 <body class="font-body antialiased mr-4 lg:mr-10 lg:text-lg {{tld}} {{ tpl_classes }} {{ metadata.subject|join(" ") }}">
     
     {% include "partials/menu.twig" with {'menu': menu} %}
-    
-    <header class="bg-cover bg-primary-light relative" style="padding-top: 20vh;">
+    <header class="bg-secondary relative" style="padding-top: 30vh;">
     {% include "partials/breadcrumbs.twig" with {'breadcrumbs': breadcrumbs} %}
+    {% if pageimage %}<img class="object-cover absolute inset-0 w-full h-full" src={{ ml(pageimage, 2000) }}>
+    {% else %}
+        <img class="object-cover absolute inset-0 w-full h-full" src={{ ml(":background.jpg", 2000) }}>
+    {% endif %}
     <div class="max-w-screen-xl mx-auto">
         <div class="relative inline-block bg-primary-transparent bg-opacity-75 bg-blur  rounded-tr-3xl text-white text-right" style="margin-left: -2000px; padding: 50px 50px 50px 2000px;">
-            <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script pl-4 md:pl-8 xl:pl-0">{{tag|capitalize}}</div>
+            <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script pl-4 md:pl-8 xl:pl-0">{{tpl_pagetitle()}}</div>
         </div>
     </div>
     </header>
+    
     <article class="bg-lightgray-lighter ">
         
             {% if page_exists %}
@@ -26,11 +30,11 @@
             {% endif %}
             
             <div class="clear-both"></div>
-            <section class="bg-lightgray px-4 md:px-8 xl:px-0 py-8">
+            <section class="bg-gray-200 px-4 md:px-8 xl:px-0 py-20">
                 <div class="content max-w-screen-xl mx-auto">
                     <div class="grid grid-cols-3 gap-8">
                     {% for page in pages %}
-                        <a class="hover:shadow-lg bg-white" href="{{page.link}}">
+                        <a class="card hover image-top bg-white" href="{{page.link}}">
                             {% if page.pageimage %}<img class="object-cover h-64 w-full" src="{{ml(page.pageimage, 500)}}">
                             {% else %}
                             <div class="h-64 bg-primary-light"></div>
