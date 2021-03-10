@@ -49,7 +49,7 @@
 						{% include "partials/menu-dropdown.twig" with {'menu': item.children} %}
 					{% else %}
 				
-						<a href="/{{item.id}}" class="lg:text-lg rounded-tl-xl rounded-br-xl hover:bg-lightgray px-4 py-1 font-semibold md:mt-0 {% if (item.current or item.current_item_ancestor) %}bg-lightgray{% endif %}">
+						<a href="/{{item.link}}" class="lg:text-lg rounded-tl-xl rounded-br-xl hover:bg-lightgray px-4 py-1 font-semibold md:mt-0 {% if (item.current or item.current_item_ancestor) %}bg-lightgray{% endif %}">
 							{{item.title}}
 						</a>
 						

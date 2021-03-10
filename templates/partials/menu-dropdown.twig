@@ -9,10 +9,10 @@
 		<div style="display: none" x-show="open" x-transition:enter="transition ease-out duration-100" x-transition:enter-start="transform opacity-0 scale-95" x-transition:enter-end="transform opacity-100 scale-100" x-transition:leave="transition ease-in duration-75" x-transition:leave-start="transform opacity-100 scale-100" x-transition:leave-end="transform opacity-0 scale-95" class="md:absolute md:right-0 w-full md:mt-2 origin-top-right rounded-md md:shadow-lg md:w-48 z-30">
 			<div class="bg-lightgray md:bg-white md:rounded-tl rounded-br dark-mode:bg-gray-700">
 				{% for item in menu %}
-				<a href="{{child.id}}" class="
-					{% if child.current %} bg-lightgray-lighter text-gray{% endif %} 
-					{{ loop.first ? "rounded-tl "}}
-					{{ loop.last ? "rounded-br "}}
+				<a href="{{item.id}}" class="
+					{% if item.current %} bg-lightgray-lighter text-gray{% endif %} 
+					{{ item.first ? "rounded-tl "}}
+					{{ item.last ? "rounded-br "}}
 					text-lg md:text-base block px-4 py-2 font-semibold bg-transparent md:mt-0 hover:text-primary-contrast hover:bg-primary" href="#">{{item.title}}</a>
 				{% endfor %}
 			</div>
