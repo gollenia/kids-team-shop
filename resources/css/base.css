@@ -36,7 +36,7 @@
 }
 
 -button i {
-    @apply pr-4;
+    @apply pr-4; 
 }
 
 .button.outline.light:hover { color: #000000dd !important; }
