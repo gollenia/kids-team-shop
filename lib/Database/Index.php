@@ -57,6 +57,26 @@ class Index {
     	$r = $this->_walk($data, $namespace, $excludes, $excludePages);
     	return $data;
     }
+
+
+	function _pages(&$data,$base,$file,$type,$lvl,$opts){
+        $return = true;
+        
+        $id = pathID($file);
+
+        if($type == 'd' || pathinfo($file, PATHINFO_EXTENSION) != 'txt'){
+            return false;
+        }
+
+        if(isHiddenPage($id || auth_quickaclcheck($id) < AUTH_READ)){
+            return false;
+        }
+
+        array_push ( $data , array( 
+        	'id'    => $id) );
+        
+        return $return;
+    }
     
     
     function _search(&$data,$base,$file,$type,$lvl,$opts){
