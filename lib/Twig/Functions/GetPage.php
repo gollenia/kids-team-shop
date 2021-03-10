@@ -9,7 +9,7 @@ use Contexis\Models\Page;
 /**
  * Get list of files in a given namespace
  */
-class PageList extends CustomFunctions {
+class GetPage extends CustomFunctions {
 
     public string $name = "get_page";
 
