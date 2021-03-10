@@ -10,8 +10,6 @@
 
 @layer base {
 
-
-
     h1 {
         @apply text-3xl;
         @apply lg:text-5xl;
@@ -60,7 +58,7 @@
     }
 
     .bg-blur {
-        backdrop-filter: blur(5px);;
+        backdrop-filter: blur(5px);
     }    
 
     
