@@ -56,5 +56,26 @@
 .description-item { @apply flex py-2 items-center }
 .description-item.img { @apply h-16 w-16 rounded-full mx-0 mr-4}
 
-.section { @apply px-4 md:px-8 py-20 }
-.section .content { @apply max-w-screen-xl mx-auto }
+section { @apply px-4 md:px-8 py-20 }
+section .content { @apply max-w-screen-xl mx-auto }
+
+.modal {
+    @apply absolute inset-0 bg-gray-800 bg-transparent grid bg-opacity-75 h-screen place-items-center;
+    backdrop-filter: blur(5px);
+}
+
+.modal .modal-window {
+    @apply w-3/4 bg-white rounded-tl-xl rounded-br-xl mx-auto; 
+}
+
+.modal-title {
+    @apply px-8 py-4 bg-primary text-primary-contrast;
+}
+
+.modal-content {
+    @apply px-8 py-4;
+}
+
+.modal-footer {
+    @apply px-8 py-4 bg-gray-200;
+}
