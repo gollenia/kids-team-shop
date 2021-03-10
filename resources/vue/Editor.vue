@@ -47,13 +47,13 @@
                     <button class="toolbutton button" title="Unterstrichener Text [U]" @click="textWrap('__', '__')" v-shortkey.once="['ctrl', 'i']" @shortkey="textWrap('__', '__')">
                         <i class="material-icons">format_underlined</i>
                     </button>
-                    <button class="toolbutton button" title="Überschrift 1" @click="textWrap('======', '======')">
+                    <button class="toolbutton button" title="Überschrift 1" @click="textWrap('====== ', ' ======')">
                         <i class="material-icons">filter_1</i>
                     </button>
-                    <button class="toolbutton button" title="Überschrift 2" @click="textWrap('=====', '=====')">
+                    <button class="toolbutton button" title="Überschrift 2" @click="textWrap('===== ', ' =====')">
                         <i class="material-icons">filter_2</i>
                     </button>
-                    <button class="toolbutton button" title="Überschrift3" @click="textWrap('====', '====')">
+                    <button class="toolbutton button" title="Überschrift3" @click="textWrap('==== ', ' ====')">
                         <i class="material-icons">filter_3</i>
                     </button>
                     <button class="toolbutton button" title="Interner Link [L]" @click="showLinkPicker = true" v-shortkey.once="['ctrl', 'l']" @shortkey="showLinkPicker = true">
@@ -68,14 +68,32 @@
                     <button class="toolbutton button" title="Listenpunkt [.]" @click="textWrap(' * ', '', ' * Listenpunkt')" v-shortkey.once="['ctrl', '.']" @shortkey="textWrap(' * ', '', ' - Listenpunkt')">
                         <i class="material-icons">format_list_bulleted</i>
                     </button>
-                    <button class="toolbutton button" title="Horizontale Linie" aria-controls="wiki__text"@click="textWrap('\n----\n')">
+                    <button class="toolbutton button" title="Horizontale Linie" aria-controls="wiki__text" @click="textWrap('\n----\n')">
                         <i class="material-icons">horizontal_rule</i>
                     </button>
                     <button class="toolbutton button" title="Bilder und andere Dateien hinzufügen"  @click="showMediaPicker = true">
                         <i class="material-icons">insert_photo</i>
                     </button>
-                    <button class="toolbutton button" title="Bilder und andere Dateien hinzufügen"  @click="showBiblePicker = true">
+                    <button class="toolbutton button" title="Bibelstelle einfügen"  @click="showBiblePicker = true">
                         <i class="material-icons">menu_book</i>
+                    </button>
+                    <span>
+                    <button class="toolbutton button" title="Bibelstelle einfügen"  @click="showBoxSelection = !showBoxSelection">
+                        <i class="material-icons">wysiwyg</i>
+                    </button>
+                    <div v-if="showBoxSelection" class="inline-block mt-10 -ml-14 z-40 absolute bg-gray-100 shadow-md">
+                        <ul class="list-style-none p-0">
+                            <li @click="textWrap('<WRAP p-4 bg-blue-500 text-white>', '</WRAP>'); showBoxSelection = false;" class="cursor-pointer py-2 px-4 hover:bg-gray-300 flex items-center"><i class="mr-4 text-blue-500 material-icons">info</i> Infobox</li>
+                            <li @click="textWrap('<WRAP p-4 bg-orange-500 text-white>', '</WRAP>'); showBoxSelection = false;" class="cursor-pointer py-2 px-4 hover:bg-gray-300 flex items-center"><i class="mr-4 text-orange-500 material-icons">warning</i> Warnung</li>
+                            <li @click="textWrap('<WRAP p-4 bg-green-500 text-white>', '</WRAP>'); showBoxSelection = false;" class="cursor-pointer py-2 px-4 hover:bg-gray-300 flex items-center"><i class="mr-4 text-green-500 material-icons">help</i> Hilfe</li>
+                            <li @click="textWrap('<WRAP p-4 bg-gray-500 text-white>', '</WRAP>'); showBoxSelection = false;" class="cursor-pointer py-2 px-4 hover:bg-gray-300 flex items-center"><i class="mr-4 text-gray-500 material-icons">privacy_tip</i> Hinweis</li>
+                            <li @click="textWrap('<WRAP p-4 bg-red-500 text-white>', '</WRAP>'); showBoxSelection = false;" class="cursor-pointer py-2 px-4 hover:bg-gray-300 flex items-center"><i class="mr-4 text-red-500 material-icons">dangerous</i> Fehler</li>
+                        </ul>
+                    </div>
+                    </span>
+                    
+                    <button class="toolbutton button" title="Bibelstelle einfügen"  @click="showVideoSelection = true">
+                        <i class="material-icons">smart_display</i>
                     </button>
                 </div>
             </div>
@@ -84,7 +102,6 @@
         </div>
 
         <div class="input-text max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
-            
             <div class="editor-tags">
                 <label class="label">Zusammenfassung</label>
                 <textarea class="w-full border-2 border-lightgray rounded-tl-md p-4 rounded-br-md outline-none" v-model="page.abstract"></textarea>
@@ -128,6 +145,8 @@
 
         <link-picker v-if="showLinkPicker" @select="insertLink($event); showLinkPicker = false" @close="showLinkPicker = false"/>
 
+        <video-selection v-if="showVideoSelection" @select="insertVideo($event); showVideoSelection = false" @close="showVideoSelection = false"/>
+
         <link-picker v-if="showPageLinkPicker" @select="setPageLink($event); showLinkPicker = false" @close="showPageLinkPicker = false"/>
 
         <bible-picker v-if="showBiblePicker" @select="insertBible($event); showBiblePicker = false" @close="showBiblePicker = false"/>
@@ -143,6 +162,7 @@ import VueShortkey from 'vue-shortkey'
 import InputTag from 'vue-input-tag'
 import axios from 'axios'
 import LinkPicker from './LinkPicker.vue'
+import VideoSelection from './VideoSelection.vue'
 import BiblePicker from './BiblePicker.vue'
 import MediaPicker from './MediaPicker.vue'
 import PageimagePicker from './PageimagePicker.vue'
@@ -158,6 +178,7 @@ export default {
         InputTag,
         LinkPicker,
         MediaPicker,
+        VideoSelection,
         BiblePicker,
         PageimagePicker
     },
@@ -177,6 +198,8 @@ export default {
         showMediaPicker: false,
         showPageImagePicker: false,
         showBiblePicker: false,
+        showBoxSelection: false,
+        showVideoSelection: false,
         templates: [],
         page: {
             abstract: "",
@@ -209,10 +232,16 @@ export default {
         
         textWrap: function(before = '', after = '', plain = '') {
             const selection = this.$refs.cm.codemirror.getSelection()
+            var selectionLength = selection.length; 
             if (selection || !plain) {
                 this.$refs.cm.codemirror.replaceSelection(before + selection + after)
             } else {
                 this.$refs.cm.codemirror.replaceSelection(plain)
+            }
+            if(selection.length == 0) {
+                var curPos = this.$refs.cm.codemirror.getCursor();
+                curPos.ch -= after.length;
+                this.$refs.cm.codemirror.setCursor(curPos)
             }
             this.$refs.cm.codemirror.focus()
         },
@@ -225,6 +254,9 @@ export default {
             const text = title || selection || item.title || item.name
             const link = '[[' + item.id + '|' + text  + ']]'
             this.$refs.cm.codemirror.replaceSelection(link)
+        },
+        insertVideo ({ videoID }) {
+            this.$refs.cm.codemirror.replaceSelection('{{youtube>' + videoID + '?large}}')
         },
         insertBible ( {item}) {
             const selection = this.$refs.cm.codemirror.getSelection()
