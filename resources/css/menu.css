@@ -1,5 +1,5 @@
 .bubble-menu {
-    @apply group inline-block;
+    @apply inline-block;
 }
 
 .bubble-menu:hover > a {
@@ -7,7 +7,7 @@
 }
 
 .bubble-menu > a {
-    @apply bg-secondary relative group-hover:bg-primary group-hover:text-primary-contrast leading-none -mb-3 z-40 rounded-full h-12 w-12 ml-4 flex justify-center items-center;
+    @apply bg-secondary relative leading-none -mb-3 z-40 rounded-full h-12 w-12 ml-4 flex justify-center items-center;
 }
 
 
