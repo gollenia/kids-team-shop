@@ -106,8 +106,7 @@ class Page {
             case "id":
                 global $conf;
                 $id = str_replace(':', "/", $value);
-                $id = str_replace("/start", "", $id);
-                search($data,$conf['datadir'],array('\\Contexis\\Database\\Index','_search'),array(),$id,1,'natural');
+                search($data,$conf['datadir'],array('\\Contexis\\Database\\Index','_pages'),array(),$id,1,'natural');
                 break;
             case "tag":
                 $data = \Contexis\Database\Tag::getPagesByTag($value);
