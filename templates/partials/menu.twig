@@ -2,7 +2,7 @@
 	<div x-data="{ open: false, searchbox: false, newPageModal: false, newPagePath: '{{id}}' }" class="flex flex-col md:items-end md:justify-between md:flex-row">
 
 		<div class="flex justify-between md:items-end flex-row py-1">
-			<div class="-mb-5 ml-4 md:ml-8 z-40">
+			<div class="-mb-5 ml-4 md:ml-8 z-50">
 				<a alt="{{tpl_inc ~ 'public/img/logo.svg'}}" href="/">{% include "partials/logo.twig" with {'size': 70, 'fill': 'fill-primary'} %}</a>
 			</div>
 			{% if ( acl.edit and act == "show" ) %}
@@ -65,14 +65,14 @@
 				
 			</div>
 		
-			<div x-show="searchbox" x-on:keydown.escape="searchbox = false"  @click.away="searchbox = false" style="display: none" class="inset-0 z-30 absolute bg-white text-black border-0 outline-none rounded-tl-m rounded-br-m" >
-				<form style="margin-top: 10px;" class="search-form flex content-end ml-36 relative" action="/start" role="search" id="dw__search" class="searchform">
+			<div x-show="searchbox" x-on:keydown.escape="searchbox = false"  @click.away="searchbox = false" style="display: none" class="inset-0 z-50 absolute bg-white text-black border-0 outline-none rounded-tl-m rounded-br-m" >
+				<form style="margin-top: 14px;" class="search-form flex content-end ml-36 relative" action="/start" role="search" id="dw__search" class="searchform">
 				<input type="hidden" name="do" value="search">
 				<input type="hidden" name="id" value="">
 				
 				<input style="padding-left: 40px !important" class="leading-none flex-grow pl-20 mr-2 outline-none border-2" x-ref="searchInput" name="q" id="qsearch__in" type="text" autofocus>
 				<div class="opacity-50 absolute" style="margin-top: 9px; margin-left: 11px;">{% include "icons/search.twig" with {'size': 20 } %}</div>
-				<button class="leading-none" type="submit" title="Suchen">Suchen</button>
+				<button class="leading-none button primary" type="submit" title="Suchen">Suchen</button>
 				</form>
 			</div>
 			<div x-show="newPageModal" class="modal" style="display:none">
