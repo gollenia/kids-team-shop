@@ -56,5 +56,5 @@
 .description-item { @apply flex py-2 items-center }
 .description-item.img { @apply h-16 w-16 rounded-full mx-0 mr-4}
 
-.section {}
-.section .content { @apply max-w-screen-xl mx-4 md:mx-8 lg:mx-8 xl:mx-auto }
+.section { @apply px-4 md:px-8 py-20 }
+.section .content { @apply max-w-screen-xl mx-auto }
