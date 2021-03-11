@@ -1,14 +1,23 @@
+const colors = require('tailwindcss/colors');
+
 module.exports = {
-  purge: [
+  purge: {
+    enabled: true,
+    mode: 'all',
+    content: [
     './templates/**/*.twig',
-    './resources/css/*.css',
     './resources/vue/*.vue',
     './public/css/*.css',
     '../../plugins/bibleverse/syntax.php'
   ],
+  css: ['./resources/css/*.css'],
+  options: {
+    keyframes: true,
+    blocklist: [/^debug-/]
+  }
+  },
   darkMode: false, // or 'media' or 'class'
   theme: {
-    extend: {
       colors: {
         "primary": {
           contrast: "var(--primary-contrast)",
@@ -25,15 +34,22 @@ module.exports = {
           lighter: "var(--secondary-lighter)",
           DEFAULT: "var(--secondary)",
           darker: "var(--secondary-darker)",
-        }
+        },
+        transparent: 'transparent',
+        current: 'currentColor',
+        black: colors.black,
+        white: colors.white,
+        gray: colors.trueGray,
+        blue: colors.blue,
+        red: colors.rose,
+        yellow: colors.amber,
+        green: colors.green,
       },
       fontFamily: {
         display: ['"Exo 2"', 'sans-serif'],
         body: ['"Exo 2"', 'sans-serif'],
         script: ['"Gochi Hand"', 'sans-serif'],
       },
-      
-    }
   },
   
   variants: {
@@ -42,4 +58,13 @@ module.exports = {
     
   },
   plugins: [],
+  corePlugins: {
+   gradientColorStops: false,
+   divideOpacity: false,
+   ringWidth: false,
+   ringColor: false,
+   ringOpacity: false,
+   ringOffsetWidth: false,
+   ringOffsetColor: false
+  }
 }
