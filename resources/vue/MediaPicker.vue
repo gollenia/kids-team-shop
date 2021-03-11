@@ -1,5 +1,5 @@
 <template>
-    <modal title="Media Manager" box-class="max-w-4xl" @close="$emit('close')">
+    <modal title="Media Manager" box-class="max-w-6xl" @close="$emit('close')">
         <div class="flex space-x-4 text-left" style="min-height: 400px">
             <div class="flex-1 p-4 border-r border-gray-200">
                 <div class="flex items-center cursor-pointer">
@@ -15,7 +15,7 @@
                 />
             </div>
             
-            <div style="flex: 1.5">
+            <div class="divide-solid divide-y divide-gray-300" style="flex: 1.5">
                 <div
                     v-for="(item, i) in list"
                     :key="i"
@@ -32,7 +32,7 @@
             <div class="flex-1 p-4 border-l border-gray-200 flex flex-col">
                 
                 <div class="flex-grow" v-if="file && file.src">
-                    <img :src="file.src" class="block m-auto mb-4" style="max-width: 220px; max-height: 180px;">
+                    <img :src="file.src" class="block m-auto mb-4" style="max-width: 400px; max-height: 250px;">
                     <div class="mb-4">
                         Ausrichtung:<br>
                         <img src="/lib/images/media_align_noalign.png" alt="Keine" title="Keine" class="inline w-6 h-6 ml-1" :class="{ border: align === '' }" @click="align = ''">
@@ -144,7 +144,6 @@ export default {
     cursor: pointer;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #e5e7eb;
     padding: 5px 0;
 }
 .media-file >>> span:first-child {
