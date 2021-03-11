@@ -16,7 +16,7 @@
     <div class="max-w-screen-xl mx-auto">
         <div class="relative inline-block bg-primary-transparent bg-opacity-75 bg-blur  rounded-tr-3xl text-white text-right" style="margin-left: -2000px; padding: 50px 50px 50px 2000px;">
             {% set link = metadata.pagelink|split('|') %}
-            <a class="button button-lg" href="{{tpl_link(link[0])}}">{{link[1]}}</a>
+            <a class="button button-lg absolute secondary top-0 right-0 -mt-6 mr-12" href="{{tpl_link(link[0])}}">{{link[1]}}</a>
             <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script pl-4 md:pl-8 xl:pl-0">{{tpl_pagetitle()}}</div>
         </div>
     </div>
