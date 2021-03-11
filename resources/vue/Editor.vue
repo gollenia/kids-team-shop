@@ -47,13 +47,13 @@
                     <button class="toolbutton button" title="Unterstrichener Text [U]" @click="textWrap('__', '__')" v-shortkey.once="['ctrl', 'i']" @shortkey="textWrap('__', '__')">
                         <i class="material-icons">format_underlined</i>
                     </button>
-                    <button class="toolbutton button" title="Überschrift 1" @click="textWrap('====== ', ' ======')">
+                    <button class="toolbutton button" title="Überschrift 1" v-shortkey.once="['ctrl', 'alt', '1']" @shortkey="textWrap('===== ', ' =====')" @click="textWrap('===== ', ' =====')">
                         <i class="material-icons">filter_1</i>
                     </button>
-                    <button class="toolbutton button" title="Überschrift 2" @click="textWrap('===== ', ' =====')">
+                    <button class="toolbutton button" title="Überschrift 2" v-shortkey.once="['ctrl', 'alt', '2']" @shortkey="textWrap('==== ', ' ====')" @click="textWrap('==== ', ' ====')">
                         <i class="material-icons">filter_2</i>
                     </button>
-                    <button class="toolbutton button" title="Überschrift3" @click="textWrap('==== ', ' ====')">
+                    <button class="toolbutton button" title="Überschrift 3" v-shortkey.once="['ctrl', 'alt', '3']" @shortkey="textWrap('=== ', ' ===')" @click="textWrap('=== ', ' ===')">
                         <i class="material-icons">filter_3</i>
                     </button>
                     <button class="toolbutton button" title="Interner Link [L]" @click="showLinkPicker = true" v-shortkey.once="['ctrl', 'l']" @shortkey="showLinkPicker = true">
@@ -71,10 +71,10 @@
                     <button class="toolbutton button" title="Horizontale Linie" aria-controls="wiki__text" @click="textWrap('\n----\n')">
                         <i class="material-icons">horizontal_rule</i>
                     </button>
-                    <button class="toolbutton button" title="Bilder und andere Dateien hinzufügen"  @click="showMediaPicker = true">
+                    <button class="toolbutton button" title="Bilder und andere Dateien hinzufügen"  v-shortkey.once="['ctrl', 'm']" @shortkey="showMediaPicker = !showMediaPicker" @click="showMediaPicker = true">
                         <i class="material-icons">insert_photo</i>
                     </button>
-                    <button class="toolbutton button" title="Bibelstelle einfügen"  @click="showBiblePicker = true">
+                    <button class="toolbutton button" title="Bibelstelle einfügen"  v-shortkey.once="['ctrl', 'shift', 'b']" @shortkey="showBiblePicker = !showBiblePicker" @click="showBiblePicker = true">
                         <i class="material-icons">menu_book</i>
                     </button>
                     <span>
@@ -84,7 +84,7 @@
                     <div v-if="showBoxSelection" class="inline-block mt-10 -ml-14 z-40 absolute bg-gray-100 shadow-md">
                         <ul class="list-style-none p-0">
                             <li @click="textWrap('<WRAP p-4 bg-blue-500 text-white>', '</WRAP>'); showBoxSelection = false;" class="cursor-pointer py-2 px-4 hover:bg-gray-300 flex items-center"><i class="mr-4 text-blue-500 material-icons">info</i> Infobox</li>
-                            <li @click="textWrap('<WRAP p-4 bg-orange-500 text-white>', '</WRAP>'); showBoxSelection = false;" class="cursor-pointer py-2 px-4 hover:bg-gray-300 flex items-center"><i class="mr-4 text-orange-500 material-icons">warning</i> Warnung</li>
+                            <li @click="textWrap('<WRAP p-4 bg-yellow-500 text-white>', '</WRAP>'); showBoxSelection = false;" class="cursor-pointer py-2 px-4 hover:bg-gray-300 flex items-center"><i class="mr-4 text-orange-500 material-icons">warning</i> Warnung</li>
                             <li @click="textWrap('<WRAP p-4 bg-green-500 text-white>', '</WRAP>'); showBoxSelection = false;" class="cursor-pointer py-2 px-4 hover:bg-gray-300 flex items-center"><i class="mr-4 text-green-500 material-icons">help</i> Hilfe</li>
                             <li @click="textWrap('<WRAP p-4 bg-gray-500 text-white>', '</WRAP>'); showBoxSelection = false;" class="cursor-pointer py-2 px-4 hover:bg-gray-300 flex items-center"><i class="mr-4 text-gray-500 material-icons">privacy_tip</i> Hinweis</li>
                             <li @click="textWrap('<WRAP p-4 bg-red-500 text-white>', '</WRAP>'); showBoxSelection = false;" class="cursor-pointer py-2 px-4 hover:bg-gray-300 flex items-center"><i class="mr-4 text-red-500 material-icons">dangerous</i> Fehler</li>
@@ -92,7 +92,7 @@
                     </div>
                     </span>
                     
-                    <button class="toolbutton button" title="Bibelstelle einfügen"  @click="showVideoSelection = true">
+                    <button class="toolbutton button" title="Youtube-Video einfügen" v-shortkey.once="['ctrl', 'y']" @shortkey="showVideoSelection = !showVideoSelection" @click="showVideoSelection = true">
                         <i class="material-icons">smart_display</i>
                     </button>
                 </div>
@@ -138,7 +138,7 @@
         <div class="bg-primary-light">
             <div class="button-group max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8 text-right">
                 <div><button class="hover:bg-secondary button" @click="cancel">Zurück</button></div>
-                <div><button class="button bg-primary text-white" @click="save">Speichern</button></div>
+                <div><button class="button bg-primary text-white" v-shortkey="['ctrl', 's']" @shortkey="save" @click="save">Speichern</button></div>
             </div>
         </div>
         
@@ -157,7 +157,7 @@
 
 <script>
 import Vue from 'vue'
-import VueCodemirror from './codereflector'
+import VueCodemirror from '../js/codereflector'
 import VueShortkey from 'vue-shortkey'
 import InputTag from 'vue-input-tag'
 import axios from 'axios'
