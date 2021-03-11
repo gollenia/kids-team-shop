@@ -2,31 +2,3 @@
     @apply mr-2;
     width: 16px;
 }
-
-.fileicon.jpg {
-    background-image: url("/lib/tpl/kids-team-shop/public/img/filetypes/jpg.svg");
-}
-
-.fileicon.pdf {
-    background-image: url("/lib/tpl/kids-team-shop/public/img/filetypes/pdf.svg");
-}
-
-.fileicon.zip {
-    background-image: url("/lib/tpl/kids-team-shop/public/img/filetypes/zip.svg");
-}
-
-.fileicon.doc {
-    background-image: url("/lib/tpl/kids-team-shop/public/img/filetypes/doc.svg");
-}
-
-.fileicon.xls {
-    background-image: url("/lib/tpl/kids-team-shop/public/img/filetypes/xls.svg");
-}
-
-.fileicon.ppt {
-    background-image: url("/lib/tpl/kids-team-shop/public/img/filetypes/ppt.svg");
-}
-
-.fileicon.mp3 {
-    background-image: url("/lib/tpl/kids-team-shop/public/img/filetypes/mp3.svg");
-}
