@@ -1,5 +1,5 @@
 import _CodeMirror from 'codemirror'
-import codemirror from './Codemirror.vue'
+import codemirror from '../vue/Codemirror.vue'
 
 const CodeMirror = window.CodeMirror || _CodeMirror
 const install = (Vue, config) => {

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import Editor from './Editor.vue'
+import Editor from '../vue/Editor.vue'
 
 
 if(document.getElementById('vue-editor')) {
