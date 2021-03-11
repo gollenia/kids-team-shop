@@ -5,4 +5,4 @@ mix.js('resources/js/main.js', 'public/js')
         require('tailwindcss'),
     ]);
 
-mix.js('resources/vue/app.js', 'public/js').vue();
+mix.js('resources/js/editor.js', 'public/js').vue();
