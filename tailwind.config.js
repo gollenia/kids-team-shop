@@ -1,21 +1,13 @@
 const colors = require('tailwindcss/colors');
 
 module.exports = {
-  purge: {
-    enabled: true,
-    mode: 'all',
-    content: [
+  purge: [
     './templates/**/*.twig',
     './resources/vue/*.vue',
     './public/css/*.css',
-    '../../plugins/bibleverse/syntax.php'
+    '../../plugins/bibleverse/syntax.php',
+    './resources/css/*.css'
   ],
-  css: ['./resources/css/*.css'],
-  options: {
-    keyframes: true,
-    blocklist: [/^debug-/]
-  }
-  },
   darkMode: false, // or 'media' or 'class'
   theme: {
       colors: {
