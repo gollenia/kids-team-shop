@@ -3,7 +3,7 @@ const colors = require('tailwindcss/colors');
 module.exports = {
   purge: [
     './templates/**/*.twig',
-    './resources/vue/*.vue',
+    './resources/vue/**/*.vue',
     './public/css/*.css',
     '../../plugins/bibleverse/syntax.php',
     './resources/css/*.css'
