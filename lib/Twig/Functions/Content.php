@@ -9,7 +9,7 @@ class Content extends CustomFunctions {
 
     public string $name = "tpl_content";
 
-    public function render($prependTOC) {
+    public function render($prependTOC = false) {
         global $ACT;
         global $INFO;
         $INFO['prependTOC'] = $prependTOC;
