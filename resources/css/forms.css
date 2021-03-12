@@ -9,10 +9,11 @@ form:invalid input[type="submit"] {
     @apply my-8;
   }
   
-input[type="text"], input[type="password"], input[type="email"], select[type="text"] {
+input[type="text"], input[type="password"], input[type="email"], select, select[type="text"] {
     outline: none !important;
     width: 100%;
-    @apply border-2 border-gray-200 rounded-tl-xl rounded-br-xl bg-white duration-300 transition-all ease-in-out text-gray-700 px-4 py-2;
+    @apply border-2 border-gray-200 rounded-tl-xl rounded-br-xl bg-white duration-300 transition-all ease-in-out text-gray-700;
+    padding:  0.5rem 1rem !important;
 }
 
 input[type="text"]:focus, input[type="password"]:focus, input[type="email"]:focus, select:focus {
@@ -57,17 +58,21 @@ input[type="checkbox"]:checked:after {
     margin-left: 10px;
 }
 
-input[type="submit"] {
+input[type="submit"], button[type="submit"] {
     @apply px-4 py-2 bg-primary  text-white font-bold rounded-tl-lg rounded-br-lg cursor-pointer outline-none;
 }
 
-.input-text .label, .input-select label {
+.input-text .label, .input-select label, fieldset .block span {
     @apply inline-block px-4 mx-4 rounded-tl-md  rounded-br-md absolute -mt-2 bg-gray-200 text-black text-sm duration-300 transition-all ease-in-out whitespace-nowrap;
     height: max-content;
 }
 
 .input-text:focus-within .label {
     @apply bg-primary text-primary-contrast;
+}
+
+fieldset {
+    padding-top: 20px !important;
 }
   
   

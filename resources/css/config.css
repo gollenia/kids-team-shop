@@ -2,16 +2,40 @@
     @apply py-4;
 }
 
-#config__manager .outkey {
-    display: none;
+td.label span {
+    display: none!important;
 }
+
+#config__manager div.selection {
+    display: flex !important;
+    @apply flex items-center py-2;
+
+}
+
+#config__manager div.selection input {
+    @apply order-first mr-4;
+}
+
+#config__manager .label {
+    width: 40%;
+    @apply pr-12;
+}
+
+#config__manager .table {
+    width: 100% !important;
+}
+
+#config__manager .value {
+    width: 60%;
+}
+
 
 #config__manager td.label img {
     display: none;
 }
 
 .admin_tasks {
-    @apply grid grid-cols-3 gap-4
+    @apply grid grid-cols-3 gap-4;
 }
 
 .admin_tasks li {
@@ -32,4 +56,57 @@
 .admin_tasks .prompt {
     text-align: center;
     display: block;
+}
+
+
+.extensionList {
+    @apply grid lg:grid-cols-2 gap-12;
+}
+
+.button.enable {
+    @apply bg-primary text-primary-contrast ml-4;
+}
+
+.button.disable {
+    @apply bg-red-500 text-white ml-4;
+}
+
+.extensionList {
+    @apply p-0 list-none;
+}
+
+.extensionList .plugin {
+    @apply flex overflow-hidden shadow-md bg-white flex-col;
+}
+
+.extensionList .screenshot, .extensionList h2 bdi a {
+    display: none;
+}
+
+.extensionList h2 {
+    @apply text-2xl p-4 ;
+}
+
+.extensionList .legend.col > div > p, .extensionList .legend.col > div > div, .extensionList .legend.col > div > span, .extensionList .legend.col > div > a {
+    @apply p-4
+}
+
+.extensionList .legend.col {
+    height: 100%;
+}
+
+.extensionList .permerror {
+    display: none;
+}
+
+.extensionList .actions.col {
+    @apply p-4 bg-gray-200 mt-4;
+}
+
+.panelHeader {
+    @apply mb-8;
+}
+
+fieldset button {
+    float: right;
 }
