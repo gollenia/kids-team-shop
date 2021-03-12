@@ -101,8 +101,15 @@
             <codemirror class="border-r-2 border-l-2 border-b-2 p-4 rounded-br-md bg-white" ref="cm" v-model="page.content" :options="cmOptions" @keyHandled="cmOnKeyHandle($event)"></codemirror>
         </div>
 
-        <div class="input-text max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
-            <div class="editor-tags">
+        <div class=" max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
+            <div class="input-text">
+                <label class="label">Kategorie</label>
+                <input type="text" class="w-full border-2 border-lightgray rounded-tl-md p-4 rounded-br-md outline-none" v-model="page.category">
+            </div>
+        </div>
+
+        <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
+            <div class="input-textarea">
                 <label class="label">Zusammenfassung</label>
                 <textarea class="w-full border-2 border-lightgray rounded-tl-md p-4 rounded-br-md outline-none" v-model="page.abstract"></textarea>
             </div>
@@ -110,7 +117,7 @@
         
         
         
-        <div class="input-text max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
+        <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
             
             <div class="editor-tags input-text">
                 <label class="label">Schlagworte</label>
@@ -157,7 +164,7 @@
 
 <script>
 import Vue from 'vue'
-import VueCodemirror from '../js/codereflector'
+import VueCodemirror from '../../js/codereflector'
 import VueShortkey from 'vue-shortkey'
 import InputTag from 'vue-input-tag'
 import axios from 'axios'
@@ -207,6 +214,7 @@ export default {
             date: "",
             template: "",
             exclude: "",
+            category: "",
             id: "start",
             pagelink: "",
             minor_change: false,
@@ -331,6 +339,15 @@ export default {
             })
 
             window.location.href = '/?id=' + window.DOKU_ID;
+        },
+        setCategory() {
+            var nsLength = this.page.id.split(":").length
+            if (nsLength > 2 && this.page.category == "") {
+                var category = this.page.id.split(":")[this.page.id.split(":").length - 2 ];
+                category = category.charAt(0).toUpperCase() + category.slice(1)
+                category = category.replace("_", " ");
+                this.page.category = category;
+            }
         }
     },
     async created () {
@@ -348,6 +365,9 @@ export default {
             .then(response => {
                 this.templates = response.data
         });
+
+        this.setCategory();
+        
     }
 };
 </script>

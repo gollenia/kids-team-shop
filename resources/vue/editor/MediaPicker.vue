@@ -19,7 +19,7 @@
                 <div
                     v-for="(item, i) in list"
                     :key="i"
-                    class="media-file"
+                    class="media-file flex cursor-pointer items-center py-4"
                     
                 >
                     <span @click="file = item"><img v-if="['jpg', 'jpeg', 'png'].includes(item.extension)" :src="item.src"/>
@@ -140,12 +140,6 @@ export default {
 </script>
 
 <style scoped>
-.media-file {
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    padding: 5px 0;
-}
 .media-file >>> span:first-child {
     width: 60px;
     padding-right: 12px;
