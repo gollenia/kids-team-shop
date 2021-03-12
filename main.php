@@ -15,7 +15,6 @@ global $INPUT;
 
 $site = new Site();
 $route = new Router(Config::load("routes"));
-
 $controller = Controller::get($route->get(), $site);
 
 
