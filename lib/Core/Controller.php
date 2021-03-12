@@ -15,7 +15,7 @@ interface ControllerInterface {
 class Controller implements ControllerInterface {
 
     public Site $site;
-    public $template = "show";
+    public $template = "default";
 
     public function __construct(Site $site)
     {
@@ -28,8 +28,9 @@ class Controller implements ControllerInterface {
      * @return string renderer result
      */
     public function render() {
+        global $ACT;
         $template = $this->template;
-
+        
         if (empty($template)) {
             $template = strtolower(end(explode("\\", get_class($this))));
         }
