@@ -22,3 +22,7 @@ a.wikilink1, a.urlextern {
 div.content > h1:first-of-type {
     display: none;
 }
+
+iframe {
+    @apply my-10;
+}
