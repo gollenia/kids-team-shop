@@ -111,7 +111,7 @@ class BibleView extends Controller implements ControllerInterface {
         $articles = \Contexis\Models\Page::where("tag", $bible->short_name);
         $articles_chapter = \Contexis\Models\Page::where("tag", $bible->short_name . $path[2]);
         
-        $this->site->add_data("articles", $articles);
+        $this->site->add_data("articles", array_merge($articles, $articles_chapter));
     
         return Renderer::compile("pages/bible.twig", $this->site->get());
     }
