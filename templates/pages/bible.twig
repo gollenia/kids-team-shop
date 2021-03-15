@@ -16,7 +16,7 @@
         </div>
     </div>
     </header>
-    <article class="bg-lightgray-lighter px-4 md:px-8 xl:px-0 py-8 relative " x-data="{selectChapter: false, selectBook: false}">
+    <article class="bg-gray-200 px-4 md:px-8 xl:px-0 py-8 relative " x-data="{selectChapter: false, selectBook: false}">
         <section class="content max-w-screen-xl mx-auto">
              {% if id == "bibel:start" %}
                 {{ tpl_content(false) }}
@@ -25,20 +25,20 @@
                     <div class="col-span-2 relative">
                         <nav class="flex  gap-2 mb-10">
                             {% if bible.chapter == 1 %} 
-                                <span class="bg-gray-200 leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons text-gray-400">keyboard_arrow_left</i></span>
+                                <span class="bg-gray-300 leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons text-gray-400">keyboard_arrow_left</i></span>
                             {% else %}
-                                <a href="/{{bible.base}}/{{bible.book.short_name}}/{{bible.chapter -1}}"  class="bg-gray-200 text-black hover:bg-primary hover:text-white leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons">keyboard_arrow_left</i></a>
+                                <a href="/{{bible.base}}/{{bible.book.short_name}}/{{bible.chapter -1}}"  class="bg-gray-300 text-black hover:bg-primary hover:text-white leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons">keyboard_arrow_left</i></a>
                             {% endif %}
-                            <a href="#" @click="selectChapter = true" :class="{ 'bg-gray-500 text-white': selectChapter, 'bg-gray-200': !selectChapter }" class="hover:bg-primary hover:text-white mx-4 h-4 rounded-full h-12 flex-grow flex justify-center items-center">Kapitel {{bible.chapter}}</a>
+                            <a href="#" @click="selectChapter = true" :class="{ 'bg-gray-500 text-white': selectChapter, 'bg-gray-300': !selectChapter }" class="hover:bg-primary hover:text-white mx-4 h-4 rounded-full h-12 flex-grow flex justify-center items-center">Kapitel {{bible.chapter}}</a>
                             <div @click.away="selectChapter = false" style="display: none; margin-top: 55px" class="rounded-tl-lg rounded-br-lg z-20 shadow-lg p-4 bg-white flex absolute w-50 flex-wrap" x-show="selectChapter">
                             {% for chapter in 1..bible.book.chapters %}
                                 <a href="/{{bible.base}}/{{bible.book.short_name}}/{{chapter}}"  class="m-2 {{bible.chapter == chapter ? "bg-gray-500 text-white" : "bg-gray-200 hover:bg-primary hover:text-white"}}   leading-none rounded-full h-12 w-12 flex justify-center items-center">{{chapter}}</a>
                             {% endfor %}
                             </div>
                             {% if bible.chapter == bible.book.chapters %} 
-                            <span class="bg-gray-200 leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons text-gray-400">keyboard_arrow_right</i></span>
+                            <span class="bg-gray-300 leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons text-gray-400">keyboard_arrow_right</i></span>
                             {% else %}
-                            <a href="/{{bible.base}}/{{bible.book.short_name}}/{{bible.chapter +1}}"  class="bg-gray-200 hover:bg-primary hover:text-white leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons">keyboard_arrow_right</i></a>
+                            <a href="/{{bible.base}}/{{bible.book.short_name}}/{{bible.chapter +1}}"  class="bg-gray-300 hover:bg-primary hover:text-white leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons">keyboard_arrow_right</i></a>
                             {% endif %}
                             </nav>
                         {% for verse in bible.verses %}
@@ -47,26 +47,38 @@
                         {% endfor %}
                     </div>
                     <div class="">
-                    <nav class="flex mb-10">
+                    <nav class="flex mb-10 relative">
                             {% if bible.book.number == 1 %} 
-                                <span class="bg-gray-200 leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons text-gray-400">keyboard_arrow_left</i></span>
+                                <span class="bg-gray-300 leading-none rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons text-gray-400">keyboard_arrow_left</i></span>
                             {% else %}
-                                <a href="/{{bible.base}}/{{all_books[bible.book.number - 2].short_name}}/1"  class="leading-none bg-gray-200 hover:bg-primary hover:text-white rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons">keyboard_arrow_left</i></a>
+                                <a href="/{{bible.base}}/{{all_books[bible.book.number - 2].short_name}}/1"  class="leading-none bg-gray-300 hover:bg-primary hover:text-white rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons">keyboard_arrow_left</i></a>
                             {% endif %}
-                                <a href="#" class="mx-4 h-4 bg-lightgray rounded-full h-12 flex-grow flex justify-center items-center">{{bible.book.long_name}}</a>
+                                <a href="#" @click="selectBook = true" :class="{ 'bg-gray-500 text-white': selectBook, 'bg-gray-300': !selectBook }" class="mx-4 h-4 bg-gray-300 rounded-full h-12 flex-grow flex justify-center items-center">{{bible.book.long_name}}</a>
+                                <div @click.away="selectBook = false" style="display: none; margin-top: 55px" class="rounded-tl-lg rounded-br-lg z-20 shadow-lg p-4 bg-white flex absolute w-50 flex-wrap" x-show="selectBook">
+                                {% for book in all_books %}
+                                    <a href="/{{bible.base}}/{{book.short_name}}/1"  class="m-2 {{bible.book.short_name == book.short_name ? "bg-gray-500  text-white" : "bg-gray-200 hover:bg-primary hover:text-white"}} px-2 py-1  leading-none text-xs rounded-tl-lg rounded-br-lg flex justify-center items-center">{{book.long_name}}</a>
+                                {% endfor %}
+                                </div>
                             {% if bible.book.number == 66 %} 
-                            <span class="bg-gray-200 leading-none rounded-full h-12 w-12  flex justify-center items-center"><i class="material-icons text-gray-400">keyboard_arrow_right</i></span>
+                            <span class="bg-gray-300 leading-none rounded-full h-12 w-12  flex justify-center items-center"><i class="material-icons text-gray-400">keyboard_arrow_right</i></span>
                             {% else %}
-                            <a href="/{{bible.base}}/{{all_books[bible.book.number].short_name}}/1"  class="leading-none bg-gray-200 hover:bg-primary hover:text-white rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons">keyboard_arrow_right</i></a>
+                            <a href="/{{bible.base}}/{{all_books[bible.book.number].short_name}}/1"  class="leading-none bg-gray-300 hover:bg-primary hover:text-white rounded-full h-12 w-12 flex justify-center items-center"><i class="material-icons">keyboard_arrow_right</i></a>
                             {% endif %}
                             </nav>
                         {% if articles %}
-                        <div class="bg-gray-200 p-8 ">
-                            <h4>Artikel zu {{bible.book.long_name}}</h4>
+                        <div class="bg-white p-0 shadow-md">
+                            <h4 class="p-4">Artikel zu {{bible.book.long_name}}</h4>
                             {% for article in articles %}
-                                <a href="?id={{article.id}}" class="uk-display-block uk-padding uk-card uk-card-white">
-                                    <h5>{{article.title}}</h5>
-                                    <p>{{article.desc}}</p>
+                                <a href="?id={{article.id}}" class="p-4 flex items-center border-t border-gray-200 hover:bg-gray-50">
+                                    {% if article.thumbnail %}<img src="{{ml(article.thumbnail)}}" alt="" class="h-12 w-12 mr-4">{% else %}
+                                    <div class="rounded-full mr-4 h-12 w-12 bg-secondary grid place-items-center">
+                                    <span class="text-2xl material-icons opacity text-primary opacity-30">description</span>
+                                    </div>
+                                    {% endif%}
+                                    <div class="block">
+                                        <h6>{{article.title}}</h6>
+                                        <span class="text-gray-400">{{article.desc|slice(25)}}</span>
+                                    </div>
                                 </a>
                             {% endfor %}
                         </div>
