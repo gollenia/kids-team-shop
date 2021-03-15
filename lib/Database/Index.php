@@ -25,7 +25,20 @@ class Index {
 		$id = $ajax->str('id', 'none');
 		return json_encode(cleanID($id));
 	}
+
+	function getMetaOccurences($key, $value) {
+		
+	}
 	
+
+	function getMetaValues($key, $namespaces = NULL, $recursive = NULL) {
+        // map with trim here in order to remove newlines from tags
+        return array_map('trim', idx_getIndex('subject', '_w'));
+    }
+
+	function _tagCompare($tag1, $tag2) {
+        return $tag1 === $tag2;
+    }
 	
     public function get() {
         global $conf;
