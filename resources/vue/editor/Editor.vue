@@ -36,7 +36,7 @@
         </div>
 
         <div class="editor max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
-            <div class="mt-4 px-4 bg-gray-200 rounded-tl-md">
+            <div class="mt-4 px-4 bg-gray-200 rounded-tl-xl">
                 <div class="tool__bar" role="toolbar">
                     <button class="toolbutton button" title="Fetter Text [B]" @click="textWrap('**', '**')" v-shortkey.once="['ctrl', 'b']" @shortkey="textWrap('**', '**')">
                         <i class="material-icons">format_bold</i>
@@ -98,7 +98,7 @@
                 </div>
             </div>
 
-            <codemirror class="border-r-2 border-l-2 border-b-2 p-4 rounded-br-md bg-white" ref="cm" v-model="page.content" :options="cmOptions" @keyHandled="cmOnKeyHandle($event)"></codemirror>
+            <codemirror class="border-r-2 border-l-2 border-b-2 p-4 rounded-br-xl bg-white" ref="cm" v-model="page.content" :options="cmOptions" @keyHandled="cmOnKeyHandle($event)"></codemirror>
         </div>
 
         <div class=" max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
@@ -118,27 +118,29 @@
         
         
         <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
-            
             <div class="editor-tags input-text">
                 <label class="label">Schlagworte</label>
                 <input-tag v-model="page.tags" :before-adding="tag => tag.toLowerCase().replace(' ', '_')" placeholder="Tag hinzufügen"></input-tag>
             </div>
         </div>
 
-        <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
-            
-            <div class="input-text">
-                <label class="label">Download-Ausnahmen</label>
-                <input type="text" class="w-full border-2 outline-none" v-model="page.exclude" required>
-            </div>
-            <p class="text-xs">Hier können Dateinnamen oder Muster angegeben werden, die nicht in der Downloadliste erscheinen sollen. Mit *.jpg können zb alle Bilder ausgeblendet werden.</p>
-        </div>
+        <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8 grid grid-cols-2 gap-12">
 
-        <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
-            
-            <div class="input-text">
-                <label class="label">Seitenlink</label>
-                <input type="text" @click="showPageLinkPicker = true" class="w-full border-2 outline-none" v-model="page.pagelink" required>
+            <div class="">
+                
+                <div class="input-text">
+                    <label class="label">Download-Ausnahmen</label>
+                    <input type="text" class="w-full border-2 outline-none" v-model="page.exclude" required>
+                </div>
+                <p class="text-xs">Hier können Dateinnamen oder Muster angegeben werden, die nicht in der Downloadliste erscheinen sollen. Mit *.jpg können zb alle Bilder ausgeblendet werden.</p>
+            </div>
+
+            <div class="">
+                
+                <div class="input-text">
+                    <label class="label">Seitenlink</label>
+                    <input type="text" @click="showPageLinkPicker = true" class="w-full border-2 outline-none" v-model="page.pagelink" required>
+                </div>
             </div>
         </div>
 
@@ -264,7 +266,7 @@ export default {
             this.$refs.cm.codemirror.replaceSelection(link)
         },
         insertVideo ({ videoID }) {
-            this.$refs.cm.codemirror.replaceSelection('{{youtube>' + videoID + '?large}}')
+            this.$refs.cm.codemirror.replaceSelection('{{youtube>' + videoID + '?800x400}}')
         },
         insertBible ( {item}) {
             const selection = this.$refs.cm.codemirror.getSelection()
