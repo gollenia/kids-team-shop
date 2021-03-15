@@ -83,3 +83,27 @@ section .content { @apply max-w-screen-xl mx-auto }
 .modal-footer {
     @apply px-8 py-4 bg-gray-200;
 }
+
+.box {
+    @apply my-10 p-4
+}
+
+.box.warning {
+    @apply bg-yellow-200 text-yellow-900
+}
+
+.box.info {
+    @apply bg-blue-200 text-blue-900
+}
+
+.box.error {
+    @apply bg-red-400 text-red-100
+}
+
+.box.tip {
+    @apply bg-gray-700 text-gray-100
+}
+
+.box.helo {
+    @apply bg-green-200 text-green-900
+}
