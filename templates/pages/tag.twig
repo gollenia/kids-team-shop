@@ -34,17 +34,19 @@
                 <div class="content max-w-screen-xl mx-auto">
                     <div class="grid grid-cols-3 gap-8">
                     {% for page in pages %}
-                        <a class="card hover image-top bg-white" href="{{page.link}}">
+                        <a class="card overflow-visible relative hover image-top bg-white" href="{{page.link}}">
                             {% if page.pageimage %}<img class="object-cover h-64 w-full" src="{{ml(page.pageimage, 500)}}">
                             {% else %}
-                            <div class="h-64 bg-primary-light"></div>
+                            <div class="h-64 bg-secondary grid place-items-center">
+                                <span class="text-9xl material-icons opacity text-primary opacity-30">description</span>
+                            </div>
                             {% endif %}
+                            {% if page.category %}<div class="inline-block absolute right-0 -mt-4 bg-gray-800 text-white px-4 mr-4 rounded-tl-xl rounded-br-xl">{{page.category}}</div>{% endif %}
                             <div class="p-4">
-                                <div class="text-primary font-bold">{{page.title}}</div>
+                            
+                                <div class="text-primary mt-4 font-bold">{{page.title}}</div>
                                 {% if page.abstract is not  empty %}
                                     <div>{{page.abstract|striptags|slice(0, 100)}}...</div>
-                                {% else %}
-                                    <div>{{page.description|striptags|slice(0, 100)}}...</div>
                                 {% endif %}
                             </div>
                         </a>
