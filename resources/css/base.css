@@ -104,6 +104,7 @@ section .content { @apply max-w-screen-xl mx-auto }
     @apply bg-gray-700 text-gray-100
 }
 
-.box.helo {
+.box.help {
     @apply bg-green-200 text-green-900
 }
+
