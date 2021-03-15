@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="{{conf.lang}}" dir="{{lang.direction}}">
+
+{% include "partials/head.twig" with {'colors': colors} %}
+
+<body class="font-body antialiased mr-4 lg:mr-10 lg:text-lg {{tld}} {{ tpl_classes }} {{ metadata.subject|join(" ") }}">
+    
+    {% include "partials/menu.twig" with {'menu': menu} %}
+    
+    <header class="bg-secondary relative" style="padding-top: 30vh;">
+    {% include "partials/breadcrumbs.twig" with {'breadcrumbs': breadcrumbs} %}
+    {% if pageimage %}<img class="object-cover absolute inset-0 w-full h-full" src={{ ml(pageimage, 2000) }}>
+    {% else %}
+        <img class="object-cover absolute inset-0 w-full h-full" src={{ ml(":background.jpg", 2000) }}>
+    {% endif %}
+    <div class="max-w-screen-xl mx-auto">
+        <div class="relative inline-block bg-primary-transparent bg-opacity-75 bg-blur  rounded-tr-3xl text-white text-right" style="margin-left: -2000px; padding: 50px 50px 50px 2000px;">
+            <div class="text-3xl ml-4 lg:ml-0 lg:text-5xl xl:mr-0 font-script pl-4 md:pl-8 xl:pl-0">{{tpl_pagetitle()}}</div>
+        </div>
+    </div>
+    </header>
+
+    <article class="bg-gray-100 ">
+        
+        <section>
+            <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
+                {% if tags is not empty %}    
+                    <h4>Schlagworte</h4>
+                    <div>
+                    {% for tag in tags %}
+                        <a class="bg-gray-600 ml-2 px-2 py-1 text-primary-contrast hover:bg-primary rounded-tl rounded-br" href="/tag/{{tag}}">{{tag|title}}</a>
+                    {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+        
+            
+        <div class="clear-both"></div>
+        
+    </article>
+
+    {% include "partials/footer.twig" %}
+
+    <script>DOKU_TPL = "{{tpl_basedir}}";</script>
+    <script src="{{tpl_basedir}}/public/js/main.js" type="text/javascript"></script>
+    {{ tpl_indexerWebBug() }}
+</body>
+</html>
