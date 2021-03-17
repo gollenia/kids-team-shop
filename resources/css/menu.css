@@ -1,5 +1,6 @@
 .bubble-menu {
-    @apply inline-block;
+    @apply inline-block mt-12 md:mt-0;
+    
 }
 
 .bubble-menu:hover > a {
