@@ -52,7 +52,7 @@ button, .button { @apply transition duration-300 ease-in-out relative rounded-tl
 .card.image-bottom { @apply flex-col-reverse }
 .card.image-top img.card-image, card-image-bottom img.card-image { @apply object-cover h-64 w-full }
 .card.image-left img.card-image, card-image-right img.card-image { @apply object-cover w-64 self-stretch }
-.card-content  { @apply flex flex-col h-full w-full flex-grow p-4 md:p-6 }
+.card-content  { @apply flex flex-col w-full flex-grow p-4 md:p-6 }
 .card.image-replacement { @apply h-64 w-full  bg-primary }
 .card.first { @apply rounded-tl-lg}
 .card.last { @apply rounded-br-lg}
