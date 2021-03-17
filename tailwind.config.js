@@ -53,6 +53,8 @@ module.exports = {
   corePlugins: {
    gradientColorStops: false,
    divideOpacity: false,
+   divideColor: false,
+   divide: false,
    ringWidth: false,
    ringColor: false,
    ringOpacity: false,
