@@ -17,3 +17,13 @@
 h1#suche {
     display: none;
 }
+
+#qsearch__in {
+    background: transparent !important;
+    @apply text-white md:text-black;
+}
+
+#qsearch__in:focus + .search-icon {
+    background: transparent !important;
+    @apply text-primary;
+}

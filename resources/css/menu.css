@@ -1,5 +1,13 @@
+.menu-item {
+    @apply  text-white md:text-gray-900 text-xl md:text-lg flex flex-row items-center w-full px-4 py-4 md:py-1 font-semibold text-left bg-transparent md:rounded-tl-xl md:rounded-br-xl md:hover:bg-primary md:hover:text-primary-contrast md:w-auto md:flex md:mt-0 md:ml-4 cursor-pointer;
+}
+
+.menu-item .open {
+    transform: rotateX(180deg)
+}
+
 .bubble-menu {
-    @apply inline-block mt-12 md:mt-0;
+    @apply inline-block;
     
 }
 

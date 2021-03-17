@@ -1,4 +1,4 @@
-<div class="sticky top-0 bg-white z-40 right-0 left-0 pt-4">
+<div class="fixed top-0 bg-white z-40 right-0 left-0 mr-4 lg:mr-10 pt-4">
 	<div x-data="{ open: false, searchbox: false, newPageModal: false, newPagePath: '{{id}}' }" class="flex flex-col md:items-end md:justify-between md:flex-row">
 
 		<div class="flex justify-between md:items-end flex-row py-1">
@@ -40,41 +40,43 @@
 			
 			</div>
 
-			<div>
-				
-				<nav :class="{'flex': open, 'hidden': !open}" class="h-full md:h-auto flex-col flex-grow hidden pb-4 ml-6 md:ml-0 mt-8 md:mt-0 md:md-0 md:pb-0 md:flex md:justify-end md:flex-row">
+			<div :class="{'flex': open, 'hidden md:flex': !open}" class="w-full h-screen bg-opacity-90 bg-gray-600 py-12 px-4 mt-14 md:mt-0 md:p-0 bg-blur md:bg-white absolute md:static md:h-auto flex-col md:flex-row">
+				<div x-show="searchbox || open" x-on:keydown.escape="searchbox = false"  @click.away="searchbox = false" style="display: none" class="md:-mt-5 md:inset-0 z-50 md:absolute md:bg-white text-black border-0 outline-none rounded-tl-m rounded-br-m" >
+						<form class="search-form flex md:content-end md:ml-36 relative" action="/start" role="search" id="dw__search" class="searchform">
+						<input type="hidden" name="do" value="search">
+						<input type="hidden" name="id" value="">
+						
+						<input style="padding-left: 40px !important" class="leading-none flex-grow pl-20 mr-2 outline-none border-2" x-ref="searchInput" name="q" id="qsearch__in" type="text" autofocus>
+						<div class="absolute search-icon" style="margin-top: 9px; margin-left: 11px;"><i class="material-icons text-white md:text-gray-900">search</i></div>
+						<button class="leading-none button primary hidden md:inline-block" type="submit" title="Suchen">Suchen</button>
+						</form>
+				</div>
+				<nav x-show="!searchbox" class="flex-col flex-grow pb-4 md:p-0 md:ml-6 md:ml-0 md:mt-0 md:pb-0 md:flex md:justify-end md:flex-row flex">
 				{% if menu %}
 				{% for item in menu %}
 					{% if item.children %}
 						{% include "partials/menu-dropdown.twig" with {'menu': item.children} %}
 					{% else %}
 				
-						<a href="/{{item.link}}" class="lg:text-lg rounded-tl-xl rounded-br-xl hover:bg-lightgray px-4 py-1 font-semibold md:mt-0 {% if (item.current or item.current_item_ancestor) %}bg-lightgray{% endif %}">
-							{{item.title}}
+						<a href="/{{item.link}}" class="menu-item {% if (item.current or item.current_item_ancestor) %}bg-gray-200{% endif %}">
+							<i class="material-icons md:hidden mr-4">{{item.icon}}</i>{{item.title}}
 						</a>
 						
 				
 					{% endif %} 
 				{% endfor %}
 					
-						<a href="#" @click="searchbox = true; $nextTick(() => { setTimeout(() => { document.getElementById('qsearch__in').focus(); }, 300);});" 
-						class=" items-center flex lg:text-lg rounded-tl-xl rounded-br-xl hover:bg-lightgray px-4 py-1 font-semibold md:mt-0">{% include "icons/search.twig" with {'size': 20 } %} </a>
+				</nav>	
 					
 				{% endif %}
-				</nav>
+					
+					<a href="#" @click="searchbox = true; $nextTick(() => { setTimeout(() => { document.getElementById('qsearch__in').focus(); }, 300);});" 
+						class=" items-center flex lg:text-lg md:rounded-tl-xl md:rounded-br-xl hover:bg-gray-200 px-4 py-2 md:py-1 font-semibold md:mt-0"><i class="material-icons text-white md:text-gray-900">search</i> </a>
+				
 				
 			</div>
 		
-			<div x-show="searchbox" x-on:keydown.escape="searchbox = false"  @click.away="searchbox = false" style="display: none" class="inset-0 z-50 absolute bg-white text-black border-0 outline-none rounded-tl-m rounded-br-m" >
-				<form style="margin-top: 14px;" class="search-form flex content-end ml-36 relative" action="/start" role="search" id="dw__search" class="searchform">
-				<input type="hidden" name="do" value="search">
-				<input type="hidden" name="id" value="">
-				
-				<input style="padding-left: 40px !important" class="leading-none flex-grow pl-20 mr-2 outline-none border-2" x-ref="searchInput" name="q" id="qsearch__in" type="text" autofocus>
-				<div class="opacity-50 absolute" style="margin-top: 9px; margin-left: 11px;">{% include "icons/search.twig" with {'size': 20 } %}</div>
-				<button class="leading-none button primary" type="submit" title="Suchen">Suchen</button>
-				</form>
-			</div>
+			
 			<div x-show="newPageModal" class="modal" style="display:none">
 				
 				<div class="modal-window" @click.away="newPageModal = false">
