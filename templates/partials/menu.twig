@@ -1,7 +1,7 @@
 <div class="fixed top-0 bg-white z-40 right-0 left-0 mr-4 lg:mr-10 h-20">
 	<div x-data="{ open: false, searchbox: false, newPageModal: false, newPagePath: '{{id}}' }" class="flex flex-col h-full md:items-end md:justify-between md:flex-row">
 
-		<div class="flex justify-between md:items-end flex-row py-1">
+		<div class="flex justify-between h-full items-end flex-row py-1">
 			<div class="-mb-5 ml-4 md:ml-8 z-50">
 				<a alt="{{tpl_inc ~ 'public/img/logo.svg'}}" href="/">{% include "partials/logo.twig" with {'size': 70, 'fill': 'fill-primary'} %}</a>
 			</div>
@@ -40,7 +40,7 @@
 			
 			</div>
 
-			<div :class="{'flex': open, 'hidden md:flex': !open}" class="w-full h-screen bg-opacity-90 bg-gray-600 py-12 px-4 mt-14 md:mt-0 md:p-0 bg-blur md:bg-white absolute md:static md:h-auto flex-col md:flex-row">
+			<div :class="{'flex': open, 'hidden md:flex': !open}" class="w-full h-screen bg-opacity-90 bg-gray-600 py-12 px-4 mt-20 md:mt-0 md:p-0 bg-blur md:bg-white absolute md:static md:h-auto flex-col md:flex-row">
 				<div x-show="searchbox || open" x-on:keydown.escape="searchbox = false"  @click.away="searchbox = false" style="display: none" class="md:-mt-5 md:inset-0 z-50 md:absolute md:bg-white text-black border-0 outline-none rounded-tl-m rounded-br-m" >
 						<form class="search-form flex md:content-end md:ml-36 relative" action="/start" role="search" id="dw__search" class="searchform">
 						<input type="hidden" name="do" value="search">
