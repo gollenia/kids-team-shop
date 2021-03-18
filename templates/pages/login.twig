@@ -20,7 +20,7 @@
         <div class="max-w-screen-xl mx-auto">
             {# {{ tpl_content(false) }} #}
                     <div class="container md:w-6/12 mx-auto my-8">
-                        <form id="dw__login" action="/{{id|split(':')|join('/')}}/" method="post" accept-charset="utf-8"><div class="no">
+                        <form id="dw__login" action="{{wl(id)}}" method="post" accept-charset="utf-8"><div class="no">
                             <input type="hidden" name="sectok" value="">
                             <input type="hidden" name="id" value="{{id}}">
                             <input type="hidden" name="do" value="login">
@@ -40,7 +40,7 @@
                                 </label>
                                 <div class="flex justify-end my-6 button-group">
                                     <div><a class="button minor" href="/start?do=resendpwd" rel="nofollow" class="resendpwd">Passwort vergessen?</a></div>
-                                    <div><button class="button primary" type="submit">Anmelden</button></div>
+                                    <div><button class="button primary" type="submit" value="1">Anmelden</button></div>
                                 </div>
                             </fieldset>
 
