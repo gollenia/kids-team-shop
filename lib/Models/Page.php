@@ -15,6 +15,7 @@ class Page {
     public string $link = "";
     public string $exclude = "";
     public string $category = "";
+    public string $icon = "";
     public string $template = "";
     public string $pagelink = "";
     public string $date;
@@ -43,6 +44,7 @@ class Page {
         $instance->tags = p_get_metadata($id, 'subject') ? p_get_metadata($id, 'subject') : [];
         $instance->title = p_get_metadata($id, 'title') ?: '';
         $instance->pageimage = p_get_metadata($id, 'pageimage') ?: '';
+        $instance->icon = p_get_metadata($id, 'icon') ?: '';
         $instance->category = p_get_metadata($id, 'category') ?: '';
         $instance->pagelink = p_get_metadata($id, 'pagelink') ?: '';
         $instance->user = p_get_metadata($id, 'user');
@@ -146,6 +148,7 @@ class Page {
         p_set_metadata($this->id, ['title' => $this->title]);
         p_set_metadata($this->id, ['pagelink' => $this->pagelink]);
         p_set_metadata($this->id, ['category' => $this->category]);
+        p_set_metadata($this->id, ['icon' => $this->icon]);
         p_set_metadata($this->id, ['template' => $this->template]);
         p_set_metadata($this->id, ['exclude' => $this->exclude]);
         idx_addPage($this->id, false, true);

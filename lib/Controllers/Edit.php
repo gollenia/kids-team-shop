@@ -34,10 +34,11 @@ class Edit extends Controller implements ControllerInterface {
         $page = Page::findOrNew($data->id);
         $page->content = cleanText($data->content);
         $page->abstract = cleanText($data->abstract);
-        $page->tags = $data->tags;
+        $page->tags =  cleanText($data->tags);
         $page->pageimage = cleanText($data->pageimage);
         $page->category = cleanText($data->category);
         $page->pagelink = cleanText($data->pagelink);
+        $page->icon = strtolower(str_replace(" ", "_", cleanText($data->icon)));
         $page->exclude = cleanText($data->exclude);
         $page->template = cleanText($data->template);
         $page->title = cleanText($data->title);

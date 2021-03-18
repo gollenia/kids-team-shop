@@ -101,12 +101,24 @@
             <codemirror class="border-r-2 border-l-2 border-b-2 p-4 rounded-br-xl bg-white" ref="cm" v-model="page.content" :options="cmOptions" @keyHandled="cmOnKeyHandle($event)"></codemirror>
         </div>
 
-        <div class=" max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
-            <div class="input-text">
-                <label class="label">Kategorie</label>
-                <input type="text" class="w-full border-2 border-lightgray rounded-tl-md p-4 rounded-br-md outline-none" v-model="page.category">
+        <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8 grid grid-cols-2 gap-12">
+            <div class="">
+                <div class=" max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
+                    <div class="input-text">
+                        <label class="label">Kategorie</label>
+                        <input type="text" class="w-full border-2 border-lightgray rounded-tl-md p-4 rounded-br-md outline-none" v-model="page.category">
+                    </div>
+                </div>
             </div>
-        </div>
+            <div>
+                <div class=" max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
+                    <div class="input-text">
+                        <label class="label">Icon</label>
+                        <input type="text" class="w-full border-2 border-lightgray rounded-tl-md p-4 rounded-br-md outline-none" v-model="page.icon">
+                        <p class="text-xs">Ein beliebiges Icon von <a href="https://fonts.google.com/icons">https://fonts.google.com/icons</a> aus dem "Filled"-Set. Bitte den Namen Kleingeschrieben und mit Unterstrichen angeben</p>
+                    </div>
+                </div>
+            </div>
 
         <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8">
             <div class="input-textarea">
