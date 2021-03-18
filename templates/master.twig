@@ -11,7 +11,7 @@
     {{ tpl_favicon|raw }}
 </head>
 
-<body class="font-body antialiased mr-4 lg:mr-10 lg:text-lg {{ tpl_classes }}">
+<body class="font-body antialiased mr-4 pt-20 lg:mr-10 lg:text-lg {{ tpl_classes }}">
     <div class="logo-image"><a href="/"><img data-src="{{ tpl_basedir }}/public/img/logo.svg" class="ctx-logo-image" uk-svg width="70" height="70px"></a></div>
     {% include "partials/menu.twig" with {'menu': menu} %}
     {% include "partials/breadcrumbs.twig" with {'breadcrumbs': breadcrumbs} %}
