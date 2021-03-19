@@ -15,7 +15,7 @@ footer h4 {
     float: right;
 }
 
-a.wikilink1, a.urlextern {
+a.wikilink1, a.wikilink2, a.urlextern {
     color: var(--primary);
 }
 
