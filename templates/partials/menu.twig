@@ -34,9 +34,13 @@
 			{% else %}
 				<a href="/" class="pl-4 hidden whitespace-nowrap md:inline-block font-semibold  text-gray-900">{{ conf.tagline }}</a>
 			{% endif %}
-			<a class="md:hidden flex-1 text-right align-end pt-5 pr-2" @click="open = !open">
-				<span class="material-icons">menu</span>
-			</a>
+			<div class="md:hidden flex-1 text-right align-end pt-5 pr-2" >
+				<button @click="open = !open" :class="{'is-active': open}" class="hamburger hamburger--collapse hamburger--3dx" type="button">
+				<span class="hamburger-box">
+					<span class="hamburger-inner"></span>
+				</span>
+				</button>
+			</div>
 			
 			</div>
 
