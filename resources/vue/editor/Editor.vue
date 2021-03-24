@@ -22,6 +22,7 @@
             <div class="input-text">
                 <label class="label">Titel</label>
                 <input type="text" class="w-full border-2 outline-none" v-model="page.title" required>
+                <p class="text-xs text-gray-600">Bitte immer einen Titel angeben. Dieser wird im Artikel und auf den Übersichtsseiten angezeigt.</p>
             </div>
         </div>
 
@@ -32,6 +33,7 @@
                 <select type="text" class="w-full border-2 outline-none" v-model="page.template" required>
                     <option v-for="(template, c) in templates" :value="template.id" v-text="template.title" :key="c"></option>
                 </select>
+                <p class="text-xs text-gray-600">Eine Vorlage ändert das Aussehen der Seite oder stellt spezielle Funktionen zur Verfügungn.</p>
             </div>
         </div>
 
@@ -107,6 +109,7 @@
                     <div class="input-text">
                         <label class="label">Kategorie</label>
                         <input type="text" class="w-full border-2 border-lightgray rounded-tl-md p-4 rounded-br-md outline-none" v-model="page.category">
+                        <p class="text-xs text-gray-600">Normalerweise die übergeordnete Seite. Umlaute im Zweifelsfall korrigieren.</p>
                     </div>
                 </div>
             </div>
@@ -115,7 +118,7 @@
                     <div class="input-text">
                         <label class="label">Icon</label>
                         <input type="text" class="w-full border-2 border-lightgray rounded-tl-md p-4 rounded-br-md outline-none" v-model="page.icon">
-                        <p class="text-xs">Ein beliebiges Icon von <a href="https://fonts.google.com/icons">https://fonts.google.com/icons</a> aus dem "Filled"-Set. Bitte den Namen Kleingeschrieben und mit Unterstrichen angeben</p>
+                        <p class="text-xs text-gray-600">Ein beliebiges Icon von <a href="https://fonts.google.com/icons">https://fonts.google.com/icons</a> aus dem "Filled"-Set. Bitte den Namen Kleingeschrieben und mit Unterstrichen angeben</p>
                     </div>
                 </div>
             </div>
@@ -125,6 +128,7 @@
             <div class="input-textarea">
                 <label class="label">Zusammenfassung</label>
                 <textarea class="w-full border-2 border-lightgray rounded-tl-md p-4 rounded-br-md outline-none" v-model="page.abstract"></textarea>
+                <p class="text-xs text-gray-600">Die Zusammenfassung wird als Vortschau auf den Übersichtsseiten angezeigt. Maximal 100 Buchstaben.</p>
             </div>
         </div>
         
@@ -134,6 +138,7 @@
             <div class="editor-tags input-text">
                 <label class="label">Schlagworte</label>
                 <input-tag v-model="page.tags" :before-adding="tag => tag.toLowerCase().replace(' ', '_')" placeholder="Tag hinzufügen"></input-tag>
+                <p class="text-xs text-gray-600">Den wichtigsten Tag zuerst, dieser wird auf der Übersichtsseite angezeigt.</p>
             </div>
         </div>
 
@@ -153,6 +158,7 @@
                 <div class="input-text">
                     <label class="label">Seitenlink</label>
                     <input type="text" @click="showPageLinkPicker = true" class="w-full border-2 outline-none" v-model="page.pagelink" required>
+                    <p class="text-xs text-gray-600">Hier kann ein Link eingefügt werden, der dann als Button im Titelbild angezeigt wird.</p>
                 </div>
             </div>
         </div>
