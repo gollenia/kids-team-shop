@@ -12,7 +12,7 @@ class FileSize extends CustomFilters {
     {
         // Pick units
         $size = intval($size);
-        $suffix = ['B', 'Kb', 'Mb', 'Gb', 'Tb', 'Pb'];
+        $suffix = ['B', 'KB', 'MB', 'GB', 'TB', 'PB'];
         
         // Max unit to display
         $depth = count($suffix) - 1;
