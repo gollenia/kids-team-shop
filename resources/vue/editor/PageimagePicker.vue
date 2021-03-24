@@ -39,8 +39,8 @@
         <div class="p-4 bg-gray-200">
             Hochladen: 
             <input type="file" @change="fileInput = $event.target.files || $event.dataTransfer.files">
-            <button v-show="fileInput" class="border" @click="upload">Upload</button>
-            <div v-show="fileInput" class="input-text"><label>Namespace</label><input v-model="ns" type="text"></div>
+            <button v-show="fileInput" class="button primary ml-4" @click="upload">Upload</button>
+            <div v-show="fileInput" class="input-text"><label class="label">Namespace</label><input v-model="ns" type="text"></div>
         </div>
     </modal>
 </template>
