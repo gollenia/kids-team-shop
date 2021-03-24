@@ -62,10 +62,10 @@
                     <button class="toolbutton button" title="Externer Link"  @click="textWrap('[[', ']]', '[[https://www.example.com|Externer Link]]')">
                         <i class="material-icons">explore</i>
                     </button>
-                    <button class="toolbutton button" title="Nummerierter Listenpunkt [-]" @click="textWrap(' - ', '', ' - Nummerierter Listenpunkt')" v-shortkey.once="['ctrl', '-']" @shortkey="textWrap(' - ', '', ' - Nummerierter Listenpunkt')">
+                    <button class="toolbutton button" title="Nummerierter Listenpunkt [-]" @click="textWrap('  - ', '', '  - Nummerierter Listenpunkt')" v-shortkey.once="['ctrl', '-']" @shortkey="textWrap('  - ', '', '  - Nummerierter Listenpunkt')">
                         <i class="material-icons">format_list_numbered</i>
                     </button>
-                    <button class="toolbutton button" title="Listenpunkt [.]" @click="textWrap(' * ', '', ' * Listenpunkt')" v-shortkey.once="['ctrl', '.']" @shortkey="textWrap(' * ', '', ' - Listenpunkt')">
+                    <button class="toolbutton button" title="Listenpunkt [.]" @click="textWrap('  * ', '', '  * Listenpunkt')" v-shortkey.once="['ctrl', '.']" @shortkey="textWrap('  * ', '', '  * Listenpunkt')">
                         <i class="material-icons">format_list_bulleted</i>
                     </button>
                     <button class="toolbutton button" title="Horizontale Linie" aria-controls="wiki__text" @click="textWrap('\n----\n')">
