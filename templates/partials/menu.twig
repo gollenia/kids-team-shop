@@ -44,7 +44,7 @@
 			
 			</div>
 
-			<div :class="{'flex': open, 'hidden md:flex': !open}" class="w-full h-screen bg-opacity-90 bg-gray-600 py-12 px-4 mt-20 md:mt-0 md:p-0 bg-blur md:bg-white absolute md:static md:h-auto flex-col md:flex-row">
+			<div :class="{'flex': open, 'hidden md:flex': !open}" class="w-full mb-2 h-screen bg-opacity-90 bg-gray-600 py-12 px-4 mt-20 md:mt-0 md:p-0 bg-blur md:bg-white absolute md:static md:h-auto flex-col md:flex-row">
 				<div x-show="searchbox || open" x-on:keydown.escape="searchbox = false"  @click.away="searchbox = false" style="display: none" class="md:-mt-5 md:inset-0 z-40 flex md:absolute md:bg-white text-black border-0 outline-none rounded-tl-m rounded-br-m" >
 						<form class="search-form self-end w-full flex md:content-end md:ml-36 relative" action="/start" role="search" id="dw__search" class="searchform">
 						<input type="hidden" name="do" value="search">
