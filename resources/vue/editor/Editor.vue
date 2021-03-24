@@ -101,6 +101,7 @@
             </div>
 
             <codemirror class="border-r-2 border-l-2 border-b-2 p-4 rounded-br-xl bg-white" ref="cm" v-model="page.content" :options="cmOptions" @keyHandled="cmOnKeyHandle($event)"></codemirror>
+            <p class="text-xs text-gray-600">Wenn dieses Feld leer ist, wird die Seite nicht angelegt bzw. gelöscht.</p>
         </div>
 
         <div class="max-w-screen-xl mx-auto px-4 md:px-8 xl:px-0 py-8 grid grid-cols-2 gap-12">
