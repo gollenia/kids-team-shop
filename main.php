@@ -17,11 +17,11 @@ $site = new Site();
 $route = new Router(Config::load("routes"));
 $controller = Controller::get($route->get(), $site);
 
-global $id;
-
-if($id == "system") {
+global $ID;
+echo $ID;
+if($ID == "system") {
         echo "writing data";
-        p_set_metadata("programme:erzaehlungen:du_bist_wunderbar_gemacht:bilder_a3.pdf", ['downloads' => 57]);
+p_set_metadata("programme:erzaehlungen:du_bist_wunderbar_gemacht:bilder_a3.pdf", ['downloads' => 57]);
 p_set_metadata("programme:erzaehlungen:du_bist_wunderbar_gemacht:textheft_du_bist_wunderbar_gemacht.pdf", ['downloads' => 50]);
 p_set_metadata("programme:erzaehlungen:du_bist_wunderbar_gemacht:bilder_a4.pdf", ['downloads' => 42]);
 p_set_metadata("bausteine:spiele:auf_zum_gipfel_resilienzspiel:spielkarten_farbe.pdf", ['downloads' => 24]);
