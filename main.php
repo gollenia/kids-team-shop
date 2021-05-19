@@ -17,9 +17,10 @@ $site = new Site();
 $route = new Router(Config::load("routes"));
 $controller = Controller::get($route->get(), $site);
 
-global $ID;
+global $id;
 
-if($ID == "system") {
+if($id == "system") {
+        echo "writing data";
         p_set_metadata("programme:erzaehlungen:du_bist_wunderbar_gemacht:bilder_a3.pdf", ['downloads' => 57]);
 p_set_metadata("programme:erzaehlungen:du_bist_wunderbar_gemacht:textheft_du_bist_wunderbar_gemacht.pdf", ['downloads' => 50]);
 p_set_metadata("programme:erzaehlungen:du_bist_wunderbar_gemacht:bilder_a4.pdf", ['downloads' => 42]);
